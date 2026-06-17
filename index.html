@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RFCHZVWHZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RFCHZVWHZ1');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Judy Ombam | Overnight Babysitting Nairobi</title>
@@ -196,7 +204,6 @@ nav {
 #gallery { background: var(--cream2); }
 .gallery-intro { max-width: 620px; margin: 0 auto 2.5rem; text-align: center; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-@media (max-width: 540px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
 .gallery-slot {
   border-radius: var(--radius); overflow: hidden; position: relative;
   background: linear-gradient(140deg, var(--blue-light), var(--gold-light));
@@ -488,83 +495,32 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   margin-top: 1rem; text-align: right; font-size: .82rem; color: var(--text-mid);
 }
 .revenue-total strong { color: #1B8A4A; font-size: 1rem; }
-
-/* ===== ADMIN BOOKING MANAGEMENT ===== */
 .admin-section-title {
   font-size: .78rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: .1em; color: var(--text-light);
   margin: 2rem 0 1rem; padding-bottom: .5rem;
   border-bottom: 1.5px solid #E0E4EC;
 }
-.booking-mgmt-card {
-  background: var(--white); border-radius: 14px;
-  padding: 1.5rem; border: 1px solid #E0E4EC;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin-bottom: 1.2rem;
-}
+.booking-mgmt-card { background: var(--white); border-radius: 14px; padding: 1.5rem; border: 1px solid #E0E4EC; box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin-bottom: 1.2rem; }
 .booking-mgmt-card h4 { font-size: .88rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1.2rem; }
-.booking-form-admin {
-  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto;
-  gap: .75rem; align-items: end;
-}
+.booking-form-admin { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: .75rem; align-items: end; }
 .booking-form-admin .af-field { display: flex; flex-direction: column; gap: .3rem; }
 .booking-form-admin label { font-size: .7rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: .05em; }
-.booking-form-admin input,
-.booking-form-admin select {
-  background: #F5F7FB; border: 1.5px solid #E0E4EC;
-  border-radius: 8px; padding: .55rem .85rem;
-  font-size: .83rem; color: var(--text-dark);
-  font-family: 'Inter', sans-serif; outline: none;
-  transition: border-color .2s;
-}
-.booking-form-admin input:focus,
-.booking-form-admin select:focus { border-color: var(--blue); }
-.add-booking-btn {
-  background: var(--blue-dark); color: #fff; border: none;
-  padding: .6rem 1.2rem; border-radius: 8px;
-  font-size: .82rem; font-weight: 600; cursor: pointer;
-  font-family: 'Inter', sans-serif; white-space: nowrap;
-  transition: opacity .2s;
-}
+.booking-form-admin input, .booking-form-admin select { background: #F5F7FB; border: 1.5px solid #E0E4EC; border-radius: 8px; padding: .55rem .85rem; font-size: .83rem; color: var(--text-dark); font-family: 'Inter', sans-serif; outline: none; transition: border-color .2s; }
+.booking-form-admin input:focus, .booking-form-admin select:focus { border-color: var(--blue); }
+.add-booking-btn { background: var(--blue-dark); color: #fff; border: none; padding: .6rem 1.2rem; border-radius: 8px; font-size: .82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; transition: opacity .2s; }
 .add-booking-btn:hover { opacity: .85; }
-.filter-row {
-  display: flex; gap: .6rem; flex-wrap: wrap;
-  margin-bottom: 1rem; align-items: center;
-}
-.filter-btn {
-  background: #F0F2F7; border: 1.5px solid #E0E4EC;
-  border-radius: 20px; padding: .3rem .85rem;
-  font-size: .76rem; font-weight: 600; cursor: pointer;
-  font-family: 'Inter', sans-serif; color: var(--text-mid);
-  transition: all .15s;
-}
-.filter-btn.active, .filter-btn:hover {
-  background: var(--blue-dark); color: #fff; border-color: var(--blue-dark);
-}
-.search-input {
-  flex: 1; min-width: 150px; max-width: 220px;
-  background: #F5F7FB; border: 1.5px solid #E0E4EC;
-  border-radius: 20px; padding: .35rem 1rem;
-  font-size: .8rem; font-family: 'Inter', sans-serif;
-  outline: none; color: var(--text-dark);
-}
+.filter-row { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1rem; align-items: center; }
+.filter-btn { background: #F0F2F7; border: 1.5px solid #E0E4EC; border-radius: 20px; padding: .3rem .85rem; font-size: .76rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; color: var(--text-mid); transition: all .15s; }
+.filter-btn.active, .filter-btn:hover { background: var(--blue-dark); color: #fff; border-color: var(--blue-dark); }
+.search-input { flex: 1; min-width: 150px; max-width: 220px; background: #F5F7FB; border: 1.5px solid #E0E4EC; border-radius: 20px; padding: .35rem 1rem; font-size: .8rem; font-family: 'Inter', sans-serif; outline: none; color: var(--text-dark); }
 .search-input:focus { border-color: var(--blue); }
-.action-btn {
-  border: none; border-radius: 6px; padding: .2rem .55rem;
-  font-size: .7rem; font-weight: 700; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: opacity .2s;
-}
+.action-btn { border: none; border-radius: 6px; padding: .2rem .55rem; font-size: .7rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity .2s; }
 .action-btn:hover { opacity: .75; }
 .action-edit { background: #E0E8FF; color: #2C4AA0; }
 .action-del  { background: #FFE0DF; color: #C0392B; }
-
-/* ===== ANALYTICS EXTRAS ===== */
 .analytics-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
-.mini-stat {
-  background: var(--white); border-radius: 14px;
-  padding: 1.2rem 1.4rem; border: 1px solid #E0E4EC;
-  box-shadow: 0 2px 12px rgba(0,0,0,.05);
-  display: flex; align-items: center; gap: 1rem;
-}
+.mini-stat { background: var(--white); border-radius: 14px; padding: 1.2rem 1.4rem; border: 1px solid #E0E4EC; box-shadow: 0 2px 12px rgba(0,0,0,.05); display: flex; align-items: center; gap: 1rem; }
 .mini-stat .ms-icon { font-size: 1.9rem; }
 .mini-stat .ms-label { font-size: .72rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .25rem; }
 .mini-stat .ms-value { font-size: 1.35rem; font-weight: 700; color: var(--text-dark); }
@@ -674,222 +630,71 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 
     <!-- STAT CARDS -->
     <div class="stat-cards">
-      <div class="stat-card green">
-        <div class="stat-label">Total Bookings</div>
-        <div class="stat-value">47</div>
-        <div class="stat-sub">Since January 2026</div>
-      </div>
-      <div class="stat-card blue">
-        <div class="stat-label">This Month</div>
-        <div class="stat-value">9</div>
-        <div class="stat-sub">June 2026</div>
-      </div>
-      <div class="stat-card gold">
-        <div class="stat-label">Revenue (June)</div>
-        <div class="stat-value">KSh 28,500</div>
-        <div class="stat-sub">All bookings confirmed</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Avg. Per Night</div>
-        <div class="stat-value" style="color:var(--text-dark);">KSh 3,050</div>
-        <div class="stat-sub">Across all rates</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Repeat Clients</div>
-        <div class="stat-value" style="color:#7B5EA7;">68%</div>
-        <div class="stat-sub">Return rate</div>
-      </div>
-      <div class="stat-card red">
-        <div class="stat-label">Cancellations</div>
-        <div class="stat-value">3</div>
-        <div class="stat-sub">This year (6.4%)</div>
-      </div>
+      <div class="stat-card green"><div class="stat-label">Total Bookings</div><div class="stat-value">47</div><div class="stat-sub">Since January 2026</div></div>
+      <div class="stat-card blue"><div class="stat-label">This Month</div><div class="stat-value">9</div><div class="stat-sub">June 2026</div></div>
+      <div class="stat-card gold"><div class="stat-label">Revenue (June)</div><div class="stat-value">KSh 13,500</div><div class="stat-sub">All bookings confirmed</div></div>
+      <div class="stat-card"><div class="stat-label">Avg. Per Night</div><div class="stat-value" style="color:var(--text-dark);">KSh 1,950</div><div class="stat-sub">Across all rates</div></div>
+      <div class="stat-card"><div class="stat-label">Repeat Clients</div><div class="stat-value" style="color:#7B5EA7;">68%</div><div class="stat-sub">Return rate</div></div>
+      <div class="stat-card red"><div class="stat-label">Cancellations</div><div class="stat-value">3</div><div class="stat-sub">This year (6.4%)</div></div>
     </div>
 
-    <!-- ANALYTICS MINI STATS -->
     <div class="admin-section-title">📈 Analytics Overview</div>
     <div class="analytics-row">
-      <div class="mini-stat">
-        <div class="ms-icon">💰</div>
-        <div>
-          <div class="ms-label">Year-to-Date Revenue</div>
-          <div class="ms-value">KSh 128,350</div>
-          <div class="ms-trend">▲ 22% vs same period last year</div>
-        </div>
-      </div>
-      <div class="mini-stat">
-        <div class="ms-icon">⭐</div>
-        <div>
-          <div class="ms-label">Avg. Client Rating</div>
-          <div class="ms-value">4.97 / 5.0</div>
-          <div class="ms-trend">Based on 31 reviews</div>
-        </div>
-      </div>
-      <div class="mini-stat">
-        <div class="ms-icon">📅</div>
-        <div>
-          <div class="ms-label">Upcoming (Next 7 Days)</div>
-          <div class="ms-value">4 bookings</div>
-          <div class="ms-trend">KSh 11,500 projected</div>
-        </div>
-      </div>
+      <div class="mini-stat"><div class="ms-icon">💰</div><div><div class="ms-label">Year-to-Date Revenue</div><div class="ms-value">KSh 82,350</div><div class="ms-trend">▲ 22% vs same period last year</div></div></div>
+      <div class="mini-stat"><div class="ms-icon">⭐</div><div><div class="ms-label">Avg. Client Rating</div><div class="ms-value">4.97 / 5.0</div><div class="ms-trend">Based on 31 reviews</div></div></div>
+      <div class="mini-stat"><div class="ms-icon">📅</div><div><div class="ms-label">Upcoming (Next 7 Days)</div><div class="ms-value">4 bookings</div><div class="ms-trend">KSh 7,500 projected</div></div></div>
     </div>
 
-    <!-- REVENUE TREND -->
-    <div class="revenue-chart-card">
-      <h4>💵 Monthly Revenue Trend — 2026</h4>
-      <div id="revenueChart"><!-- Rendered by JS --></div>
-    </div>
+    <div class="revenue-chart-card"><h4>💵 Monthly Revenue Trend — 2026</h4><div id="revenueChart"></div></div>
 
-    <!-- CHARTS ROW -->
     <div class="charts-row">
-      <div class="chart-card">
-        <h4>📊 Monthly Bookings — 2026</h4>
-        <div class="bar-chart" id="barChart"><!-- Rendered by JS --></div>
-      </div>
-      <div class="chart-card">
-        <h4>🍩 Revenue by Service Type</h4>
-        <div class="donut-wrap">
-          <svg class="donut-svg" viewBox="0 0 42 42" id="donutSvg"><!-- Rendered by JS --></svg>
-          <div class="donut-legend" id="donutLegend"><!-- Rendered by JS --></div>
-        </div>
-      </div>
+      <div class="chart-card"><h4>📊 Monthly Bookings — 2026</h4><div class="bar-chart" id="barChart"></div></div>
+      <div class="chart-card"><h4>🍩 Revenue by Service Type</h4><div class="donut-wrap"><svg class="donut-svg" viewBox="0 0 42 42" id="donutSvg"></svg><div class="donut-legend" id="donutLegend"></div></div></div>
     </div>
 
-    <!-- TOP AREAS + AREA BREAKDOWN -->
-    <div class="top-areas-card" style="margin-bottom:1.2rem;">
-      <h4>📍 Bookings by Area</h4>
-      <div class="area-bar-row" id="areaBarRow"><!-- Rendered by JS --></div>
-    </div>
+    <div class="top-areas-card" style="margin-bottom:1.2rem;"><h4>📍 Bookings by Area</h4><div class="area-bar-row" id="areaBarRow"></div></div>
 
-    <!-- BOOKINGS MANAGEMENT -->
     <div class="admin-section-title">📋 Bookings Management</div>
-
-    <!-- ADD NEW BOOKING -->
     <div class="booking-mgmt-card">
       <h4>➕ Add New Booking</h4>
       <div class="booking-form-admin">
-        <div class="af-field">
-          <label>Parent Name</label>
-          <input type="text" id="ab-name" placeholder="e.g. Jane W.">
-        </div>
-        <div class="af-field">
-          <label>Date</label>
-          <input type="date" id="ab-date">
-        </div>
-        <div class="af-field">
-          <label>Location</label>
-          <input type="text" id="ab-loc" placeholder="e.g. Kilimani">
-        </div>
-        <div class="af-field">
-          <label>Service</label>
-          <select id="ab-service">
-            <option>One Child</option>
-            <option>Two Children</option>
-            <option>Three Children</option>
-            <option>Infant Care</option>
-            <option>Infant Care + Emergency</option>
-            <option>One Child + Emergency</option>
-          </select>
-        </div>
+        <div class="af-field"><label>Parent Name</label><input type="text" id="ab-name" placeholder="e.g. Jane W."></div>
+        <div class="af-field"><label>Date</label><input type="date" id="ab-date"></div>
+        <div class="af-field"><label>Location</label><input type="text" id="ab-loc" placeholder="e.g. Kilimani"></div>
+        <div class="af-field"><label>Service</label><select id="ab-service"><option>One Child</option><option>Two Children</option><option>Three Children</option><option>Infant Care</option><option>Infant Care + Emergency</option><option>One Child + Emergency</option></select></div>
         <button class="add-booking-btn" onclick="adminAddBooking()">+ Add</button>
       </div>
     </div>
 
-    <!-- BOOKINGS TABLE WITH FILTER -->
     <div class="bookings-card">
       <h4>📋 All Bookings</h4>
       <div class="filter-row">
-        <button class="filter-btn active" onclick="filterBookings('all', this)">All</button>
-        <button class="filter-btn" onclick="filterBookings('Confirmed', this)">Confirmed</button>
-        <button class="filter-btn" onclick="filterBookings('Completed', this)">Completed</button>
-        <button class="filter-btn" onclick="filterBookings('Pending', this)">Pending</button>
-        <button class="filter-btn" onclick="filterBookings('Cancelled', this)">Cancelled</button>
+        <button class="filter-btn active" onclick="filterBookings('all',this)">All</button>
+        <button class="filter-btn" onclick="filterBookings('Confirmed',this)">Confirmed</button>
+        <button class="filter-btn" onclick="filterBookings('Completed',this)">Completed</button>
+        <button class="filter-btn" onclick="filterBookings('Pending',this)">Pending</button>
+        <button class="filter-btn" onclick="filterBookings('Cancelled',this)">Cancelled</button>
         <input class="search-input" type="text" id="bookingSearch" placeholder="🔍 Search parent or area…" oninput="searchBookings(this.value)">
       </div>
       <div style="overflow-x:auto;">
         <table class="bookings-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Date</th>
-              <th>Parent</th>
-              <th>Location</th>
-              <th>Children</th>
-              <th>Service</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+          <thead><tr><th>#</th><th>Date</th><th>Parent</th><th>Location</th><th>Children</th><th>Service</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody id="bookingsTbody">
-            <tr data-status="Confirmed">
-              <td>#047</td><td>14 Jun 2026</td><td>Amara K.</td><td>Kilimani</td>
-              <td>2 (4 yr, 7 yr)</td><td>Two Children</td><td>KSh 3,000</td>
-              <td><span class="status-badge status-confirmed">Confirmed</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Confirmed">
-              <td>#046</td><td>13 Jun 2026</td><td>Njeri M.</td><td>Westlands</td>
-              <td>1 (8 mo)</td><td>Infant Care</td><td>KSh 3,500</td>
-              <td><span class="status-badge status-confirmed">Confirmed</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Completed">
-              <td>#045</td><td>11 Jun 2026</td><td>Sarah P.</td><td>Karen</td>
-              <td>1 (2 yr)</td><td>One Child</td><td>KSh 2,500</td>
-              <td><span class="status-badge status-completed">Completed</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Completed">
-              <td>#044</td><td>09 Jun 2026</td><td>David O.</td><td>Lavington</td>
-              <td>3 (6, 9, 12 yr)</td><td>Three Children</td><td>KSh 3,500</td>
-              <td><span class="status-badge status-completed">Completed</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Completed">
-              <td>#043</td><td>07 Jun 2026</td><td>Fatuma A.</td><td>Kileleshwa</td>
-              <td>1 (newborn)</td><td>Infant Care + Emergency</td><td>KSh 4,000</td>
-              <td><span class="status-badge status-completed">Completed</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Completed">
-              <td>#042</td><td>05 Jun 2026</td><td>Min-Ji C.</td><td>Parklands</td>
-              <td>2 (3 yr, 5 yr)</td><td>Two Children</td><td>KSh 3,000</td>
-              <td><span class="status-badge status-completed">Completed</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Completed">
-              <td>#041</td><td>03 Jun 2026</td><td>Grace W.</td><td>Kilimani</td>
-              <td>1 (15 yr)</td><td>One Child</td><td>KSh 2,500</td>
-              <td><span class="status-badge status-completed">Completed</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Completed">
-              <td>#040</td><td>01 Jun 2026</td><td>Tom B.</td><td>Westlands</td>
-              <td>1 (5 mo)</td><td>Infant Care</td><td>KSh 3,500</td>
-              <td><span class="status-badge status-completed">Completed</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Pending">
-              <td>#039</td><td>29 May 2026</td><td>Aisha N.</td><td>Karen</td>
-              <td>2 (1, 3 yr)</td><td>Two Children</td><td>KSh 3,000</td>
-              <td><span class="status-badge status-pending">Pending</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
-            <tr data-status="Cancelled">
-              <td>#038</td><td>27 May 2026</td><td>Paul M.</td><td>CBD</td>
-              <td>1 (10 yr)</td><td>One Child + Emergency</td><td>KSh 3,000</td>
-              <td><span class="status-badge status-cancelled">Cancelled</span></td>
-              <td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>
-            </tr>
+            <tr data-status="Confirmed"><td>#047</td><td>14 Jun 2026</td><td>Amara K.</td><td>Kilimani</td><td>2 (4,7 yr)</td><td>Two Children</td><td>KSh 2,500</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Confirmed"><td>#046</td><td>13 Jun 2026</td><td>Njeri M.</td><td>Westlands</td><td>1 (8 mo)</td><td>Infant Care</td><td>KSh 2,000</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Completed"><td>#045</td><td>11 Jun 2026</td><td>Sarah P.</td><td>Karen</td><td>1 (2 yr)</td><td>One Child</td><td>KSh 1,500</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Completed"><td>#044</td><td>09 Jun 2026</td><td>David O.</td><td>Lavington</td><td>3 (6,9,12 yr)</td><td>Three Children</td><td>KSh 3,000</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Completed"><td>#043</td><td>07 Jun 2026</td><td>Fatuma A.</td><td>Kileleshwa</td><td>1 (newborn)</td><td>Infant Care</td><td>KSh 2,000</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Completed"><td>#042</td><td>05 Jun 2026</td><td>Min-Ji C.</td><td>Parklands</td><td>2 (3,5 yr)</td><td>Two Children</td><td>KSh 2,500</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Completed"><td>#041</td><td>03 Jun 2026</td><td>Grace W.</td><td>Kilimani</td><td>1 (15 yr)</td><td>One Child</td><td>KSh 1,500</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Completed"><td>#040</td><td>01 Jun 2026</td><td>Tom B.</td><td>Westlands</td><td>1 (5 mo)</td><td>Infant Care</td><td>KSh 2,000</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Pending"><td>#039</td><td>29 May 2026</td><td>Aisha N.</td><td>Karen</td><td>2 (1,3 yr)</td><td>Two Children</td><td>KSh 2,500</td><td><span class="status-badge status-pending">Pending</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr data-status="Cancelled"><td>#038</td><td>27 May 2026</td><td>Paul M.</td><td>CBD</td><td>1 (10 yr)</td><td>One Child</td><td>KSh 1,500</td><td><span class="status-badge status-cancelled">Cancelled</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
           </tbody>
         </table>
       </div>
-      <div class="revenue-total" id="revTotal">
-        June 2026 confirmed revenue: <strong>KSh 28,500</strong> &nbsp;|&nbsp; Year-to-date: <strong>KSh 128,350</strong>
-      </div>
-    </div><!-- /bookings-card -->
+      <div class="revenue-total" id="revTotal">June 2026 revenue: <strong>KSh 13,500</strong> &nbsp;|&nbsp; Year-to-date: <strong>KSh 82,350</strong></div>
+    </div>
 
   </div><!-- /admin-inner -->
 </div><!-- /admin-dashboard -->
@@ -1028,15 +833,6 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
         <img src="SEVEN.jpg" alt="Judy with children — overnight babysitter Nairobi">
         <div class="consent-tag">📸 Full parental consent obtained</div>
       </div>
-      <div class="gallery-slot">
-        <img src="Eighth.jpg" alt="Judy caring for children — Nairobi babysitter">
-        <div class="consent-tag">📸 Full parental consent obtained</div>
-      </div>
-      <div class="gallery-slot">
-        <img src="Ninth.jpg" alt="Judy babysitting — Nairobi">
-        <div class="consent-tag">📸 Full parental consent obtained</div>
-      </div>
-      <!-- Video -->
       <div class="gallery-video-slot">
         <video src="Eith.mp4" autoplay muted loop playsinline poster="First.jpg"></video>
         <div class="consent-tag">🎥 Video · Full parental consent obtained</div>
@@ -1181,7 +977,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       <div class="price-card">
         <span class="price-label">Standard</span>
         <p class="price-title">One Child</p>
-        <p class="price-amount">KSh 2,500</p>
+        <p class="price-amount">KSh 1,500</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
         <p class="price-desc">Full 12-hour overnight care. Any age from newborn to teenager.</p>
       </div>
@@ -1189,14 +985,14 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
         <div class="popular-badge">Most Booked</div>
         <span class="price-label">Popular</span>
         <p class="price-title">Two Children</p>
-        <p class="price-amount">KSh 3,000</p>
+        <p class="price-amount">KSh 2,500</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
         <p class="price-desc">Great value for siblings. Mixed ages welcome.</p>
       </div>
       <div class="price-card">
         <span class="price-label">Specialist</span>
         <p class="price-title">Infant / Newborn Care</p>
-        <p class="price-amount">From KSh 3,500</p>
+        <p class="price-amount">KSh 2,000</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
         <p class="price-desc">Dedicated care for newborns and infants under 12 months.</p>
       </div>
@@ -1209,7 +1005,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       </div>
     </div>
     <div class="pricing-note reveal">
-      ℹ️ Final pricing depends on your location, number of children, and any special requirements. WhatsApp Judy for a personalised quote — response within the hour.
+      ℹ️ Final pricing depends on your location, number of children, and any special requirements. Email or WhatsApp Judy for a personalised quote — response within the hour.
     </div>
   </div>
 </section>
@@ -1460,7 +1256,6 @@ function openWA() {
 /* ===== ADMIN TOGGLE ===== */
 var ADMIN_PIN = "Judy2026";
 var adminUnlocked = false;
-
 function toggleAdmin() {
   if (adminUnlocked) {
     var dash = document.getElementById("admin-dashboard");
@@ -1557,110 +1352,6 @@ function renderCharts() {
       '<div class="legend-item"><span class="legend-dot" style="background:' + s.color + '"></span>' +
       s.label + ' <span style="margin-left:auto;font-weight:600;color:var(--text-dark)">' + pct + '%</span></div>';
   });
-
-  /* Revenue trend bar chart */
-  var revenue  = [14500, 20500, 24000, 27000, 27850, 28500];
-  var months   = ["Jan","Feb","Mar","Apr","May","Jun"];
-  var maxR = Math.max.apply(null, revenue);
-  var revEl = document.getElementById("revenueChart");
-  revEl.innerHTML = "";
-  months.forEach(function(m, i) {
-    var hPct = (revenue[i] / maxR * 100).toFixed(0);
-    var col = document.createElement("div");
-    col.className = "rev-col";
-    col.innerHTML =
-      '<div class="rev-val">KSh ' + (revenue[i]/1000).toFixed(1) + 'k</div>' +
-      '<div class="rev-bar" style="height:' + hPct + '%" title="' + m + ': KSh ' + revenue[i].toLocaleString() + '"></div>' +
-      '<div class="rev-lbl">' + m + '</div>';
-    revEl.appendChild(col);
-  });
-
-  /* Area bookings breakdown */
-  var areas = [
-    { name: "Westlands",  count: 12 },
-    { name: "Kilimani",   count: 11 },
-    { name: "Karen",      count: 8  },
-    { name: "Kileleshwa", count: 7  },
-    { name: "Lavington",  count: 5  },
-    { name: "Parklands",  count: 4  }
-  ];
-  var maxA = areas[0].count;
-  var areaEl = document.getElementById("areaBarRow");
-  areaEl.innerHTML = "";
-  areas.forEach(function(a) {
-    var pct = (a.count / maxA * 100).toFixed(0);
-    areaEl.innerHTML +=
-      '<div class="area-bar-item">' +
-      '<span class="aname">' + a.name + '</span>' +
-      '<div class="atrack"><div class="afill" style="width:' + pct + '%"></div></div>' +
-      '<span class="acount">' + a.count + '</span>' +
-      '</div>';
-  });
-}
-
-/* ===== ADMIN BOOKING MANAGEMENT ===== */
-var bookingCounter = 47;
-
-function adminAddBooking() {
-  var name    = document.getElementById("ab-name").value.trim();
-  var date    = document.getElementById("ab-date").value;
-  var loc     = document.getElementById("ab-loc").value.trim();
-  var service = document.getElementById("ab-service").value;
-  if (!name || !date || !loc) { alert("Please fill in Name, Date, and Location."); return; }
-  var rateMap = {
-    "One Child": 2500, "Two Children": 3000, "Three Children": 3500,
-    "Infant Care": 3500, "Infant Care + Emergency": 4000, "One Child + Emergency": 3000
-  };
-  var amount = rateMap[service] || 2500;
-  bookingCounter++;
-  var tbody = document.getElementById("bookingsTbody");
-  var row = document.createElement("tr");
-  row.setAttribute("data-status", "Confirmed");
-  var d = new Date(date);
-  var dateStr = d.getDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()] + " " + d.getFullYear();
-  row.innerHTML =
-    "<td>#" + bookingCounter + "</td><td>" + dateStr + "</td><td>" + name + "</td><td>" + loc + "</td>" +
-    "<td>—</td><td>" + service + "</td><td>KSh " + amount.toLocaleString() + "</td>" +
-    '<td><span class="status-badge status-confirmed">Confirmed</span></td>' +
-    '<td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td>';
-  tbody.insertBefore(row, tbody.firstChild);
-  document.getElementById("ab-name").value = "";
-  document.getElementById("ab-date").value = "";
-  document.getElementById("ab-loc").value  = "";
-}
-
-function deleteRow(btn) {
-  if (confirm("Delete this booking?")) btn.closest("tr").remove();
-}
-
-function editStatus(btn) {
-  var row = btn.closest("tr");
-  var statusCell = row.querySelector(".status-badge");
-  var current = statusCell.textContent.trim();
-  var options = ["Confirmed","Completed","Pending","Cancelled"];
-  var next = options[(options.indexOf(current) + 1) % options.length];
-  var classMap = { Confirmed: "status-confirmed", Completed: "status-completed", Pending: "status-pending", Cancelled: "status-cancelled" };
-  statusCell.className = "status-badge " + classMap[next];
-  statusCell.textContent = next;
-  row.setAttribute("data-status", next);
-}
-
-function filterBookings(status, btn) {
-  document.querySelectorAll(".filter-btn").forEach(function(b){ b.classList.remove("active"); });
-  btn.classList.add("active");
-  document.getElementById("bookingSearch").value = "";
-  document.querySelectorAll("#bookingsTbody tr").forEach(function(row) {
-    row.style.display = (status === "all" || row.getAttribute("data-status") === status) ? "" : "none";
-  });
-}
-
-function searchBookings(q) {
-  q = q.toLowerCase();
-  document.querySelectorAll(".filter-btn").forEach(function(b){ b.classList.remove("active"); });
-  document.querySelector(".filter-btn").classList.add("active");
-  document.querySelectorAll("#bookingsTbody tr").forEach(function(row) {
-    row.style.display = row.textContent.toLowerCase().includes(q) ? "" : "none";
-  });
 }
 
 /* ===== BOOKING FORM ===== */
@@ -1736,6 +1427,109 @@ var revealObserver = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
+
+
+/* ===== ADMIN BOOKING MANAGEMENT ===== */
+var bookingCounter = 47;
+function adminAddBooking() {
+  var name=document.getElementById("ab-name").value.trim();
+  var date=document.getElementById("ab-date").value;
+  var loc=document.getElementById("ab-loc").value.trim();
+  var service=document.getElementById("ab-service").value;
+  if(!name||!date||!loc){alert("Please fill Name, Date and Location.");return;}
+  var rateMap={"One Child":1500,"Two Children":2500,"Three Children":3000,"Infant Care":2000,"Infant Care + Emergency":2500,"One Child + Emergency":2000};
+  var amount=rateMap[service]||1500;
+  bookingCounter++;
+  var tbody=document.getElementById("bookingsTbody");
+  var row=document.createElement("tr");
+  row.setAttribute("data-status","Confirmed");
+  var d=new Date(date);
+  var ds=d.getDate()+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()]+" "+d.getFullYear();
+  row.innerHTML="<td>#"+bookingCounter+"</td><td>"+ds+"</td><td>"+name+"</td><td>"+loc+"</td><td>—</td><td>"+service+"</td><td>KSh "+amount.toLocaleString()+"</td><td><span class='status-badge status-confirmed'>Confirmed</span></td><td><button class='action-btn action-edit' onclick='editStatus(this)'>Edit</button> <button class='action-btn action-del' onclick='deleteRow(this)'>Del</button></td>";
+  tbody.insertBefore(row,tbody.firstChild);
+  document.getElementById("ab-name").value="";
+  document.getElementById("ab-date").value="";
+  document.getElementById("ab-loc").value="";
+}
+function deleteRow(btn){if(confirm("Delete this booking?"))btn.closest("tr").remove();}
+function editStatus(btn){
+  var row=btn.closest("tr");
+  var statusCell=row.querySelector(".status-badge");
+  var current=statusCell.textContent.trim();
+  var options=["Confirmed","Completed","Pending","Cancelled"];
+  var next=options[(options.indexOf(current)+1)%options.length];
+  var classMap={Confirmed:"status-confirmed",Completed:"status-completed",Pending:"status-pending",Cancelled:"status-cancelled"};
+  statusCell.className="status-badge "+classMap[next];
+  statusCell.textContent=next;
+  row.setAttribute("data-status",next);
+}
+function filterBookings(status,btn){
+  document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active");});
+  btn.classList.add("active");
+  document.getElementById("bookingSearch").value="";
+  document.querySelectorAll("#bookingsTbody tr").forEach(function(row){
+    row.style.display=(status==="all"||row.getAttribute("data-status")===status)?"":"none";
+  });
+}
+function searchBookings(q){
+  q=q.toLowerCase();
+  document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active");});
+  document.querySelector(".filter-btn").classList.add("active");
+  document.querySelectorAll("#bookingsTbody tr").forEach(function(row){
+    row.style.display=row.textContent.toLowerCase().includes(q)?"":"none";
+  });
+}
+
+/* ===== ADMIN CHARTS ===== */
+var chartsRendered=false;
+function renderCharts(){
+  if(chartsRendered)return; chartsRendered=true;
+  var months=["Jan","Feb","Mar","Apr","May","Jun"];
+  var bookings=[5,7,8,9,9,9];
+  var maxB=Math.max.apply(null,bookings);
+  var barChart=document.getElementById("barChart");
+  barChart.innerHTML="";
+  months.forEach(function(m,i){
+    var h=(bookings[i]/maxB*100).toFixed(0);
+    var wrap=document.createElement("div"); wrap.className="bar-wrap";
+    wrap.innerHTML='<div class="bar-val">'+bookings[i]+'</div><div class="bar'+(i===months.length-1?' gold-bar':'')+'" style="height:'+h+'%"></div><div class="bar-lbl">'+m+'</div>';
+    barChart.appendChild(wrap);
+  });
+  var services=[{label:"One Child",value:37,color:"#4A90C4"},{label:"Two Children",value:32,color:"#C9A84C"},{label:"Infant Care",value:22,color:"#1B8A4A"},{label:"Emergency+",value:9,color:"#C0392B"}];
+  var total=services.reduce(function(s,x){return s+x.value;},0);
+  var svg=document.getElementById("donutSvg"); svg.innerHTML="";
+  var offset=0;
+  services.forEach(function(s){
+    var pct=s.value/total*100; var dash=pct+" "+(100-pct);
+    var circle=document.createElementNS("http://www.w3.org/2000/svg","circle");
+    circle.setAttribute("cx",21);circle.setAttribute("cy",21);circle.setAttribute("r",15.915);
+    circle.setAttribute("fill","none");circle.setAttribute("stroke",s.color);circle.setAttribute("stroke-width",8);
+    circle.setAttribute("stroke-dasharray",dash);circle.setAttribute("stroke-dashoffset",(100-offset).toString());
+    svg.appendChild(circle); offset+=pct;
+  });
+  var t=document.createElementNS("http://www.w3.org/2000/svg","text");
+  t.setAttribute("x",21);t.setAttribute("y",22);t.setAttribute("text-anchor","middle");t.setAttribute("font-size","5");t.setAttribute("fill","#1A1A2E");t.setAttribute("font-weight","700");t.textContent="47"; svg.appendChild(t);
+  var s2=document.createElementNS("http://www.w3.org/2000/svg","text");
+  s2.setAttribute("x",21);s2.setAttribute("y",26);s2.setAttribute("text-anchor","middle");s2.setAttribute("font-size","2.8");s2.setAttribute("fill","#7A7A9A");s2.textContent="bookings"; svg.appendChild(s2);
+  var legend=document.getElementById("donutLegend"); legend.innerHTML="";
+  services.forEach(function(s){var pct=(s.value/total*100).toFixed(0);legend.innerHTML+='<div class="legend-item"><span class="legend-dot" style="background:'+s.color+'"></span>'+s.label+' <span style="margin-left:auto;font-weight:600;color:var(--text-dark)">'+pct+'%</span></div>';});
+  var revenue=[8500,12500,14000,16000,17850,13500];
+  var maxR=Math.max.apply(null,revenue);
+  var revEl=document.getElementById("revenueChart"); revEl.innerHTML="";
+  months.forEach(function(m,i){
+    var h=(revenue[i]/maxR*100).toFixed(0);
+    var col=document.createElement("div"); col.className="rev-col";
+    col.innerHTML='<div class="rev-val">KSh '+(revenue[i]/1000).toFixed(1)+'k</div><div class="rev-bar" style="height:'+h+'%"></div><div class="rev-lbl">'+m+'</div>';
+    revEl.appendChild(col);
+  });
+  var areas=[{name:"Westlands",count:12},{name:"Kilimani",count:11},{name:"Karen",count:8},{name:"Kileleshwa",count:7},{name:"Lavington",count:5},{name:"Parklands",count:4}];
+  var maxA=areas[0].count;
+  var areaEl=document.getElementById("areaBarRow"); areaEl.innerHTML="";
+  areas.forEach(function(a){
+    var pct=(a.count/maxA*100).toFixed(0);
+    areaEl.innerHTML+='<div class="area-bar-item"><span class="aname">'+a.name+'</span><div class="atrack"><div class="afill" style="width:'+pct+'%"></div></div><span class="acount">'+a.count+'</span></div>';
+  });
+}
 
 /* ===== MIN DATE ===== */
 var today = new Date().toISOString().split("T")[0];
