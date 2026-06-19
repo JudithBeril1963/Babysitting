@@ -551,29 +551,44 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 .gallery-video-slot video { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
 .gallery-video-slot .consent-tag { font-size: .64rem; }
 
-/* ===== AVAILABILITY CALENDAR ===== */
-.cal-day {
-  aspect-ratio: 1;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "Inter", sans-serif;
-  font-size: .78rem;
-  font-weight: 600;
-  cursor: default;
-  border: 1px solid transparent;
-  transition: transform .15s;
-  position: relative;
+/* ===== EMAIL PICKER MODAL ===== */
+.email-modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(26,26,46,0.55); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
 }
-.cal-day.available { background: #D4F5E2; color: #1B8A4A; border-color: #A8E6C3; }
-.cal-day.booked    { background: #FFE0DF; color: #C0392B; border-color: #F5B8B6; }
-.cal-day.past      { background: #F0F2F7; color: #BABACE; border-color: #E0E4EC; }
-.cal-day.today     { outline: 2px solid var(--gold); outline-offset: 1px; }
-.cal-day.empty     { background: transparent; border: none; }
-.cal-day-lbl       { font-size: .65rem; color: #BABACE; margin-top: 2px; }
-.cal-day-hdr       { font-family: "Inter",sans-serif; font-size: .7rem; font-weight: 700; color: var(--text-light); text-align: center; text-transform: uppercase; letter-spacing: .05em; padding: .3rem 0; }
+.email-modal-overlay.open { display: flex; }
+.email-modal {
+  background: var(--white); border-radius: 18px;
+  padding: 2rem 1.75rem; max-width: 360px; width: 90%;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.2);
+  text-align: center; position: relative;
+}
+.email-modal h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.2rem;
+  color: var(--text-dark); margin-bottom: .4rem;
+}
+.email-modal p {
+  font-size: .82rem; color: var(--text-mid); margin-bottom: 1.4rem; line-height: 1.6;
+}
+.email-choices { display: flex; flex-direction: column; gap: .75rem; }
+.email-choice-btn {
+  display: flex; align-items: center; gap: .85rem;
+  padding: .85rem 1.1rem; border-radius: 12px;
+  border: 1.5px solid var(--gold-light); background: var(--cream);
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  font-size: .88rem; font-weight: 600; color: var(--text-dark);
+  transition: all .15s; text-align: left;
+}
+.email-choice-btn:hover { background: var(--gold-light); border-color: var(--gold); }
+.email-choice-btn .ec-icon { font-size: 1.5rem; flex-shrink: 0; }
+.email-choice-btn .ec-label { font-size: .88rem; font-weight: 700; color: var(--text-dark); display: block; }
+.email-choice-btn .ec-sub { font-size: .74rem; color: var(--text-light); display: block; font-weight: 400; }
+.email-modal-close {
+  position: absolute; top: .75rem; right: .9rem;
+  background: none; border: none; font-size: 1.2rem;
+  color: var(--text-light); cursor: pointer; line-height: 1;
+}
 
 /* ===== SCROLL ANIMATIONS ===== */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
@@ -621,7 +636,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       <li><a href="#services">Services</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#areas">Areas</a></li>
-      <li><a href="#availability">Availability</a></li><li><a href="#booking">Book</a></li>
+      <li><a href="#booking">Book</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#" onclick="toggleAdmin(); return false;" style="color:var(--gold); font-weight:700;">⚙ Admin</a></li>
     </ul>
@@ -1032,9 +1047,6 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
     <div class="pricing-note reveal">
       ℹ️ Final pricing depends on your location, number of children, and any special requirements. Email or WhatsApp Judy for a personalised quote — response within the hour.
     </div>
-    <div class="pricing-note reveal" style="margin-top:.75rem; background:#FFF8E8; border-left-color:var(--gold); color:var(--text-dark);">
-      🕐 <strong>Shorter sessions?</strong> If you need less than 12 hours, Judy charges <strong>KSh 300 per hour</strong>. Simply mention your required hours when booking.
-    </div>
   </div>
 </section>
 
@@ -1084,35 +1096,6 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 </section>
 
 <!-- BOOKING / CONTACT -->
-<!-- AVAILABILITY CALENDAR -->
-<section id="availability" style="background:var(--cream2);">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Check before you book</span>
-      <h2 class="section-title">Availability Calendar</h2>
-      <p class="section-sub" style="margin:0 auto;">Green = Available &nbsp;·&nbsp; Red = Booked &nbsp;·&nbsp; Updated by Judy in real time.</p>
-    </div>
-    <div class="reveal" id="cal-wrap" style="max-width:700px;margin:0 auto;">
-      <!-- Nav -->
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;">
-        <button onclick="calPrev()" style="background:var(--blue-dark);color:#fff;border:none;border-radius:8px;padding:.45rem 1rem;font-size:.85rem;font-weight:600;cursor:pointer;">‹ Prev</button>
-        <div id="cal-title" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--text-dark);"></div>
-        <button onclick="calNext()" style="background:var(--blue-dark);color:#fff;border:none;border-radius:8px;padding:.45rem 1rem;font-size:.85rem;font-weight:600;cursor:pointer;">Next ›</button>
-      </div>
-      <!-- Legend -->
-      <div style="display:flex;gap:1.5rem;justify-content:center;margin-bottom:1rem;font-size:.8rem;font-family:'Inter',sans-serif;">
-        <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:14px;height:14px;border-radius:3px;background:#D4F5E2;border:1px solid #1B8A4A;display:inline-block;"></span>Available</span>
-        <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:14px;height:14px;border-radius:3px;background:#FFE0DF;border:1px solid #C0392B;display:inline-block;"></span>Booked</span>
-        <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:14px;height:14px;border-radius:3px;background:#F0F2F7;border:1px solid #ccc;display:inline-block;"></span>Past</span>
-      </div>
-      <!-- Day labels -->
-      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;" id="cal-days-header"></div>
-      <!-- Grid -->
-      <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;"></div>
-    </div>
-  </div>
-</section>
-
 <section id="booking">
   <div class="container">
     <div class="booking-inner">
@@ -1130,7 +1113,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
             Call Judy
           </a>
-          <a href="#" onclick="openGmail(); return false;" class="cta-btn cta-mail">
+          <a href="#" onclick="openEmailPicker(); return false;" class="cta-btn cta-mail">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
             Send Email
           </a>
@@ -1198,7 +1181,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
           </div>
         </div>
         <button class="submit-btn" onclick="submitBookingForm()">
-          📧 Send Booking Request via Email
+          📤 Send Booking Request
         </button>
         <p style="font-size:.74rem; color:var(--text-light); text-align:center; margin-top:.75rem; line-height:1.6;">
           By submitting this form you confirm that all information provided is accurate. Judy will follow up via email to confirm your booking and verify your ID before the session.
@@ -1587,8 +1570,32 @@ function submitBookingForm() {
   if (!idNum)   { alert("National ID number is required to confirm your booking."); return; }
   if (!idFile)  { alert("Please upload a photo of your National ID. This is required for your safety and Judy's."); return; }
 
-  var subject = "Babysitting Booking Request — " + name + " (" + date + ")";
-  var body =
+  /* ── SAVE TO ADMIN DASHBOARD ── */
+  var arr = loadBookings();
+  var d   = new Date(date);
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var newId = arr.length ? Math.max.apply(null, arr.map(function(b){ return b.id||0; })) + 1 : 1;
+  var RATE  = {"One child":1500,"Two children":2500,"Three children":3000,"Four+ children":3500};
+  arr.push({
+    id:       newId,
+    name:     name,
+    rawDate:  date,
+    dateStr:  d.getDate() + " " + MONTHS[d.getMonth()] + " " + d.getFullYear(),
+    location: location,
+    kids:     kids,
+    ages:     ages,
+    phone:    phone,
+    idNum:    idNum,
+    notes:    notes || "None",
+    service:  kids,
+    amount:   RATE[kids] || 1500,
+    status:   "Pending",
+    source:   "Website Form"
+  });
+  saveBookings(arr);
+
+  /* ── BUILD MESSAGE (shared for email & WA) ── */
+  var msg =
     "Hello Judy,\n\nI would like to make an overnight babysitting booking. Details below:\n\n" +
     "Name:            " + name + "\n" +
     "Phone:           " + phone + "\n" +
@@ -1598,15 +1605,17 @@ function submitBookingForm() {
     "Ages:            " + ages + "\n" +
     "National ID No.: " + idNum + "\n" +
     "Notes:           " + (notes || "None") + "\n\n" +
-    "Please find my National ID photo attached to this email.\n\n" +
     "Kindly confirm availability and next steps.\n\nThank you.";
 
-  var gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=atienojudithberil@gmail.com&su=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-  window.open(gmailUrl, "_blank");
+  var subject = "Babysitting Booking Request — " + name + " (" + date + ")";
 
-  setTimeout(function() {
-    alert("Your email app has opened with the booking details pre-filled. Please attach your National ID photo before sending.");
-  }, 600);
+  /* Store for picker */
+  window._pendingEmailSubject = subject;
+  window._pendingEmailBody    = msg;
+  window._pendingWAMsg        = msg;
+
+  /* ── SHOW SEND METHOD PICKER ── */
+  openSendPicker();
 }
 
 /* ===== FAQ ===== */
@@ -1638,112 +1647,93 @@ var revealObserver = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
-calInit();
 
 
 
 
-/* ===== GMAIL COMPOSE ===== */
-function openGmail() {
-  var to      = "atienojudithberil@gmail.com";
-  var subject = encodeURIComponent("Babysitting Enquiry — Judy Ombam");
-  var body    = encodeURIComponent("Hello Judy,\n\nI would like to enquire about your overnight babysitting services.\n\nName:\nPhone:\nLocation:\nDate Needed:\nNumber of Children:\nAges:\n\nThank you.");
-  window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + to + "&su=" + subject + "&body=" + body, "_blank");
+/* ===== SEND METHOD PICKER ===== */
+var _emailSubject = "";
+var _emailBody    = "";
+var _waMsg        = "";
+
+function openSendPicker() {
+  _emailSubject = window._pendingEmailSubject || "Babysitting Enquiry — Judy Ombam";
+  _emailBody    = window._pendingEmailBody    || "Hello Judy,\n\nI would like to enquire about overnight babysitting.\n\nThank you.";
+  _waMsg        = window._pendingWAMsg        || _emailBody;
+  document.getElementById("sendPickerOverlay").classList.add("open");
 }
 
-/* ===== AVAILABILITY CALENDAR ===== */
-var CAL_KEY    = "judy_availability";
-var calYear, calMonth;
-
-function calLoadData() {
-  try { return JSON.parse(localStorage.getItem(CAL_KEY) || "{}"); } catch(e) { return {}; }
-}
-function calSaveData(d) {
-  try { localStorage.setItem(CAL_KEY, JSON.stringify(d)); } catch(e) {}
-}
-function calKey(y, m, d) { return y + "-" + String(m+1).padStart(2,"0") + "-" + String(d).padStart(2,"0"); }
-
-function calInit() {
-  var now    = new Date();
-  calYear    = now.getFullYear();
-  calMonth   = now.getMonth();
-  calRender();
+/* also callable from the contact Send Email button */
+function openEmailPicker() {
+  _emailSubject = "Babysitting Enquiry — Judy Ombam";
+  _emailBody    = "Hello Judy,\n\nI would like to enquire about your overnight babysitting services.\n\nName:\nPhone:\nLocation:\nDate Needed:\nNumber of Children:\nAges:\n\nThank you.";
+  _waMsg        = _emailBody;
+  document.getElementById("sendPickerOverlay").classList.add("open");
 }
 
-function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } calRender(); }
-function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } calRender(); }
-
-function calRender() {
-  var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  var DAYS   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-  var data   = calLoadData();
-  var now    = new Date();
-  var today  = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-  document.getElementById("cal-title").textContent = MONTHS[calMonth] + " " + calYear;
-
-  /* day headers */
-  var hdr = document.getElementById("cal-days-header");
-  if (hdr) {
-    hdr.innerHTML = "";
-    DAYS.forEach(function(d) {
-      var el = document.createElement("div");
-      el.className = "cal-day-hdr";
-      el.textContent = d;
-      hdr.appendChild(el);
-    });
+function closeSendPicker(e) {
+  if (e.target === document.getElementById("sendPickerOverlay")) {
+    document.getElementById("sendPickerOverlay").classList.remove("open");
   }
+}
 
-  var grid     = document.getElementById("cal-grid");
-  grid.innerHTML = "";
-  var firstDay = new Date(calYear, calMonth, 1).getDay();
-  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+function sendViaWhatsApp() {
+  document.getElementById("sendPickerOverlay").classList.remove("open");
+  window.open("https://wa.me/254713781789?text=" + encodeURIComponent(_waMsg), "_blank");
+}
 
-  /* empty cells before 1st */
-  for (var i = 0; i < firstDay; i++) {
-    var emp = document.createElement("div");
-    emp.className = "cal-day empty";
-    grid.appendChild(emp);
-  }
+function sendViaGmail() {
+  document.getElementById("sendPickerOverlay").classList.remove("open");
+  var url = "https://mail.google.com/mail/?view=cm&fs=1&to=atienojudithberil@gmail.com&su=" +
+    encodeURIComponent(_emailSubject) + "&body=" + encodeURIComponent(_emailBody);
+  window.open(url, "_blank");
+  setTimeout(function(){ alert("Gmail opened. Please attach your National ID photo before sending."); }, 400);
+}
 
-  for (var d = 1; d <= daysInMonth; d++) {
-    var key     = calKey(calYear, calMonth, d);
-    var thisDay = new Date(calYear, calMonth, d);
-    var el      = document.createElement("div");
-    var status  = data[key] || "available";
-
-    if (thisDay < today) {
-      el.className = "cal-day past";
-    } else {
-      el.className = "cal-day " + status;
-      if (thisDay.getTime() === today.getTime()) el.classList.add("today");
-
-      /* admin can toggle by clicking */
-      if (adminUnlocked) {
-        el.style.cursor = "pointer";
-        el.title = "Click to toggle";
-        (function(k, elem) {
-          elem.addEventListener("click", function() {
-            var d2 = calLoadData();
-            d2[k] = (d2[k] === "booked") ? "available" : "booked";
-            calSaveData(d2);
-            calRender();
-          });
-        })(key, el);
-      }
-    }
-
-    el.innerHTML = "<span>" + d + "</span>";
-    if (thisDay.getTime() === today.getTime()) {
-      el.innerHTML += '<span class="cal-day-lbl">Today</span>';
-    }
-    grid.appendChild(el);
-  }
+function sendViaOutlook() {
+  document.getElementById("sendPickerOverlay").classList.remove("open");
+  window.location.href = "mailto:atienojudithberil@gmail.com" +
+    "?subject=" + encodeURIComponent(_emailSubject) +
+    "&body="    + encodeURIComponent(_emailBody);
+  setTimeout(function(){ alert("Your mail app opened. Please attach your National ID photo before sending."); }, 600);
 }
 
 /* ===== MIN DATE ===== */
 var today = new Date().toISOString().split("T")[0];
 document.getElementById("f-date").setAttribute("min", today);
 </script>
+
+<!-- SEND METHOD PICKER MODAL -->
+<div class="email-modal-overlay" id="sendPickerOverlay" onclick="closeSendPicker(event)">
+  <div class="email-modal">
+    <button class="email-modal-close" onclick="document.getElementById('sendPickerOverlay').classList.remove('open')">✕</button>
+    <h3>📤 How would you like to send?</h3>
+    <p>Your booking details are ready. Choose how to send them to Judy — all details are pre-filled.</p>
+    <div class="email-choices">
+      <button class="email-choice-btn" onclick="sendViaWhatsApp()">
+        <span class="ec-icon">💬</span>
+        <span>
+          <span class="ec-label">WhatsApp</span>
+          <span class="ec-sub">Fastest reply · Opens WhatsApp with details</span>
+        </span>
+      </button>
+      <button class="email-choice-btn" onclick="sendViaGmail()">
+        <span class="ec-icon">📨</span>
+        <span>
+          <span class="ec-label">Gmail</span>
+          <span class="ec-sub">Opens Gmail in your browser</span>
+        </span>
+      </button>
+      <button class="email-choice-btn" onclick="sendViaOutlook()">
+        <span class="ec-icon">📩</span>
+        <span>
+          <span class="ec-label">Outlook / Default Mail App</span>
+          <span class="ec-sub">Opens your device's default mail app</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
