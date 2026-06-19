@@ -103,8 +103,7 @@ nav {
   max-width: 1100px; margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
 }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: .5rem; }
-.nav-logo svg { flex-shrink: 0; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: .4rem; }
 .nav-logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 1.75rem; }
 .nav-links a { font-size: .82rem; font-weight: 500; color: var(--text-mid); transition: color .2s; }
@@ -552,31 +551,29 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 .gallery-video-slot video { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
 .gallery-video-slot .consent-tag { font-size: .64rem; }
 
-
 /* ===== AVAILABILITY CALENDAR ===== */
-.cal-card { background: var(--white); border-radius: 14px; padding: 1.5rem; border: 1px solid #E0E4EC; box-shadow: 0 2px 12px rgba(0,0,0,.05); margin-bottom: 1.2rem; }
-.cal-card h4 { font-size: .88rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1.2rem; }
-.cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
-.cal-nav span { font-size: .95rem; font-weight: 700; color: var(--text-dark); }
-.cal-nav button { background: #F0F2F7; border: 1px solid #E0E4EC; border-radius: 8px; width: 32px; height: 32px; cursor: pointer; font-size: .95rem; font-family: 'Inter',sans-serif; color: var(--text-dark); transition: background .15s; }
-.cal-nav button:hover { background: var(--blue-light); }
-.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-.cal-day-header { text-align: center; font-size: .65rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; padding: .3rem 0; }
-.cal-day { aspect-ratio: 1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: .75rem; font-weight: 600; cursor: pointer; transition: all .15s; border: 1.5px solid transparent; position: relative; }
-.cal-day:hover { border-color: var(--blue); }
-.cal-day.empty { background: none; cursor: default; pointer-events: none; }
-.cal-day.free { background: #D4F5E2; color: #1B8A4A; }
-.cal-day.booked { background: #FFE0DF; color: #C0392B; }
-.cal-day.today { border-color: var(--gold) !important; font-weight: 800; }
-.cal-day.past { background: #F7F9FF; color: #C5C5D5; cursor: default; }
-.cal-day.past:hover { border-color: transparent; }
-.cal-legend { display: flex; gap: 1.2rem; margin-top: .85rem; flex-wrap: wrap; }
-.cal-legend-item { display: flex; align-items: center; gap: .4rem; font-size: .75rem; color: var(--text-mid); }
-.cal-legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
-.cal-toggle-row { display: flex; gap: .5rem; margin-bottom: 1rem; flex-wrap: wrap; }
-.cal-toggle-btn { background: #F0F2F7; border: 1.5px solid #E0E4EC; border-radius: 8px; padding: .3rem .8rem; font-size: .75rem; font-weight: 600; cursor: pointer; font-family: 'Inter',sans-serif; color: var(--text-mid); transition: all .15s; }
-.cal-toggle-btn:hover, .cal-toggle-btn.active { background: var(--blue-dark); color: #fff; border-color: var(--blue-dark); }
-.cal-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(0,0,0,0.25); margin-top: 1px; }
+.cal-day {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: default;
+  border: 1px solid transparent;
+  transition: transform .15s;
+  position: relative;
+}
+.cal-day.available { background: #D4F5E2; color: #1B8A4A; border-color: #A8E6C3; }
+.cal-day.booked    { background: #FFE0DF; color: #C0392B; border-color: #F5B8B6; }
+.cal-day.past      { background: #F0F2F7; color: #BABACE; border-color: #E0E4EC; }
+.cal-day.today     { outline: 2px solid var(--gold); outline-offset: 1px; }
+.cal-day.empty     { background: transparent; border: none; }
+.cal-day-lbl       { font-size: .65rem; color: #BABACE; margin-top: 2px; }
+.cal-day-hdr       { font-family: "Inter",sans-serif; font-size: .7rem; font-weight: 700; color: var(--text-light); text-align: center; text-transform: uppercase; letter-spacing: .05em; padding: .3rem 0; }
 
 /* ===== SCROLL ANIMATIONS ===== */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
@@ -617,32 +614,14 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">
-  <svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Heart -->
-    <path d="M50 85 C50 85 12 60 12 34 C12 22 21 14 32 14 C39 14 45 18 50 25 C55 18 61 14 68 14 C79 14 88 22 88 34 C88 60 50 85 50 85Z" stroke="#C9A84C" stroke-width="4" fill="none" stroke-linejoin="round"/>
-    <!-- Baby body (curled, left side) -->
-    <path d="M22 62 C22 48 30 40 40 40 C44 40 46 42 46 46 C46 54 38 58 32 62 C28 65 24 66 22 62Z" stroke="#C9A84C" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- Baby head (right side, larger) -->
-    <circle cx="58" cy="48" r="16" stroke="#C9A84C" stroke-width="3.5" fill="none"/>
-    <!-- Baby ear -->
-    <path d="M58 33 C62 30 66 31 67 34" stroke="#C9A84C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <!-- Baby eye (dot) -->
-    <circle cx="63" cy="46" r="2" fill="#C9A84C"/>
-    <!-- Baby smile -->
-    <path d="M54 54 Q58 59 63 55" stroke="#C9A84C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <!-- Baby nose dot -->
-    <circle cx="60" cy="51" r="1.2" fill="#C9A84C"/>
-  </svg>
-  Judy <span>Ombam</span>
-</div>
+    <div class="nav-logo">🌙 Judy <span>Ombam</span></div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#areas">Areas</a></li>
-      <li><a href="#booking">Book</a></li>
+      <li><a href="#availability">Availability</a></li><li><a href="#booking">Book</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#" onclick="toggleAdmin(); return false;" style="color:var(--gold); font-weight:700;">⚙ Admin</a></li>
     </ul>
@@ -698,30 +677,6 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
     </div>
 
     <div class="top-areas-card" style="margin-bottom:1.2rem;"><h4>📍 Bookings by Area</h4><div class="area-bar-row" id="areaBarRow"></div></div>
-
-
-    <!-- AVAILABILITY CALENDAR -->
-    <div class="admin-section-title">📅 Availability Calendar</div>
-    <div class="cal-card">
-      <h4>📅 Monthly Availability — Click a date to toggle status</h4>
-      <div class="cal-nav">
-        <button onclick="calPrev()">‹</button>
-        <span id="calMonthLabel"></span>
-        <button onclick="calNext()">›</button>
-      </div>
-      <div class="cal-toggle-row">
-        <button class="cal-toggle-btn active" id="calModeBook" onclick="setCalMode('book',this)">📌 Mark as Booked</button>
-        <button class="cal-toggle-btn" id="calModeFree" onclick="setCalMode('free',this)">✅ Mark as Free</button>
-        <button class="cal-toggle-btn" id="calModeClear" onclick="setCalMode('clear',this)">🗑 Clear</button>
-      </div>
-      <div class="cal-grid" id="calGrid"></div>
-      <div class="cal-legend">
-        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#D4F5E2;border:1px solid #1B8A4A"></div> Available</div>
-        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#FFE0DF;border:1px solid #C0392B"></div> Booked</div>
-        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#F7F9FF;border:1px solid #E0E4EC"></div> Past</div>
-        <div class="cal-legend-item"><div class="cal-legend-dot" style="border:2px solid #C9A84C;background:#fff"></div> Today</div>
-      </div>
-    </div>
 
     <div class="admin-section-title">📋 Bookings Management</div>
     <div class="booking-mgmt-card">
@@ -1077,6 +1032,9 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
     <div class="pricing-note reveal">
       ℹ️ Final pricing depends on your location, number of children, and any special requirements. Email or WhatsApp Judy for a personalised quote — response within the hour.
     </div>
+    <div class="pricing-note reveal" style="margin-top:.75rem; background:#FFF8E8; border-left-color:var(--gold); color:var(--text-dark);">
+      🕐 <strong>Shorter sessions?</strong> If you need less than 12 hours, Judy charges <strong>KSh 300 per hour</strong>. Simply mention your required hours when booking.
+    </div>
   </div>
 </section>
 
@@ -1126,6 +1084,35 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 </section>
 
 <!-- BOOKING / CONTACT -->
+<!-- AVAILABILITY CALENDAR -->
+<section id="availability" style="background:var(--cream2);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Check before you book</span>
+      <h2 class="section-title">Availability Calendar</h2>
+      <p class="section-sub" style="margin:0 auto;">Green = Available &nbsp;·&nbsp; Red = Booked &nbsp;·&nbsp; Updated by Judy in real time.</p>
+    </div>
+    <div class="reveal" id="cal-wrap" style="max-width:700px;margin:0 auto;">
+      <!-- Nav -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;">
+        <button onclick="calPrev()" style="background:var(--blue-dark);color:#fff;border:none;border-radius:8px;padding:.45rem 1rem;font-size:.85rem;font-weight:600;cursor:pointer;">‹ Prev</button>
+        <div id="cal-title" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--text-dark);"></div>
+        <button onclick="calNext()" style="background:var(--blue-dark);color:#fff;border:none;border-radius:8px;padding:.45rem 1rem;font-size:.85rem;font-weight:600;cursor:pointer;">Next ›</button>
+      </div>
+      <!-- Legend -->
+      <div style="display:flex;gap:1.5rem;justify-content:center;margin-bottom:1rem;font-size:.8rem;font-family:'Inter',sans-serif;">
+        <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:14px;height:14px;border-radius:3px;background:#D4F5E2;border:1px solid #1B8A4A;display:inline-block;"></span>Available</span>
+        <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:14px;height:14px;border-radius:3px;background:#FFE0DF;border:1px solid #C0392B;display:inline-block;"></span>Booked</span>
+        <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:14px;height:14px;border-radius:3px;background:#F0F2F7;border:1px solid #ccc;display:inline-block;"></span>Past</span>
+      </div>
+      <!-- Day labels -->
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;" id="cal-days-header"></div>
+      <!-- Grid -->
+      <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;"></div>
+    </div>
+  </div>
+</section>
+
 <section id="booking">
   <div class="container">
     <div class="booking-inner">
@@ -1143,7 +1130,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
             Call Judy
           </a>
-          <a href="mailto:atienojudithberil@gmail.com" class="cta-btn cta-mail">
+          <a href="#" onclick="openGmail(); return false;" class="cta-btn cta-mail">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
             Send Email
           </a>
@@ -1266,18 +1253,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <p style="display:flex;align-items:center;gap:.5rem;">
-      <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M50 85 C50 85 12 60 12 34 C12 22 21 14 32 14 C39 14 45 18 50 25 C55 18 61 14 68 14 C79 14 88 22 88 34 C88 60 50 85 50 85Z" stroke="#C9A84C" stroke-width="4" fill="none" stroke-linejoin="round"/>
-    <path d="M22 62 C22 48 30 40 40 40 C44 40 46 42 46 46 C46 54 38 58 32 62 C28 65 24 66 22 62Z" stroke="#C9A84C" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="58" cy="48" r="16" stroke="#C9A84C" stroke-width="3.5" fill="none"/>
-    <path d="M58 33 C62 30 66 31 67 34" stroke="#C9A84C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <circle cx="63" cy="46" r="2" fill="#C9A84C"/>
-    <path d="M54 54 Q58 59 63 55" stroke="#C9A84C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <circle cx="60" cy="51" r="1.2" fill="#C9A84C"/>
-  </svg>
-      Judy Ombam Overnight Babysitting
-    </p>
+        <p>🌙 Judy Ombam Overnight Babysitting</p>
         <span>Safe, Reliable Overnight Childcare When You Need Peace of Mind.<br>Serving Nairobi · 7 PM – 7 AM</span>
       </div>
       <div class="footer-col">
@@ -1378,7 +1354,6 @@ function refreshAdmin() {
   renderStatCards(bookings);
   renderTable(bookings, "all");
   renderCharts(bookings);
-  renderCal();
 }
 
 /* ---------- stat cards ---------- */
@@ -1626,10 +1601,8 @@ function submitBookingForm() {
     "Please find my National ID photo attached to this email.\n\n" +
     "Kindly confirm availability and next steps.\n\nThank you.";
 
-  window.location.href =
-    "mailto:atienojudithberil@gmail.com" +
-    "?subject=" + encodeURIComponent(subject) +
-    "&body="    + encodeURIComponent(body);
+  var gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=atienojudithberil@gmail.com&su=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  window.open(gmailUrl, "_blank");
 
   setTimeout(function() {
     alert("Your email app has opened with the booking details pre-filled. Please attach your National ID photo before sending.");
@@ -1665,85 +1638,106 @@ var revealObserver = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
+calInit();
 
 
 
+
+/* ===== GMAIL COMPOSE ===== */
+function openGmail() {
+  var to      = "atienojudithberil@gmail.com";
+  var subject = encodeURIComponent("Babysitting Enquiry — Judy Ombam");
+  var body    = encodeURIComponent("Hello Judy,\n\nI would like to enquire about your overnight babysitting services.\n\nName:\nPhone:\nLocation:\nDate Needed:\nNumber of Children:\nAges:\n\nThank you.");
+  window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + to + "&su=" + subject + "&body=" + body, "_blank");
+}
 
 /* ===== AVAILABILITY CALENDAR ===== */
-var calYear  = new Date().getFullYear();
-var calMonth = new Date().getMonth();
-var calMode  = "book";
-var CAL_KEY  = "judy_availability";
+var CAL_KEY    = "judy_availability";
+var calYear, calMonth;
 
-function loadAvail() {
-  try { return JSON.parse(localStorage.getItem(CAL_KEY) || "{}"); } catch(e){ return {}; }
+function calLoadData() {
+  try { return JSON.parse(localStorage.getItem(CAL_KEY) || "{}"); } catch(e) { return {}; }
 }
-function saveAvail(obj) {
-  try { localStorage.setItem(CAL_KEY, JSON.stringify(obj)); } catch(e){}
+function calSaveData(d) {
+  try { localStorage.setItem(CAL_KEY, JSON.stringify(d)); } catch(e) {}
 }
-function setCalMode(mode, btn) {
-  calMode = mode;
-  document.querySelectorAll(".cal-toggle-btn").forEach(function(b){ b.classList.remove("active"); });
-  btn.classList.add("active");
+function calKey(y, m, d) { return y + "-" + String(m+1).padStart(2,"0") + "-" + String(d).padStart(2,"0"); }
+
+function calInit() {
+  var now    = new Date();
+  calYear    = now.getFullYear();
+  calMonth   = now.getMonth();
+  calRender();
 }
-function calPrev() { calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCal(); }
-function calNext() { calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCal(); }
 
-function renderCal() {
-  var avail = loadAvail();
-  var DAYS  = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-  var MONTHS_LONG = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  var label = document.getElementById("calMonthLabel");
-  if (label) label.textContent = MONTHS_LONG[calMonth] + " " + calYear;
-  var grid = document.getElementById("calGrid");
-  if (!grid) return;
-  grid.innerHTML = "";
+function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } calRender(); }
+function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } calRender(); }
 
-  // Day headers
-  DAYS.forEach(function(d){
-    var h = document.createElement("div");
-    h.className = "cal-day-header";
-    h.textContent = d;
-    grid.appendChild(h);
-  });
+function calRender() {
+  var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var DAYS   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  var data   = calLoadData();
+  var now    = new Date();
+  var today  = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  var firstDay = new Date(calYear, calMonth, 1).getDay();
-  var daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
-  var today = new Date(); today.setHours(0,0,0,0);
+  document.getElementById("cal-title").textContent = MONTHS[calMonth] + " " + calYear;
 
-  // Empty slots
-  for (var i=0; i<firstDay; i++) {
-    var e = document.createElement("div");
-    e.className = "cal-day empty";
-    grid.appendChild(e);
+  /* day headers */
+  var hdr = document.getElementById("cal-days-header");
+  if (hdr) {
+    hdr.innerHTML = "";
+    DAYS.forEach(function(d) {
+      var el = document.createElement("div");
+      el.className = "cal-day-hdr";
+      el.textContent = d;
+      hdr.appendChild(el);
+    });
   }
 
-  // Day cells
-  for (var d=1; d<=daysInMonth; d++) {
-    var cellDate = new Date(calYear, calMonth, d);
-    var key = calYear+"-"+(calMonth+1)+"-"+d;
-    var status = avail[key] || "free";
-    var isPast = cellDate < today;
-    var isToday = cellDate.getTime() === today.getTime();
+  var grid     = document.getElementById("cal-grid");
+  grid.innerHTML = "";
+  var firstDay = new Date(calYear, calMonth, 1).getDay();
+  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
 
-    var cell = document.createElement("div");
-    cell.className = "cal-day " + (isPast ? "past" : status) + (isToday ? " today" : "");
-    cell.innerHTML = d + (status==="booked" && !isPast ? '<div class="cal-dot"></div>' : "");
+  /* empty cells before 1st */
+  for (var i = 0; i < firstDay; i++) {
+    var emp = document.createElement("div");
+    emp.className = "cal-day empty";
+    grid.appendChild(emp);
+  }
 
-    (function(k, cell, isPast){
-      if (!isPast) {
-        cell.onclick = function() {
-          var av = loadAvail();
-          if (calMode==="book")  av[k]="booked";
-          else if (calMode==="free") av[k]="free";
-          else delete av[k];
-          saveAvail(av);
-          renderCal();
-        };
+  for (var d = 1; d <= daysInMonth; d++) {
+    var key     = calKey(calYear, calMonth, d);
+    var thisDay = new Date(calYear, calMonth, d);
+    var el      = document.createElement("div");
+    var status  = data[key] || "available";
+
+    if (thisDay < today) {
+      el.className = "cal-day past";
+    } else {
+      el.className = "cal-day " + status;
+      if (thisDay.getTime() === today.getTime()) el.classList.add("today");
+
+      /* admin can toggle by clicking */
+      if (adminUnlocked) {
+        el.style.cursor = "pointer";
+        el.title = "Click to toggle";
+        (function(k, elem) {
+          elem.addEventListener("click", function() {
+            var d2 = calLoadData();
+            d2[k] = (d2[k] === "booked") ? "available" : "booked";
+            calSaveData(d2);
+            calRender();
+          });
+        })(key, el);
       }
-    })(key, cell, isPast);
+    }
 
-    grid.appendChild(cell);
+    el.innerHTML = "<span>" + d + "</span>";
+    if (thisDay.getTime() === today.getTime()) {
+      el.innerHTML += '<span class="cal-day-lbl">Today</span>';
+    }
+    grid.appendChild(el);
   }
 }
 
