@@ -396,10 +396,10 @@ nav {
   align-items: center; cursor: pointer; transition: background .15s;
 }
 .faq-q:hover { background: var(--gold-light); }
-.faq-q .caret { font-size: .9rem; color: var(--gold); flex-shrink: 0; margin-left: 1rem; display:inline-block; transition: transform .25s ease; }
+.faq-q .caret { font-size: .85rem; color: var(--gold); flex-shrink: 0; margin-left: 1rem; }
 .faq-a { display: none; padding: .8rem 1.35rem 1.2rem; font-size: .87rem; color: var(--text-mid); line-height: 1.85; border-top: 1px solid var(--gold-light); }
 .faq-item.open .faq-a { display: block; }
-.faq-item.open .caret { transform: rotate(180deg); }
+.faq-item.open .caret { /* JS handles caret symbol */ }
 
 /* ===== FOOTER ===== */
 footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5rem 2rem; }
@@ -1265,7 +1265,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFAQ(this)">Do you have experience from Sunday School teaching? <span class="caret">▼</span></div>
-        <div class="faq-Controla">Yes — I am an active Sunday School teacher at my church. This experience has greatly expanded my ability to engage, teach, and care for children of all ages and temperaments in a structured, loving environment. It directly informs the patience and creativity I bring to overnight babysitting.</div>
+        <div class="faq-a">Yes — I am an active Sunday School teacher at my church. This experience has greatly expanded my ability to engage, teach, and care for children of all ages and temperaments in a structured, loving environment. It directly informs the patience and creativity I bring to overnight babysitting.</div>
       </div>
     </div>
   </div>
