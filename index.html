@@ -891,15 +891,15 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       <div class="stat-card blue"><div class="stat-label">This Month</div><div class="stat-value">9</div><div class="stat-sub">June 2026</div></div>
       <div class="stat-card gold"><div class="stat-label">Revenue (June)</div><div class="stat-value">KSh 13,500</div><div class="stat-sub">All bookings confirmed</div></div>
       <div class="stat-card"><div class="stat-label">Avg. Per Night</div><div class="stat-value" style="color:var(--text-dark);">KSh 1,950</div><div class="stat-sub">Across all rates</div></div>
-      <div class="stat-card"><div class="stat-label">Repeat Clients</div><div class="stat-value" style="color:#7B5EA7;">68%</div><div class="stat-sub">Return rate</div></div>
+      <div class="stat-card" id="sc-repeat"><div class="stat-label">Repeat Clients</div><div class="stat-value" style="color:#7B5EA7;" id="sc-repeat-val">—</div><div class="stat-sub" id="sc-repeat-sub">Return rate</div></div>
       <div class="stat-card red"><div class="stat-label">Cancellations</div><div class="stat-value">3</div><div class="stat-sub">This year (6.4%)</div></div>
     </div>
 
     <div class="admin-section-title">📈 Analytics Overview</div>
     <div class="analytics-row">
-      <div class="mini-stat"><div class="ms-icon">💰</div><div><div class="ms-label">Year-to-Date Revenue</div><div class="ms-value">KSh 82,350</div><div class="ms-trend">▲ 22% vs same period last year</div></div></div>
-      <div class="mini-stat"><div class="ms-icon">⭐</div><div><div class="ms-label">Avg. Client Rating</div><div class="ms-value">4.97 / 5.0</div><div class="ms-trend">Based on 31 reviews</div></div></div>
-      <div class="mini-stat"><div class="ms-icon">📅</div><div><div class="ms-label">Upcoming (Next 7 Days)</div><div class="ms-value">4 bookings</div><div class="ms-trend">KSh 7,500 projected</div></div></div>
+      <div class="mini-stat"><div class="ms-icon">💰</div><div><div class="ms-label">Year-to-Date Revenue</div><div class="ms-value" id="ms-ytd">KSh 0</div><div class="ms-trend" id="ms-ytd-trend">Calculating...</div></div></div>
+      <div class="mini-stat"><div class="ms-icon">⭐</div><div><div class="ms-label">Avg. Rating</div><div class="ms-value" id="ms-rating">—</div><div class="ms-trend" id="ms-rating-sub">No reviews yet</div></div></div>
+      <div class="mini-stat"><div class="ms-icon">📅</div><div><div class="ms-label">Upcoming (Next 7 Days)</div><div class="ms-value" id="ms-upcoming">0 bookings</div><div class="ms-trend" id="ms-upcoming-rev">KSh 0 projected</div></div></div>
     </div>
 
     <div class="revenue-chart-card"><h4>💵 Monthly Revenue Trend — 2026</h4><div id="revenueChart"></div></div>
@@ -951,7 +951,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
           </tbody>
         </table>
       </div>
-      <div class="revenue-total" id="revTotal">June 2026 revenue: <strong>KSh 13,500</strong> &nbsp;|&nbsp; Year-to-date: <strong>KSh 82,350</strong></div>
+      <div class="revenue-total" id="revTotal">Loading...</div>
     </div>
 
   </div><!-- /admin-inner -->
@@ -1574,42 +1574,96 @@ function refreshAdmin() {
 
 /* ---------- stat cards ---------- */
 function renderStatCards(bookings) {
-  var now = new Date();
-  var thisMonth = now.getMonth();
-  var thisYear  = now.getFullYear();
-  var total = bookings.length;
+  var now        = new Date();
+  var thisMonth  = now.getMonth();
+  var thisYear   = now.getFullYear();
+  var total      = bookings.length;
+
+  /* Month bookings */
   var monthBookings = bookings.filter(function(b){
     var d = new Date(b.rawDate);
     return d.getMonth()===thisMonth && d.getFullYear()===thisYear;
   });
-  var monthRev = monthBookings.filter(function(b){ return b.status==="Completed"||b.status==="Confirmed"; })
-                   .reduce(function(s,b){ return s+(b.amount||0); },0);
-  var ytdRev = bookings.filter(function(b){
-    return (b.status==="Completed"||b.status==="Confirmed") && new Date(b.rawDate).getFullYear()===thisYear;
-  }).reduce(function(s,b){ return s+(b.amount||0); },0);
+
+  /* Revenue — only Confirmed or Completed count */
+  var active = function(b){ return b.status==="Completed"||b.status==="Confirmed"; };
+  var monthRev = monthBookings.filter(active).reduce(function(s,b){ return s+(b.amount||0); },0);
+  var ytdRev   = bookings.filter(function(b){ return active(b) && new Date(b.rawDate).getFullYear()===thisYear; })
+                         .reduce(function(s,b){ return s+(b.amount||0); },0);
+
+  /* Cancelled */
   var cancelled = bookings.filter(function(b){ return b.status==="Cancelled"; }).length;
+  var cancelPct = total ? ((cancelled/total)*100).toFixed(1) : 0;
+
+  /* Avg per night — across all non-cancelled */
+  var paid = bookings.filter(function(b){ return b.status!=="Cancelled"; });
+  var avgPerNight = paid.length ? Math.round(paid.reduce(function(s,b){ return s+(b.amount||0); },0)/paid.length) : 0;
+
+  /* Repeat clients — names that appear more than once */
+  var nameCounts = {};
+  bookings.forEach(function(b){ nameCounts[b.name] = (nameCounts[b.name]||0)+1; });
+  var repeatCount  = Object.values(nameCounts).filter(function(n){ return n>1; }).length;
+  var uniqueClients = Object.keys(nameCounts).length;
+  var repeatPct = uniqueClients ? Math.round((repeatCount/uniqueClients)*100) : 0;
+
+  /* Upcoming 7 days */
+  var today = new Date(); today.setHours(0,0,0,0);
+  var in7   = new Date(today.getTime()+7*24*60*60*1000);
   var upcoming = bookings.filter(function(b){
-    var d = new Date(b.rawDate); var today = new Date();
-    return d >= today && d <= new Date(today.getTime()+7*24*60*60*1000);
+    var d = new Date(b.rawDate); d.setHours(0,0,0,0);
+    return d>=today && d<=in7;
   });
-  var upcomingRev = upcoming.reduce(function(s,b){return s+(b.amount||0);},0);
-  var avgPerNight = total ? Math.round(bookings.reduce(function(s,b){return s+(b.amount||0);},0)/total) : 0;
+  var upcomingRev = upcoming.reduce(function(s,b){ return s+(b.amount||0); },0);
 
-  document.querySelector(".stat-card.green .stat-value").textContent = total || 0;
-  document.querySelector(".stat-card.blue .stat-value").textContent = monthBookings.length;
-  document.querySelector(".stat-card.gold .stat-value").textContent = "KSh " + monthRev.toLocaleString();
+  /* YTD last year estimate — same period last year bookings */
+  var lastYear = bookings.filter(function(b){
+    return active(b) && new Date(b.rawDate).getFullYear()===(thisYear-1);
+  }).reduce(function(s,b){ return s+(b.amount||0); },0);
+  var growthPct = lastYear ? (((ytdRev-lastYear)/lastYear)*100).toFixed(0) : null;
+  var growthTxt = growthPct !== null
+    ? (growthPct >= 0 ? "▲ " : "▼ ") + Math.abs(growthPct) + "% vs same period last year"
+    : "No prior year data yet";
+
+  /* ── Update DOM ── */
+  document.querySelector(".stat-card.green .stat-value").textContent = total;
+  document.querySelector(".stat-card.blue .stat-value").textContent  = monthBookings.length;
+  document.querySelector(".stat-card.gold .stat-value").textContent  = "KSh " + monthRev.toLocaleString();
   document.querySelectorAll(".stat-card")[3].querySelector(".stat-value").textContent = avgPerNight ? "KSh " + avgPerNight.toLocaleString() : "—";
-  document.querySelector(".stat-card.red .stat-value").textContent = cancelled;
+  document.querySelector(".stat-card.red .stat-value").textContent   = cancelled;
+  document.querySelector(".stat-card.red .stat-sub").textContent     = "This year (" + cancelPct + "%)";
 
-  /* mini stats */
-  document.querySelectorAll(".ms-value")[0].textContent = "KSh " + ytdRev.toLocaleString();
-  document.querySelectorAll(".ms-value")[1].textContent = "—";
-  document.querySelectorAll(".ms-value")[2].textContent = upcoming.length + " booking" + (upcoming.length!==1?"s":"");
-  document.querySelectorAll(".ms-trend")[2].textContent = "KSh " + upcomingRev.toLocaleString() + " projected";
+  /* Repeat clients */
+  var repeatEl = document.getElementById("sc-repeat-val");
+  var repeatSubEl = document.getElementById("sc-repeat-sub");
+  if (repeatEl) repeatEl.textContent = uniqueClients ? repeatPct + "%" : "—";
+  if (repeatSubEl) repeatSubEl.textContent = repeatCount + " of " + uniqueClients + " clients returned";
 
-  /* revenue total bar */
+  /* Mini stats */
+  var msYtd = document.getElementById("ms-ytd");
+  var msYtdT = document.getElementById("ms-ytd-trend");
+  var msUp  = document.getElementById("ms-upcoming");
+  var msUpR = document.getElementById("ms-upcoming-rev");
+  if (msYtd)  msYtd.textContent  = "KSh " + ytdRev.toLocaleString();
+  if (msYtdT) msYtdT.textContent = growthTxt;
+  if (msUp)   msUp.textContent   = upcoming.length + " booking" + (upcoming.length!==1?"s":"");
+  if (msUpR)  msUpR.textContent  = "KSh " + upcomingRev.toLocaleString() + " projected";
+
+  /* Rating — stays as — until you add a rating field */
+  var msRating = document.getElementById("ms-rating");
+  var msRatingSub = document.getElementById("ms-rating-sub");
+  var rated = bookings.filter(function(b){ return b.rating; });
+  if (rated.length && msRating) {
+    var avg = (rated.reduce(function(s,b){ return s+b.rating; },0)/rated.length).toFixed(2);
+    msRating.textContent = avg + " / 5.0";
+    if (msRatingSub) msRatingSub.textContent = "Based on " + rated.length + " review" + (rated.length!==1?"s":"");
+  } else {
+    if (msRating) msRating.textContent = "—";
+    if (msRatingSub) msRatingSub.textContent = "No ratings yet";
+  }
+
+  /* Revenue footer */
   var rt = document.getElementById("revTotal");
-  if (rt) rt.innerHTML = MONTHS[thisMonth]+" "+thisYear+" revenue: <strong>KSh "+monthRev.toLocaleString()+"</strong> &nbsp;|&nbsp; Year-to-date: <strong>KSh "+ytdRev.toLocaleString()+"</strong>";
+  if (rt) rt.innerHTML = MONTHS[thisMonth]+" "+thisYear+": <strong>KSh "+monthRev.toLocaleString()+"</strong> &nbsp;|&nbsp; Year-to-date: <strong>KSh "+ytdRev.toLocaleString()+"</strong>";
 }
 
 /* ---------- bookings table ---------- */
