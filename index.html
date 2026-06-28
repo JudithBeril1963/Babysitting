@@ -736,6 +736,45 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   .stat-cards { grid-template-columns: 1fr 1fr; }
 }
 </style>
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue, update, remove, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCe4Vyb-CoK2vMe-k33neXxTrjwoAzzF6o",
+    authDomain: "judy-babysitting.firebaseapp.com",
+    databaseURL: "https://judy-babysitting-default-rtdb.firebaseio.com",
+    projectId: "judy-babysitting",
+    storageBucket: "judy-babysitting.firebasestorage.app",
+    messagingSenderId: "1086443263799",
+    appId: "1:1086443263799:web:c96d89f7cf30970fcc2cb2",
+    measurementId: "G-7J7Y0WZFRT"
+  };
+
+  const app    = initializeApp(firebaseConfig);
+  const db     = getDatabase(app);
+  const bkRef  = ref(db, "bookings");
+
+  /* Expose to global scope for use in vanilla JS */
+  window._fb = { db, ref, push, onValue, update, remove, set, bkRef };
+
+  /* Live listener — updates admin table whenever Firebase changes */
+  onValue(bkRef, function(snapshot) {
+    var data = snapshot.val() || {};
+    var arr  = Object.entries(data).map(function([key, val]) {
+      return Object.assign({}, val, { firebaseKey: key });
+    });
+    arr.sort(function(a, b) { return new Date(b.rawDate) - new Date(a.rawDate); });
+    window._firebaseBookings = arr;
+    /* If admin is open, refresh it live */
+    if (document.getElementById("admin-dashboard").classList.contains("visible")) {
+      renderStatCards(arr);
+      renderTable(arr, window._currentFilter || "all");
+      renderCharts(arr);
+    }
+  });
+</script>
 </head>
 <body>
 
@@ -1479,17 +1518,31 @@ var adminUnlocked = false;
 var RATE = {"One Child":1500,"Two Children":2500,"Three Children":3000,"Infant Care":2000,"Infant Care + Emergency":2500,"One Child + Emergency":2000};
 var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-/* ---------- localStorage helpers ---------- */
+/* ---------- Firebase helpers ---------- */
 function loadBookings() {
-  try { return JSON.parse(localStorage.getItem("judy_bookings") || "[]"); } catch(e){ return []; }
+  return window._firebaseBookings || [];
 }
 function saveBookings(arr) {
-  try { localStorage.setItem("judy_bookings", JSON.stringify(arr)); } catch(e){}
+  /* No-op — Firebase listener handles updates automatically */
 }
 function nextId() {
   var arr = loadBookings();
   if (!arr.length) return 1;
   return Math.max.apply(null, arr.map(function(b){ return b.id||0; })) + 1;
+}
+function pushToFirebase(booking) {
+  if (!window._fb) { console.warn("Firebase not ready"); return; }
+  window._fb.push(window._fb.bkRef, booking);
+}
+function updateInFirebase(firebaseKey, updates) {
+  if (!window._fb || !firebaseKey) return;
+  var itemRef = window._fb.ref(window._fb.db, "bookings/" + firebaseKey);
+  window._fb.update(itemRef, updates);
+}
+function deleteFromFirebase(firebaseKey) {
+  if (!window._fb || !firebaseKey) return;
+  var itemRef = window._fb.ref(window._fb.db, "bookings/" + firebaseKey);
+  window._fb.remove(itemRef);
 }
 
 /* ---------- toggle with password ---------- */
@@ -1591,50 +1644,50 @@ function adminAddBooking() {
   var kids    = document.getElementById("ab-kids").value.trim();
   var service = document.getElementById("ab-service").value;
   if (!name||!date||!loc) { alert("Please fill Name, Date and Location."); return; }
-  var arr = loadBookings();
   var d = new Date(date);
-  arr.push({
-    id: nextId(),
-    name: name,
-    rawDate: date,
-    dateStr: d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear(),
+  var booking = {
+    id:       nextId(),
+    name:     name,
+    rawDate:  date,
+    dateStr:  d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear(),
     location: loc,
-    kids: kids||"—",
-    service: service,
-    amount: RATE[service]||1500,
-    status: "Confirmed"
-  });
-  saveBookings(arr);
+    kids:     kids||"—",
+    service:  service,
+    amount:   RATE[service]||1500,
+    status:   "Confirmed",
+    source:   "Admin"
+  };
+  pushToFirebase(booking);
   document.getElementById("ab-name").value="";
   document.getElementById("ab-date").value="";
   document.getElementById("ab-loc").value="";
   document.getElementById("ab-kids").value="";
-  refreshAdmin();
 }
 
 /* ---------- edit status ---------- */
 function cycleStatus(id) {
-  var arr = loadBookings();
-  var idx = arr.findIndex(function(b){ return b.id===id; });
-  if (idx<0) return;
-  var opts = ["Confirmed","Completed","Pending","Cancelled"];
-  arr[idx].status = opts[(opts.indexOf(arr[idx].status)+1)%opts.length];
-  saveBookings(arr);
-  var currentFilter = (document.querySelector(".filter-btn.active")||{}).textContent||"All";
-  renderTable(arr, currentFilter==="All"?"all":currentFilter);
-  renderStatCards(arr);
+  var arr  = loadBookings();
+  var item = arr.find(function(b){ return b.id===id; });
+  if (!item) return;
+  var opts   = ["Confirmed","Completed","Pending","Cancelled"];
+  var next   = opts[(opts.indexOf(item.status)+1)%opts.length];
+  if (item.firebaseKey) {
+    updateInFirebase(item.firebaseKey, { status: next });
+  }
 }
 
 /* ---------- delete ---------- */
 function removeBooking(id) {
   if (!confirm("Delete this booking?")) return;
-  var arr = loadBookings().filter(function(b){ return b.id!==id; });
-  saveBookings(arr);
-  refreshAdmin();
+  var booking = loadBookings().find(function(b){ return b.id===id; });
+  if (booking && booking.firebaseKey) {
+    deleteFromFirebase(booking.firebaseKey);
+  }
 }
 
 /* ---------- filter ---------- */
 function filterBookings(status, btn) {
+  window._currentFilter = status;
   document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active");});
   btn.classList.add("active");
   document.getElementById("bookingSearch").value="";
@@ -1750,17 +1803,17 @@ function submitBookingForm() {
   if (!idNum)   { alert("National ID number is required to confirm your booking."); return; }
   if (!idFile)  { alert("Please upload a photo of your National ID. This is required for your safety and Judy's."); return; }
 
-  /* ── SAVE TO ADMIN DASHBOARD ── */
-  var arr = loadBookings();
-  var d   = new Date(date);
-  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var newId = arr.length ? Math.max.apply(null, arr.map(function(b){ return b.id||0; })) + 1 : 1;
-  var RATE  = {"One child":1500,"Two children":2500,"Three children":3000,"Four+ children":3500};
-  arr.push({
+  /* ── SAVE TO FIREBASE ── */
+  var d2    = new Date(date);
+  var MOS   = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var arr2  = loadBookings();
+  var newId = arr2.length ? Math.max.apply(null, arr2.map(function(b){ return b.id||0; })) + 1 : 1;
+  var RATE2 = {"One child":1500,"Two children":2500,"Three children":3000,"Four+ children":3500};
+  var newBooking = {
     id:       newId,
     name:     name,
     rawDate:  date,
-    dateStr:  d.getDate() + " " + MONTHS[d.getMonth()] + " " + d.getFullYear(),
+    dateStr:  d2.getDate() + " " + MOS[d2.getMonth()] + " " + d2.getFullYear(),
     location: location,
     kids:     kids,
     ages:     ages,
@@ -1768,11 +1821,11 @@ function submitBookingForm() {
     idNum:    idNum,
     notes:    notes || "None",
     service:  kids,
-    amount:   RATE[kids] || 1500,
+    amount:   RATE2[kids] || 1500,
     status:   "Pending",
     source:   "Website Form"
-  });
-  saveBookings(arr);
+  };
+  pushToFirebase(newBooking);
 
   /* ── BUILD MESSAGE (shared for email & WA) ── */
   var msg =
