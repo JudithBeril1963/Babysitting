@@ -591,6 +591,84 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   color: var(--text-light); cursor: pointer; line-height: 1;
 }
 
+/* ===== CONSENT GATE ===== */
+.consent-gate {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #0F2A1A;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+  transition: opacity .4s ease;
+}
+.consent-gate.hiding { opacity: 0; pointer-events: none; }
+.consent-box {
+  background: var(--white); border-radius: 20px;
+  max-width: 620px; width: 100%;
+  max-height: 90vh; display: flex; flex-direction: column;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+.consent-header {
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 1px solid var(--gold-light);
+  flex-shrink: 0;
+}
+.consent-header .ch-top {
+  display: flex; align-items: center; gap: .75rem; margin-bottom: .3rem;
+}
+.consent-header .moon { font-size: 1.6rem; }
+.consent-header h2 {
+  font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text-dark);
+}
+.consent-header p { font-size: .8rem; color: var(--text-light); margin-top: .2rem; }
+.consent-scroll {
+  flex: 1; overflow-y: auto; padding: 1.25rem 2rem;
+}
+.consent-scroll h3 {
+  font-size: .9rem; font-weight: 700; color: var(--text-dark);
+  margin: 1.1rem 0 .4rem;
+}
+.consent-scroll h3:first-child { margin-top: 0; }
+.consent-scroll p {
+  font-size: .83rem; color: var(--text-mid); line-height: 1.75; margin-bottom: .5rem;
+}
+.consent-scroll ul {
+  padding-left: 1.1rem; margin-bottom: .5rem;
+}
+.consent-scroll ul li {
+  font-size: .83rem; color: var(--text-mid); line-height: 1.75; margin-bottom: .2rem;
+}
+.consent-divider { border: none; border-top: 1px solid var(--gold-light); margin: .9rem 0; }
+.consent-footer {
+  padding: 1.1rem 2rem 1.4rem;
+  border-top: 1px solid var(--gold-light);
+  flex-shrink: 0; background: var(--white);
+}
+.consent-check-row {
+  display: flex; align-items: flex-start; gap: .75rem;
+  margin-bottom: 1rem;
+}
+.consent-check-row input[type="checkbox"] {
+  width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
+  accent-color: var(--blue-dark); cursor: pointer;
+}
+.consent-check-row label {
+  font-size: .83rem; color: var(--text-mid); line-height: 1.6; cursor: pointer;
+}
+.consent-check-row label strong { color: var(--text-dark); }
+.consent-agree-btn {
+  width: 100%; background: var(--blue-dark); color: #fff;
+  border: none; border-radius: 10px; padding: .9rem;
+  font-size: .95rem; font-weight: 700; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: opacity .2s;
+  opacity: .4; pointer-events: none;
+}
+.consent-agree-btn.enabled { opacity: 1; pointer-events: all; }
+.consent-agree-btn.enabled:hover { opacity: .88; }
+.consent-note {
+  text-align: center; font-size: .73rem; color: var(--text-light);
+  margin-top: .6rem; line-height: 1.5;
+}
+
 /* ===== PRIVACY POLICY MODAL ===== */
 .pp-overlay {
   display: none; position: fixed; inset: 0; z-index: 9999;
@@ -660,6 +738,67 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 </style>
 </head>
 <body>
+
+<!-- CONSENT GATE -->
+<div class="consent-gate" id="consentGate">
+  <div class="consent-box">
+    <div class="consent-header">
+      <div class="ch-top">
+        <span class="moon">🌙</span>
+        <h2>Welcome to Judy Ombam Overnight Babysitting</h2>
+      </div>
+      <p>Before entering, please read and agree to our Privacy Policy.</p>
+    </div>
+
+    <div class="consent-scroll" id="consentScroll">
+      <h3>1. Who We Are</h3>
+      <p><strong>Judy Ombam</strong> is a professional overnight babysitter based in Nairobi, Kenya. Contact: <strong>atienojudithberil@gmail.com</strong> · <strong>0713 781 789</strong>.</p>
+      <hr class="consent-divider">
+      <h3>2. Information We Collect</h3>
+      <p>When you submit a booking request you may provide:</p>
+      <ul>
+        <li>Your full name and phone number</li>
+        <li>Your location / estate in Nairobi</li>
+        <li>Date of booking and number/ages of children</li>
+        <li>National ID number and photo (required for safety verification)</li>
+        <li>Any special instructions or notes</li>
+      </ul>
+      <p>This website also uses <strong>Google Analytics</strong> to collect anonymised visitor data (pages viewed, time spent, general location). This does not identify you personally.</p>
+      <hr class="consent-divider">
+      <h3>3. How We Use Your Information</h3>
+      <ul>
+        <li>To confirm and manage your babysitting booking</li>
+        <li>To verify your identity before a session for safety</li>
+        <li>To contact you regarding your booking via WhatsApp or email</li>
+        <li>To improve the website using anonymised analytics only</li>
+      </ul>
+      <p>Your information is <strong>never sold or shared</strong> with third parties for marketing purposes.</p>
+      <hr class="consent-divider">
+      <h3>4. National ID Verification</h3>
+      <p>Your National ID is required for every booking — stored securely, used only for identity verification, and deleted upon request.</p>
+      <hr class="consent-divider">
+      <h3>5. Photos & Gallery</h3>
+      <p>All photos featuring children were shared with <strong>full written parental consent</strong>. No child is identified by name. Contact Judy to request removal of any image.</p>
+      <hr class="consent-divider">
+      <h3>6. Cookies & Analytics</h3>
+      <p>Google Analytics cookies collect anonymised data. You can opt out via the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color:var(--blue-dark);">Google Analytics Opt-out Add-on</a>.</p>
+      <hr class="consent-divider">
+      <h3>7. Your Rights</h3>
+      <p>You may request access, correction, or deletion of your data at any time by contacting Judy directly at <strong>atienojudithberil@gmail.com</strong>.</p>
+    </div>
+
+    <div class="consent-footer">
+      <div class="consent-check-row">
+        <input type="checkbox" id="consentCheck" onchange="toggleConsentBtn()">
+        <label for="consentCheck">I have read and agree to the <strong>Privacy Policy</strong>. I understand how my information will be collected and used by Judy Ombam Overnight Babysitting.</label>
+      </div>
+      <button class="consent-agree-btn" id="consentAgreeBtn" onclick="acceptConsent()">
+        ✅ I Agree — Enter Site
+      </button>
+      <p class="consent-note">You must agree to the privacy policy to use this website. Your consent is saved for 30 days.</p>
+    </div>
+  </div>
+</div>
 
 <!-- FLOATING WHATSAPP -->
 <button class="wa-float" onclick="openWA()" aria-label="Book via WhatsApp">
@@ -1753,6 +1892,40 @@ function closePP(e) {
     document.getElementById("privacyOverlay").classList.remove("open");
   }
 }
+
+/* ===== CONSENT GATE ===== */
+function initConsentGate() {
+  var consent = localStorage.getItem("judy_consent_v1");
+  var expiry  = localStorage.getItem("judy_consent_expiry");
+  var now     = new Date().getTime();
+  if (consent === "agreed" && expiry && now < parseInt(expiry)) {
+    /* Already agreed and not expired — hide gate immediately */
+    document.getElementById("consentGate").style.display = "none";
+  }
+  /* else gate stays visible */
+}
+
+function toggleConsentBtn() {
+  var cb  = document.getElementById("consentCheck");
+  var btn = document.getElementById("consentAgreeBtn");
+  if (cb.checked) {
+    btn.classList.add("enabled");
+  } else {
+    btn.classList.remove("enabled");
+  }
+}
+
+function acceptConsent() {
+  var expiry = new Date().getTime() + (30 * 24 * 60 * 60 * 1000); /* 30 days */
+  localStorage.setItem("judy_consent_v1", "agreed");
+  localStorage.setItem("judy_consent_expiry", expiry.toString());
+  var gate = document.getElementById("consentGate");
+  gate.classList.add("hiding");
+  setTimeout(function() { gate.style.display = "none"; }, 420);
+}
+
+/* Run on load */
+initConsentGate();
 
 /* ===== MIN DATE ===== */
 var today = new Date().toISOString().split("T")[0];
