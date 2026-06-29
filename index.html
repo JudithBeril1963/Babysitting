@@ -708,6 +708,73 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   font-size: .85rem; color: var(--blue-dark);
 }
 
+
+/* ===== AVAILABILITY CALENDAR ===== */
+#availability { background: var(--cream2); }
+.cal-outer { max-width: 720px; margin: 0 auto; }
+.cal-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 1rem;
+}
+.cal-nav-btn {
+  background: var(--blue-dark); color: #fff; border: none;
+  border-radius: 8px; padding: .45rem 1.2rem;
+  font-size: .88rem; font-weight: 700; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: opacity .2s;
+}
+.cal-nav-btn:hover { opacity: .82; }
+.cal-month-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 600; color: var(--text-dark);
+}
+.cal-legend {
+  display: flex; gap: 1.5rem; justify-content: center;
+  margin-bottom: 1rem; flex-wrap: wrap;
+}
+.cal-legend-item {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .8rem; color: var(--text-mid); font-weight: 500;
+}
+.cal-legend-dot {
+  width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+}
+.cal-day-headers {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 4px; margin-bottom: 4px;
+}
+.cal-day-hdr {
+  text-align: center; font-size: .7rem; font-weight: 700;
+  color: var(--text-light); text-transform: uppercase; letter-spacing: .05em;
+  padding: .3rem 0;
+}
+.cal-grid-wrap {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+}
+.cal-cell {
+  aspect-ratio: 1; border-radius: 8px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 600;
+  border: 1.5px solid transparent; position: relative;
+  transition: transform .12s;
+}
+.cal-cell.empty { background: transparent; border: none; }
+.cal-cell.past { background: #F0F2F7; color: #BABACE; border-color: #E0E4EC; }
+.cal-cell.available { background: #D4F5E2; color: #1B8A4A; border-color: #A8E6C3; }
+.cal-cell.booked { background: #FFE0DF; color: #C0392B; border-color: #F5B8B6; }
+.cal-cell.today { outline: 2.5px solid var(--gold); outline-offset: 1px; }
+.cal-cell.admin-clickable { cursor: pointer; }
+.cal-cell.admin-clickable:hover { transform: scale(1.08); }
+.cal-cell .cal-day-num { font-size: .82rem; line-height: 1; }
+.cal-cell .cal-day-sub { font-size: .58rem; margin-top: 2px; opacity: .8; }
+.cal-info-box {
+  margin-top: 1.25rem; background: var(--blue-light);
+  border-radius: var(--radius); padding: 1rem 1.4rem;
+  border-left: 3px solid var(--blue);
+  font-size: .83rem; color: var(--blue-dark); line-height: 1.7;
+  display: flex; gap: .75rem; align-items: flex-start;
+}
+
 /* ===== SCROLL ANIMATIONS ===== */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
 .reveal.visible { opacity: 1; transform: none; }
@@ -854,7 +921,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       <li><a href="#services">Services</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#areas">Areas</a></li>
-      <li><a href="#booking">Book</a></li>
+      <li><a href="#availability">Availability</a></li><li><a href="#booking">Book</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#" onclick="toggleAdmin(); return false;" style="color:var(--gold); font-weight:700;">⚙ Admin</a></li>
     </ul>
@@ -868,6 +935,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   <a href="#services" onclick="closeMobileMenu()">Services</a>
   <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
   <a href="#areas" onclick="closeMobileMenu()">Areas</a>
+  <a href="#availability" onclick="closeMobileMenu()">Availability</a>
   <a href="#booking" onclick="closeMobileMenu()">Book</a>
   <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
   <a href="#" onclick="toggleAdmin(); closeMobileMenu(); return false;" style="color:var(--gold); font-weight:700;">⚙ Admin Dashboard</a>
@@ -1314,6 +1382,49 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 </section>
 
 <!-- BOOKING / CONTACT -->
+<!-- AVAILABILITY CALENDAR -->
+<section id="availability">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Plan ahead</span>
+      <h2 class="section-title">Availability Calendar</h2>
+      <p class="section-sub" style="margin:0 auto;">Check Judy's availability before booking. Updated in real time.</p>
+    </div>
+    <div class="cal-outer reveal">
+      <!-- Legend -->
+      <div class="cal-legend">
+        <div class="cal-legend-item">
+          <div class="cal-legend-dot" style="background:#D4F5E2;border:1.5px solid #A8E6C3;"></div> Available
+        </div>
+        <div class="cal-legend-item">
+          <div class="cal-legend-dot" style="background:#FFE0DF;border:1.5px solid #F5B8B6;"></div> Booked
+        </div>
+        <div class="cal-legend-item">
+          <div class="cal-legend-dot" style="background:#F0F2F7;border:1.5px solid #E0E4EC;"></div> Past
+        </div>
+      </div>
+      <!-- Nav -->
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calPrev()">‹ Prev</button>
+        <div class="cal-month-title" id="calTitle"></div>
+        <button class="cal-nav-btn" onclick="calNext()">Next ›</button>
+      </div>
+      <!-- Day headers -->
+      <div class="cal-day-headers" id="calDayHeaders"></div>
+      <!-- Grid -->
+      <div class="cal-grid-wrap" id="calGrid"></div>
+      <!-- Info -->
+      <div class="cal-info-box">
+        <span style="font-size:1.2rem;flex-shrink:0;">📅</span>
+        <div>
+          <strong>Want to book a date?</strong> Check availability above then scroll down to fill in the booking form. Judy will confirm your booking via WhatsApp or email within the hour.
+          <br>If a date shows as booked and you need urgent care, contact Judy directly — emergency same-day slots may still be available (+KSh 500).
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="booking">
   <div class="container">
     <div class="booking-inner">
@@ -1534,13 +1645,7 @@ function pushToFirebase(booking) {
   if (!window._fb) { console.warn("Firebase not ready"); return; }
   window._fb.push(window._fb.bkRef, booking);
   /* Auto-mark the booked date on the availability calendar */
-  if (booking.rawDate) {
-    var calData = calLoadData();
-    calData[booking.rawDate] = "booked";
-    calSaveData(calData);
-    /* Re-render calendar if visible */
-    if (document.getElementById("cal-grid")) calRender();
-  }
+  if (booking.rawDate) markCalendarBooked(booking.rawDate);
 }
 function updateInFirebase(firebaseKey, updates) {
   if (!window._fb || !firebaseKey) return;
@@ -1953,6 +2058,7 @@ var revealObserver = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
+calInit();
 
 
 
@@ -2044,6 +2150,157 @@ function acceptConsent() {
 
 /* Run on load */
 initConsentGate();
+
+
+/* ===== AVAILABILITY CALENDAR (Firebase-backed) ===== */
+var CAL_KEY   = "judy_availability";
+var calYear, calMonth;
+var CAL_MONTHS = ["January","February","March","April","May","June",
+                  "July","August","September","October","November","December"];
+var CAL_DAYS   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+/* Firebase availability ref */
+function getAvailRef() {
+  if (!window._fb) return null;
+  return window._fb.ref(window._fb.db, "availability");
+}
+
+/* Load from Firebase into local cache, then render */
+function calInit() {
+  var now  = new Date();
+  calYear  = now.getFullYear();
+  calMonth = now.getMonth();
+
+  if (window._fb) {
+    window._fb.onValue(getAvailRef(), function(snapshot) {
+      window._calData = snapshot.val() || {};
+      calRender();
+    });
+  } else {
+    /* fallback to localStorage if Firebase not ready yet */
+    setTimeout(function() {
+      if (window._fb) {
+        window._fb.onValue(getAvailRef(), function(snapshot) {
+          window._calData = snapshot.val() || {};
+          calRender();
+        });
+      } else {
+        window._calData = {};
+        calRender();
+      }
+    }, 2000);
+  }
+}
+
+function calGetData() { return window._calData || {}; }
+
+function calSetDate(dateStr, status) {
+  /* Admin only — saves to Firebase so ALL users see it */
+  if (!window._fb) return;
+  var updates = {};
+  updates[dateStr] = status;
+  window._fb.update(getAvailRef(), updates);
+}
+
+function calPrev() {
+  calMonth--;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  calRender();
+}
+function calNext() {
+  calMonth++;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  calRender();
+}
+
+function calRender() {
+  var data      = calGetData();
+  var now       = new Date();
+  var today     = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var titleEl   = document.getElementById("calTitle");
+  var headersEl = document.getElementById("calDayHeaders");
+  var gridEl    = document.getElementById("calGrid");
+  if (!titleEl || !gridEl) return;
+
+  titleEl.textContent = CAL_MONTHS[calMonth] + " " + calYear;
+
+  /* Day headers */
+  headersEl.innerHTML = "";
+  CAL_DAYS.forEach(function(d) {
+    var el = document.createElement("div");
+    el.className = "cal-day-hdr";
+    el.textContent = d;
+    headersEl.appendChild(el);
+  });
+
+  /* Grid */
+  gridEl.innerHTML = "";
+  var firstDay    = new Date(calYear, calMonth, 1).getDay();
+  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  /* Empty cells */
+  for (var i = 0; i < firstDay; i++) {
+    var emp = document.createElement("div");
+    emp.className = "cal-cell empty";
+    gridEl.appendChild(emp);
+  }
+
+  for (var d = 1; d <= daysInMonth; d++) {
+    var dateStr = calYear + "-" +
+      String(calMonth + 1).padStart(2, "0") + "-" +
+      String(d).padStart(2, "0");
+    var thisDay = new Date(calYear, calMonth, d);
+    var cell    = document.createElement("div");
+    var status  = data[dateStr] || "available";
+
+    if (thisDay < today) {
+      cell.className = "cal-cell past";
+    } else {
+      cell.className = "cal-cell " + status;
+      if (thisDay.getTime() === today.getTime()) cell.classList.add("today");
+
+      /* Admin can click to toggle */
+      if (adminUnlocked) {
+        cell.classList.add("admin-clickable");
+        cell.title = "Click to toggle booked/available";
+        (function(ds, el) {
+          el.addEventListener("click", function() {
+            var d2  = calGetData();
+            var cur = d2[ds] || "available";
+            calSetDate(ds, cur === "booked" ? "available" : "booked");
+          });
+        })(dateStr, cell);
+      }
+    }
+
+    var numSpan = document.createElement("span");
+    numSpan.className = "cal-day-num";
+    numSpan.textContent = d;
+    cell.appendChild(numSpan);
+
+    if (thisDay.getTime() === today.getTime()) {
+      var sub = document.createElement("span");
+      sub.className = "cal-day-sub";
+      sub.textContent = "Today";
+      cell.appendChild(sub);
+    }
+    if (status === "booked" && thisDay >= today) {
+      var sub2 = document.createElement("span");
+      sub2.className = "cal-day-sub";
+      sub2.textContent = "Booked";
+      cell.appendChild(sub2);
+    }
+
+    gridEl.appendChild(cell);
+  }
+}
+
+/* Auto-mark calendar when a booking is pushed */
+function markCalendarBooked(rawDate) {
+  if (!rawDate) return;
+  calSetDate(rawDate, "booked");
+}
+
 
 /* ===== MIN DATE ===== */
 var today = new Date().toISOString().split("T")[0];
