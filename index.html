@@ -775,6 +775,38 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   display: flex; gap: .75rem; align-items: flex-start;
 }
 
+/* ===== COST ESTIMATOR ===== */
+.cost-estimate-box {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #0F2A1A, #1B4A2A);
+  border-radius: 12px; padding: 1.1rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .75rem;
+  border: 1.5px solid rgba(201,168,76,0.4);
+  transition: all .3s;
+}
+.cost-estimate-box.hidden { display: none; }
+.cost-est-left .cost-label {
+  font-size: .72rem; font-weight: 700; color: rgba(255,255,255,0.6);
+  text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: .2rem;
+}
+.cost-est-left .cost-breakdown {
+  font-size: .82rem; color: rgba(255,255,255,0.8); line-height: 1.6;
+}
+.cost-est-right .cost-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700; color: #C9A84C;
+  display: block; text-align: right;
+}
+.cost-est-right .cost-per {
+  font-size: .72rem; color: rgba(201,168,76,0.7);
+  display: block; text-align: right;
+}
+.cost-est-right .cost-hourly {
+  font-size: .72rem; color: rgba(255,255,255,0.5);
+  display: block; text-align: right; margin-top: 2px;
+}
+
 /* ===== SCROLL ANIMATIONS ===== */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
 .reveal.visible { opacity: 1; transform: none; }
@@ -1470,7 +1502,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
           </div>
           <div class="field">
             <label>Number of Children</label>
-            <select id="f-kids">
+            <select id="f-kids" onchange="updateCostEstimate()">
               <option value="1 child">1 child</option>
               <option value="2 children">2 children</option>
               <option value="3 children">3 children</option>
@@ -1479,7 +1511,19 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
           </div>
           <div class="field">
             <label>Ages of Children <span class="required">*</span></label>
-            <input type="text" id="f-ages" placeholder="e.g. 4 months, 3 years, 12 years">
+            <input type="text" id="f-ages" placeholder="e.g. 4 months, 3 years, 12 years" oninput="updateCostEstimate()">
+          </div>
+          <!-- COST ESTIMATOR -->
+          <div class="cost-estimate-box hidden" id="costEstBox">
+            <div class="cost-est-left">
+              <span class="cost-label">💰 Estimated Cost</span>
+              <span class="cost-breakdown" id="costBreakdown">—</span>
+            </div>
+            <div class="cost-est-right">
+              <span class="cost-amount" id="costAmount">KSh 0</span>
+              <span class="cost-per">per overnight (7PM–7AM)</span>
+              <span class="cost-hourly" id="costHourly">or KSh 300/hr for shorter sessions</span>
+            </div>
           </div>
           <div class="field full">
             <label>Special Instructions / Notes</label>
@@ -1979,6 +2023,8 @@ function submitBookingForm() {
   var arr2  = loadBookings();
   var newId = arr2.length ? Math.max.apply(null, arr2.map(function(b){ return b.id||0; })) + 1 : 1;
   var RATE2 = {"One child":1500,"Two children":2500,"Three children":3000,"Four+ children":3500};
+  /* Use smart estimated rate if available */
+  if (window._estimatedRate) RATE2["smart"] = window._estimatedRate;
   var newBooking = {
     id:       newId,
     name:     name,
@@ -1991,7 +2037,7 @@ function submitBookingForm() {
     idNum:    idNum,
     notes:    notes || "None",
     service:  kids,
-    amount:   RATE2[kids] || 1500,
+    amount:   window._estimatedRate || RATE2[kids] || 1500,
     status:   "Pending",
     source:   "Website Form"
   };
@@ -2299,6 +2345,70 @@ function calRender() {
 function markCalendarBooked(rawDate) {
   if (!rawDate) return;
   calSetDate(rawDate, "booked");
+}
+
+
+
+/* ===== COST ESTIMATOR ===== */
+function updateCostEstimate() {
+  var kidsVal = document.getElementById("f-kids").value;
+  var agesVal = document.getElementById("f-ages").value.toLowerCase().trim();
+  var box     = document.getElementById("costEstBox");
+  var amountEl  = document.getElementById("costAmount");
+  var breakEl   = document.getElementById("costBreakdown");
+  var hourlyEl  = document.getElementById("costHourly");
+
+  if (!agesVal && kidsVal === "1 child") { box.classList.add("hidden"); return; }
+
+  /* Detect infant — any age under 12 months */
+  var hasInfant = /\b([0-9]|10|11)\s*(month|mo|mth|months)/i.test(agesVal) ||
+                  /\bnewborn\b/i.test(agesVal) ||
+                  /\binfant\b/i.test(agesVal) ||
+                  /\b0\s*year/i.test(agesVal);
+
+  /* Count children from kids select */
+  var numKids = 1;
+  if (kidsVal === "2 children") numKids = 2;
+  else if (kidsVal === "3 children") numKids = 3;
+  else if (kidsVal === "4+ children") numKids = 4;
+
+  var baseRate, breakdown, label;
+
+  if (numKids === 1 && hasInfant) {
+    baseRate  = 2000;
+    label     = "Infant / Newborn Care";
+    breakdown = "1 infant (0–12 months) · Overnight care";
+  } else if (numKids === 1) {
+    baseRate  = 1500;
+    label     = "One Child";
+    breakdown = "1 child · Overnight care";
+  } else if (numKids === 2 && hasInfant) {
+    baseRate  = 2500;
+    label     = "Two Children (incl. infant)";
+    breakdown = "2 children including infant · Overnight care";
+  } else if (numKids === 2) {
+    baseRate  = 2500;
+    label     = "Two Children";
+    breakdown = "2 children · Overnight care";
+  } else if (numKids === 3) {
+    baseRate  = 3000;
+    label     = "Three Children";
+    breakdown = "3 children · Overnight care";
+  } else {
+    baseRate  = 3500;
+    label     = "Four+ Children";
+    breakdown = "4+ children · Overnight care";
+  }
+
+  /* Show the box */
+  box.classList.remove("hidden");
+  amountEl.textContent  = "KSh " + baseRate.toLocaleString();
+  breakEl.textContent   = breakdown;
+  hourlyEl.textContent  = "Shorter session? KSh 300/hr · Same-day: +" + "KSh 500";
+
+  /* Store for form submission */
+  window._estimatedRate = baseRate;
+  window._estimatedLabel = label;
 }
 
 
