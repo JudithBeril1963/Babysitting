@@ -742,7 +742,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   import { getDatabase, ref, push, onValue, update, remove, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyCe4Vyb-CoK2vMe-k33neXxTrjwoAzzF6o",
+    apiKey: "AIzaSyA95BDsy3S3DmryemKekOg4OH7DA2jdAIU",
     authDomain: "judy-babysitting.firebaseapp.com",
     databaseURL: "https://judy-babysitting-default-rtdb.firebaseio.com",
     projectId: "judy-babysitting",
@@ -1533,6 +1533,14 @@ function nextId() {
 function pushToFirebase(booking) {
   if (!window._fb) { console.warn("Firebase not ready"); return; }
   window._fb.push(window._fb.bkRef, booking);
+  /* Auto-mark the booked date on the availability calendar */
+  if (booking.rawDate) {
+    var calData = calLoadData();
+    calData[booking.rawDate] = "booked";
+    calSaveData(calData);
+    /* Re-render calendar if visible */
+    if (document.getElementById("cal-grid")) calRender();
+  }
 }
 function updateInFirebase(firebaseKey, updates) {
   if (!window._fb || !firebaseKey) return;
@@ -1853,6 +1861,9 @@ function submitBookingForm() {
   if (!phone)   { alert("Please enter your phone number."); return; }
   if (!location){ alert("Please enter your location / estate."); return; }
   if (!date)    { alert("Please select the date you need childcare."); return; }
+  var selectedDate = new Date(date); selectedDate.setHours(0,0,0,0);
+  var todayDate = new Date(); todayDate.setHours(0,0,0,0);
+  if (selectedDate < todayDate) { alert("Please select a future date — past dates cannot be booked."); return; }
   if (!ages)    { alert("Please enter the ages of your children."); return; }
   if (!idNum)   { alert("National ID number is required to confirm your booking."); return; }
   if (!idFile)  { alert("Please upload a photo of your National ID. This is required for your safety and Judy's."); return; }
