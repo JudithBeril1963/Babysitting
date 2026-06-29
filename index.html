@@ -1534,7 +1534,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
               <span class="id-icon">🪪</span>
               <div>
                 <p>Parent / Guardian National ID</p>
-                <span>Required to confirm your booking</span>
+                <span>Required — attach the photo when email/WhatsApp opens</span>
               </div>
               <div class="id-required-badge">REQUIRED</div>
             </div>
@@ -1544,8 +1544,9 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
                 <input type="text" id="f-id-number" placeholder="e.g. 12345678">
               </div>
               <div class="field">
-                <label>Upload ID Photo (front) <span class="required">*</span></label>
+                <label>Select ID Photo (front) <span class="required">*</span></label>
                 <input type="file" id="f-id-photo" accept="image/*,.pdf">
+                <span style="font-size:.72rem;color:var(--text-light);margin-top:2px;display:block;">📎 You will attach this photo manually when Gmail or WhatsApp opens</span>
               </div>
             </div>
             <div class="id-why">
@@ -2138,6 +2139,7 @@ function closeSendPicker(e) {
 function sendViaWhatsApp() {
   document.getElementById("sendPickerOverlay").classList.remove("open");
   window.open("https://wa.me/254713781789?text=" + encodeURIComponent(_waMsg), "_blank");
+  setTimeout(function(){ alert("WhatsApp has opened with your booking details.\n\n📎 IMPORTANT: Please also send your National ID photo as a separate image in the WhatsApp chat."); }, 600);
 }
 
 function sendViaGmail() {
@@ -2145,7 +2147,7 @@ function sendViaGmail() {
   var url = "https://mail.google.com/mail/?view=cm&fs=1&to=atienojudithberil@gmail.com&su=" +
     encodeURIComponent(_emailSubject) + "&body=" + encodeURIComponent(_emailBody);
   window.open(url, "_blank");
-  setTimeout(function(){ alert("Gmail opened. Please attach your National ID photo before sending."); }, 400);
+  setTimeout(function(){ alert("Gmail has opened with your booking details pre-filled.\n\n📎 IMPORTANT: Please attach your National ID photo to the email before clicking Send."); }, 400);
 }
 
 function sendViaOutlook() {
@@ -2153,7 +2155,7 @@ function sendViaOutlook() {
   window.location.href = "mailto:atienojudithberil@gmail.com" +
     "?subject=" + encodeURIComponent(_emailSubject) +
     "&body="    + encodeURIComponent(_emailBody);
-  setTimeout(function(){ alert("Your mail app opened. Please attach your National ID photo before sending."); }, 600);
+  setTimeout(function(){ alert("Your mail app has opened with your booking details pre-filled.\n\n📎 IMPORTANT: Please attach your National ID photo to the email before clicking Send."); }, 600);
 }
 
 /* ===== PRIVACY POLICY ===== */
