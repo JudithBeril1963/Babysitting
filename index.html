@@ -2435,72 +2435,6 @@ function markCalendarBooked(rawDate) {
   window._fb.avRef.update(updates);
 }
 
-
-
-/* ===== PENDING REQUESTS PANEL ===== */
-.pending-panel {
-  background: #FFF8E8; border: 2px solid var(--gold);
-  border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;
-}
-.pending-panel-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;
-}
-.pending-panel-header h4 { font-size: .95rem; font-weight: 700; color: var(--text-dark); }
-.pending-count-badge {
-  background: #E24B4A; color: #fff; font-size: .72rem; font-weight: 800;
-  padding: .2rem .7rem; border-radius: 20px; letter-spacing: .5px;
-}
-.pending-empty {
-  text-align: center; font-size: .85rem; color: var(--text-light);
-  padding: 1.5rem 0; font-style: italic;
-}
-.pending-card {
-  background: var(--white); border-radius: 12px; padding: 1.2rem 1.3rem;
-  border: 1.5px solid var(--gold-light); margin-bottom: .85rem;
-  transition: box-shadow .2s;
-}
-.pending-card:last-child { margin-bottom: 0; }
-.pending-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-.pending-card-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  flex-wrap: wrap; gap: .5rem; margin-bottom: .85rem;
-}
-.pending-card-name { font-size: .95rem; font-weight: 700; color: var(--text-dark); }
-.pending-card-date { font-size: .82rem; color: var(--blue-dark); font-weight: 600; }
-.pending-card-amount {
-  font-size: 1.1rem; font-weight: 800; color: #1B8A4A;
-  background: #D4F5E2; padding: .2rem .75rem; border-radius: 20px;
-}
-.pending-card-details {
-  display: grid; grid-template-columns: 1fr 1fr; gap: .35rem .75rem;
-  margin-bottom: 1rem;
-}
-.pending-card-detail { font-size: .8rem; color: var(--text-mid); }
-.pending-card-detail strong { color: var(--text-dark); }
-.pending-card-actions { display: flex; gap: .65rem; flex-wrap: wrap; }
-.btn-accept {
-  flex: 1; background: #1B8A4A; color: #fff; border: none;
-  border-radius: 8px; padding: .65rem 1rem;
-  font-size: .85rem; font-weight: 700; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: opacity .2s;
-  display: flex; align-items: center; justify-content: center; gap: .4rem;
-}
-.btn-accept:hover { opacity: .85; }
-.btn-decline {
-  flex: 1; background: #FFE0DF; color: #C0392B; border: 1.5px solid #F5B8B6;
-  border-radius: 8px; padding: .65rem 1rem;
-  font-size: .85rem; font-weight: 700; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: opacity .2s;
-  display: flex; align-items: center; justify-content: center; gap: .4rem;
-}
-.btn-decline:hover { opacity: .75; }
-.conflict-tag {
-  font-size: .72rem; font-weight: 700; color: #E24B4A;
-  background: #FFE0DF; padding: .2rem .65rem; border-radius: 20px;
-  display: inline-block; margin-bottom: .5rem;
-}
-
 /* ===== COST ESTIMATOR ===== */
 function updateCostEstimate() {
   var kidsVal = document.getElementById("f-kids").value;
@@ -2615,11 +2549,25 @@ function renderPendingPanel(bookings) {
         '<div class="pending-card-detail">📝 <strong>Notes:</strong> ' + (b.notes||"None") + '</div>' +
       '</div>' +
       '<div class="pending-card-actions">' +
-        '<button class="btn-accept" onclick="acceptBooking('' + b.firebaseKey + '', '' + (b.phone||"") + '', '' + b.name + '', '' + b.dateStr + '')">✅ Accept & Confirm</button>' +
-        '<button class="btn-decline" onclick="declineBooking('' + b.firebaseKey + '', '' + (b.phone||"") + '', '' + b.name + '')">❌ Decline</button>' +
+        '<button class="btn-accept" data-key="' + b.firebaseKey + '" data-phone="' + (b.phone||"") + '" data-name="' + b.name + '" data-date="' + b.dateStr + '">✅ Accept & Confirm</button>' +
+        '<button class="btn-decline" data-key="' + b.firebaseKey + '" data-phone="' + (b.phone||"") + '" data-name="' + b.name + '">❌ Decline</button>' +
       '</div>';
 
     cardsEl.appendChild(card);
+
+    /* Attach listeners safely (no string-escaping issues) */
+    var acceptBtn = card.querySelector(".btn-accept");
+    var declineBtn = card.querySelector(".btn-decline");
+    if (acceptBtn) {
+      acceptBtn.addEventListener("click", function() {
+        acceptBooking(this.dataset.key, this.dataset.phone, this.dataset.name, this.dataset.date);
+      });
+    }
+    if (declineBtn) {
+      declineBtn.addEventListener("click", function() {
+        declineBooking(this.dataset.key, this.dataset.phone, this.dataset.name);
+      });
+    }
   });
 }
 
@@ -2636,25 +2584,14 @@ function acceptBooking(firebaseKey, phone, name, dateStr) {
   if (cleanPhone.startsWith("0")) cleanPhone = "254" + cleanPhone.slice(1);
   if (!cleanPhone.startsWith("254")) cleanPhone = "254" + cleanPhone;
 
-  var msg = "Hello " + name + "! 🌙
-
-" +
-    "Your babysitting booking request for *" + dateStr + "* has been *CONFIRMED* by Judy Ombam.
-
-" +
-    "✅ *Booking confirmed*
-" +
-    "📅 *Date:* " + dateStr + "
-" +
-    "🕖 *Hours:* 7 PM – 7 AM
-" +
-    "💳 *Payment:* M-Pesa on the day
-
-" +
-    "Please feel free to reach out if you have any questions or special instructions before the session.
-
-" +
-    "Thank you for choosing Judy Ombam Overnight Babysitting! 🌙";
+  var msg = "Hello " + name + "! \ud83c\udf19\n\n" +
+    "Your babysitting booking request for *" + dateStr + "* has been *CONFIRMED* by Judy Ombam.\n\n" +
+    "\u2705 *Booking confirmed*\n" +
+    "\ud83d\udcc5 *Date:* " + dateStr + "\n" +
+    "\ud83d\udd5b *Hours:* 7 PM \u2013 7 AM\n" +
+    "\ud83d\udcb3 *Payment:* M-Pesa on the day\n\n" +
+    "Please feel free to reach out if you have any questions or special instructions before the session.\n\n" +
+    "Thank you for choosing Judy Ombam Overnight Babysitting! \ud83c\udf19";
 
   window.open("https://wa.me/" + cleanPhone + "?text=" + encodeURIComponent(msg), "_blank");
 }
@@ -2671,23 +2608,13 @@ function declineBooking(firebaseKey, phone, name) {
   if (cleanPhone.startsWith("0")) cleanPhone = "254" + cleanPhone.slice(1);
   if (!cleanPhone.startsWith("254")) cleanPhone = "254" + cleanPhone;
 
-  var msg = "Hello " + name + ",
-
-" +
-    "Thank you for reaching out to Judy Ombam Overnight Babysitting.
-
-" +
+  var msg = "Hello " + name + ",\n\n" +
+    "Thank you for reaching out to Judy Ombam Overnight Babysitting.\n\n" +
     "Unfortunately, I am unable to confirm your booking request for this date." +
-    (reason ? " Reason: " + reason : "") + "
-
-" +
-    "Please feel free to check my availability calendar and submit a new request for another date.
-
-" +
-    "🌐 babysitting-mi8t.vercel.app
-
-" +
-    "Apologies for the inconvenience. — Judy 🌙";
+    (reason ? " Reason: " + reason : "") + "\n\n" +
+    "Please feel free to check my availability calendar and submit a new request for another date.\n\n" +
+    "\ud83c\udf10 babysitting-mi8t.vercel.app\n\n" +
+    "Apologies for the inconvenience. \u2014 Judy \ud83c\udf19";
 
   window.open("https://wa.me/" + cleanPhone + "?text=" + encodeURIComponent(msg), "_blank");
 }
