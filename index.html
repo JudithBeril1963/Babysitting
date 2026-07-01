@@ -915,47 +915,55 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
     measurementId: "G-7J7Y0WZFRT"
   };
 
-  firebase.initializeApp(firebaseConfig);
-  var _db    = firebase.database();
-  var _bkRef = _db.ref("bookings");
-  var _avRef = _db.ref("availability");
+  /* Defensive check — Firebase script may fail to load (slow network, ad-blocker, etc.) */
+  if (typeof firebase === "undefined") {
+    console.warn("Firebase failed to load. Booking sync features will be unavailable.");
+    window._fb = null;
+    window._firebaseBookings = [];
+    window._calData = {};
+  } else {
+    firebase.initializeApp(firebaseConfig);
+    var _db    = firebase.database();
+    var _bkRef = _db.ref("bookings");
+    var _avRef = _db.ref("availability");
 
-  /* Expose helpers globally */
-  window._fb = {
-    db:      _db,
-    bkRef:   _bkRef,
-    avRef:   _avRef,
-    push:    function(r, data) { return r.push(data); },
-    update:  function(r, data) { return r.update(data); },
-    remove:  function(r)       { return r.remove(); },
-    onValue: function(r, cb)   { r.on("value", cb); },
-    ref:     function(path)    { return _db.ref(path); }
-  };
+    /* Expose helpers globally */
+    window._fb = {
+      db:      _db,
+      bkRef:   _bkRef,
+      avRef:   _avRef,
+      push:    function(r, data) { return r.push(data); },
+      update:  function(r, data) { return r.update(data); },
+      remove:  function(r)       { return r.remove(); },
+      onValue: function(r, cb)   { r.on("value", cb); },
+      ref:     function(path)    { return _db.ref(path); }
+    };
 
-  /* Live bookings listener */
-  _bkRef.on("value", function(snapshot) {
-    var data = snapshot.val() || {};
-    var arr  = Object.keys(data).map(function(key) {
-      var val = data[key];
-      val.firebaseKey = key;
-      return val;
+    /* Live bookings listener */
+    _bkRef.on("value", function(snapshot) {
+      var data = snapshot.val() || {};
+      var arr  = Object.keys(data).map(function(key) {
+        var val = data[key];
+        val.firebaseKey = key;
+        return val;
+      });
+      arr.sort(function(a, b) { return new Date(b.rawDate) - new Date(a.rawDate); });
+      window._firebaseBookings = arr;
+      var dash = document.getElementById("admin-dashboard");
+      if (dash && dash.classList.contains("visible")) {
+        if (typeof renderStatCards    === "function") renderStatCards(arr);
+        if (typeof renderPendingPanel === "function") renderPendingPanel(arr);
+        if (typeof renderTable        === "function") renderTable(arr, window._currentFilter || "all");
+        if (typeof renderCharts       === "function") renderCharts(arr);
+      }
     });
-    arr.sort(function(a, b) { return new Date(b.rawDate) - new Date(a.rawDate); });
-    window._firebaseBookings = arr;
-    var dash = document.getElementById("admin-dashboard");
-    if (dash && dash.classList.contains("visible")) {
-      if (typeof renderStatCards   === "function") renderStatCards(arr);
-      if (typeof renderPendingPanel === "function") renderPendingPanel(arr);
-      if (typeof renderTable       === "function") renderTable(arr, window._currentFilter || "all");
-      if (typeof renderCharts      === "function") renderCharts(arr);
-    }
-  });
 
-  /* Live availability listener */
-  _avRef.on("value", function(snapshot) {
-    window._calData = snapshot.val() || {};
-    if (typeof calRender === "function") calRender();
-  });
+    /* Live availability listener */
+    _avRef.on("value", function(snapshot) {
+      window._calData = snapshot.val() || {};
+      if (typeof calRender === "function") calRender();
+    });
+  }
 </script>
 </head>
 <body>
@@ -1820,6 +1828,7 @@ function toggleAdmin() {
     dash.classList.add("visible");
     dash.scrollIntoView({behavior:"smooth",block:"start"});
     refreshAdmin();
+    calRender(); /* Re-render calendar with admin-clickable cells */
   } else { alert("❌ Incorrect password."); }
 }
 
@@ -1846,7 +1855,7 @@ function renderStatCards(bookings) {
   });
 
   /* Revenue — only Confirmed or Completed count */
-  var active = function(b){ return b.status==="Completed"||b.status==="Confirmed"; };
+  var active = function(b){ return b.status==="Completed"; }; /* Only completed jobs count as earned revenue */
   var monthRev = monthBookings.filter(active).reduce(function(s,b){ return s+(b.amount||0); },0);
   var ytdRev   = bookings.filter(function(b){ return active(b) && new Date(b.rawDate).getFullYear()===thisYear; })
                          .reduce(function(s,b){ return s+(b.amount||0); },0);
@@ -2072,7 +2081,7 @@ function renderCharts(bookings) {
   var revByMonth=new Array(6).fill(0);
   bookings.forEach(function(b){
     var d=new Date(b.rawDate);
-    if(d.getFullYear()===yr&&d.getMonth()<6&&(b.status==="Completed"||b.status==="Confirmed"))
+    if(d.getFullYear()===yr&&d.getMonth()<6&&b.status==="Completed")
       revByMonth[d.getMonth()]+=(b.amount||0);
   });
   var maxR=Math.max.apply(null,revByMonth)||1;
@@ -2207,7 +2216,13 @@ var revealObserver = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
-calInit();
+
+/* Ensure calendar renders after DOM is fully ready */
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function() { calInit(); });
+} else {
+  calInit();
+}
 
 
 
@@ -2429,10 +2444,17 @@ function calRender() {
 
 /* Auto-mark calendar when a booking is pushed */
 function markCalendarBooked(rawDate) {
-  if (!rawDate || !window._fb) return;
-  var updates = {};
-  updates[rawDate] = "booked";
-  window._fb.avRef.update(updates);
+  if (!rawDate) return;
+  /* Update local cache immediately for instant visual feedback */
+  window._calData = window._calData || {};
+  window._calData[rawDate] = "booked";
+  calRender();
+  /* Then sync to Firebase so all users see it */
+  if (window._fb) {
+    var updates = {};
+    updates[rawDate] = "booked";
+    window._fb.avRef.update(updates);
+  }
 }
 
 /* ===== COST ESTIMATOR ===== */
@@ -2575,9 +2597,11 @@ function acceptBooking(firebaseKey, phone, name, dateStr) {
   /* 1. Update status in Firebase */
   updateInFirebase(firebaseKey, { status: "Confirmed" });
 
-  /* 2. Mark calendar as booked */
+  /* 2. Mark calendar as booked using rawDate from booking data */
   var booking = loadBookings().find(function(b) { return b.firebaseKey === firebaseKey; });
-  if (booking && booking.rawDate) markCalendarBooked(booking.rawDate);
+  if (booking && booking.rawDate) {
+    markCalendarBooked(booking.rawDate);
+  }
 
   /* 3. Open WhatsApp with acceptance message */
   var cleanPhone = phone.replace(/[^0-9]/g, "");
