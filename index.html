@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="google21109d8b472f4588" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RFCHZVWHZ1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RFCHZVWHZ1');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Judy Ombam | Overnight Babysitting Nairobi</title>
@@ -205,6 +196,7 @@ nav {
 #gallery { background: var(--cream2); }
 .gallery-intro { max-width: 620px; margin: 0 auto 2.5rem; text-align: center; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+@media (max-width: 540px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
 .gallery-slot {
   border-radius: var(--radius); overflow: hidden; position: relative;
   background: linear-gradient(140deg, var(--blue-light), var(--gold-light));
@@ -396,10 +388,10 @@ nav {
   align-items: center; cursor: pointer; transition: background .15s;
 }
 .faq-q:hover { background: var(--gold-light); }
-.faq-q .caret { font-size: .85rem; color: var(--gold); flex-shrink: 0; margin-left: 1rem; }
+.faq-q .caret { font-size: .9rem; color: var(--gold); transition: transform .25s; flex-shrink: 0; margin-left: 1rem; }
 .faq-a { display: none; padding: .8rem 1.35rem 1.2rem; font-size: .87rem; color: var(--text-mid); line-height: 1.85; border-top: 1px solid var(--gold-light); }
 .faq-item.open .faq-a { display: block; }
-.faq-item.open .caret { /* JS handles caret symbol */ }
+.faq-item.open .caret { transform: rotate(180deg); }
 
 /* ===== FOOTER ===== */
 footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5rem 2rem; }
@@ -496,32 +488,83 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   margin-top: 1rem; text-align: right; font-size: .82rem; color: var(--text-mid);
 }
 .revenue-total strong { color: #1B8A4A; font-size: 1rem; }
+
+/* ===== ADMIN BOOKING MANAGEMENT ===== */
 .admin-section-title {
   font-size: .78rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: .1em; color: var(--text-light);
   margin: 2rem 0 1rem; padding-bottom: .5rem;
   border-bottom: 1.5px solid #E0E4EC;
 }
-.booking-mgmt-card { background: var(--white); border-radius: 14px; padding: 1.5rem; border: 1px solid #E0E4EC; box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin-bottom: 1.2rem; }
+.booking-mgmt-card {
+  background: var(--white); border-radius: 14px;
+  padding: 1.5rem; border: 1px solid #E0E4EC;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin-bottom: 1.2rem;
+}
 .booking-mgmt-card h4 { font-size: .88rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1.2rem; }
-.booking-form-admin { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: .75rem; align-items: end; }
+.booking-form-admin {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  gap: .75rem; align-items: end;
+}
 .booking-form-admin .af-field { display: flex; flex-direction: column; gap: .3rem; }
 .booking-form-admin label { font-size: .7rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: .05em; }
-.booking-form-admin input, .booking-form-admin select { background: #F5F7FB; border: 1.5px solid #E0E4EC; border-radius: 8px; padding: .55rem .85rem; font-size: .83rem; color: var(--text-dark); font-family: 'Inter', sans-serif; outline: none; transition: border-color .2s; }
-.booking-form-admin input:focus, .booking-form-admin select:focus { border-color: var(--blue); }
-.add-booking-btn { background: var(--blue-dark); color: #fff; border: none; padding: .6rem 1.2rem; border-radius: 8px; font-size: .82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; transition: opacity .2s; }
+.booking-form-admin input,
+.booking-form-admin select {
+  background: #F5F7FB; border: 1.5px solid #E0E4EC;
+  border-radius: 8px; padding: .55rem .85rem;
+  font-size: .83rem; color: var(--text-dark);
+  font-family: 'Inter', sans-serif; outline: none;
+  transition: border-color .2s;
+}
+.booking-form-admin input:focus,
+.booking-form-admin select:focus { border-color: var(--blue); }
+.add-booking-btn {
+  background: var(--blue-dark); color: #fff; border: none;
+  padding: .6rem 1.2rem; border-radius: 8px;
+  font-size: .82rem; font-weight: 600; cursor: pointer;
+  font-family: 'Inter', sans-serif; white-space: nowrap;
+  transition: opacity .2s;
+}
 .add-booking-btn:hover { opacity: .85; }
-.filter-row { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1rem; align-items: center; }
-.filter-btn { background: #F0F2F7; border: 1.5px solid #E0E4EC; border-radius: 20px; padding: .3rem .85rem; font-size: .76rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; color: var(--text-mid); transition: all .15s; }
-.filter-btn.active, .filter-btn:hover { background: var(--blue-dark); color: #fff; border-color: var(--blue-dark); }
-.search-input { flex: 1; min-width: 150px; max-width: 220px; background: #F5F7FB; border: 1.5px solid #E0E4EC; border-radius: 20px; padding: .35rem 1rem; font-size: .8rem; font-family: 'Inter', sans-serif; outline: none; color: var(--text-dark); }
+.filter-row {
+  display: flex; gap: .6rem; flex-wrap: wrap;
+  margin-bottom: 1rem; align-items: center;
+}
+.filter-btn {
+  background: #F0F2F7; border: 1.5px solid #E0E4EC;
+  border-radius: 20px; padding: .3rem .85rem;
+  font-size: .76rem; font-weight: 600; cursor: pointer;
+  font-family: 'Inter', sans-serif; color: var(--text-mid);
+  transition: all .15s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--blue-dark); color: #fff; border-color: var(--blue-dark);
+}
+.search-input {
+  flex: 1; min-width: 150px; max-width: 220px;
+  background: #F5F7FB; border: 1.5px solid #E0E4EC;
+  border-radius: 20px; padding: .35rem 1rem;
+  font-size: .8rem; font-family: 'Inter', sans-serif;
+  outline: none; color: var(--text-dark);
+}
 .search-input:focus { border-color: var(--blue); }
-.action-btn { border: none; border-radius: 6px; padding: .2rem .55rem; font-size: .7rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity .2s; }
+.action-btn {
+  border: none; border-radius: 6px; padding: .2rem .55rem;
+  font-size: .7rem; font-weight: 700; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: opacity .2s;
+}
 .action-btn:hover { opacity: .75; }
 .action-edit { background: #E0E8FF; color: #2C4AA0; }
 .action-del  { background: #FFE0DF; color: #C0392B; }
+
+/* ===== ANALYTICS EXTRAS ===== */
 .analytics-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
-.mini-stat { background: var(--white); border-radius: 14px; padding: 1.2rem 1.4rem; border: 1px solid #E0E4EC; box-shadow: 0 2px 12px rgba(0,0,0,.05); display: flex; align-items: center; gap: 1rem; }
+.mini-stat {
+  background: var(--white); border-radius: 14px;
+  padding: 1.2rem 1.4rem; border: 1px solid #E0E4EC;
+  box-shadow: 0 2px 12px rgba(0,0,0,.05);
+  display: flex; align-items: center; gap: 1rem;
+}
 .mini-stat .ms-icon { font-size: 1.9rem; }
 .mini-stat .ms-label { font-size: .72rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .25rem; }
 .mini-stat .ms-value { font-size: 1.35rem; font-weight: 700; color: var(--text-dark); }
@@ -542,6 +585,152 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 .area-bar-item .afill { height: 100%; background: var(--blue); border-radius: 4px; }
 .area-bar-item .acount { font-size: .72rem; font-weight: 700; color: var(--text-dark); min-width: 30px; text-align: right; }
 
+
+/* ===== ADMIN CALENDAR ===== */
+.admin-cal-card{background:var(--white);border-radius:14px;padding:1.5rem;border:1px solid #E0E4EC;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:1.2rem;}
+.admin-cal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.75rem;}
+.admin-cal-top h4{font-size:.88rem;font-weight:600;color:var(--text-dark);}
+.admin-cal-nav{display:flex;align-items:center;gap:.5rem;}
+.admin-cal-nav-btn{background:#F0F2F7;border:none;border-radius:8px;width:30px;height:30px;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.admin-cal-nav-btn:hover{background:var(--blue-light);}
+.admin-cal-month{font-size:.85rem;font-weight:700;color:var(--text-dark);min-width:124px;text-align:center;}
+.admin-cal-legend{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;}
+.admin-cal-leg-item{display:flex;align-items:center;gap:.38rem;font-size:.72rem;color:var(--text-mid);font-weight:500;}
+.admin-cal-leg-dot{width:11px;height:11px;border-radius:3px;flex-shrink:0;}
+.admin-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.admin-cal-dname{text-align:center;font-size:.62rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.04em;padding:.3rem 0;}
+.admin-cal-day{aspect-ratio:1;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;cursor:pointer;transition:transform .12s;position:relative;border:1.5px solid transparent;user-select:none;}
+.admin-cal-day:hover:not(.acd-empty):not(.acd-past){transform:scale(1.09);z-index:1;}
+.admin-cal-day.acd-empty{pointer-events:none;}
+.admin-cal-day.acd-today{border-color:var(--blue) !important;}
+.admin-cal-day.acd-available{background:#E8F8EF;color:#1B8A4A;}
+.admin-cal-day.acd-booked{background:#FFE8E8;color:#C0392B;}
+.admin-cal-day.acd-blocked{background:#F0F2F7;color:var(--text-light);}
+.admin-cal-day.acd-past{opacity:.38;cursor:default;}
+.acd-num{font-size:.76rem;line-height:1;}
+.acd-tag{font-size:.47rem;line-height:1;margin-top:1px;font-weight:700;}
+.admin-cal-detail{display:none;margin-top:.85rem;background:#F7F9FF;border-radius:10px;padding:.9rem 1rem;border-left:3px solid var(--blue);font-size:.82rem;}
+.admin-cal-detail.show{display:block;}
+.admin-cal-detail strong{display:block;color:var(--text-dark);margin-bottom:.3rem;}
+.admin-cal-detail p{color:var(--text-mid);line-height:1.65;}
+.admin-cal-quick{margin-top:.9rem;display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;}
+.admin-cal-quick label{font-size:.76rem;font-weight:600;color:var(--text-mid);}
+.admin-cal-quick input[type="date"],.admin-cal-quick select{padding:.38rem .7rem;border:1.5px solid #E0E4EC;border-radius:8px;font-size:.8rem;font-family:'Inter',sans-serif;outline:none;background:#fff;}
+.admin-cal-quick-btn{background:var(--blue-dark);color:#fff;border:none;padding:.4rem .95rem;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s;}
+.admin-cal-quick-btn:hover{opacity:.85;}
+
+/* ===== PENDING PANEL ===== */
+.pending-panel{background:#FFF8E8;border:2px solid var(--gold);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;}
+.pending-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;}
+.pending-panel-header h4{font-size:.95rem;font-weight:700;color:var(--text-dark);}
+.pending-count-badge{background:#E24B4A;color:#fff;font-size:.72rem;font-weight:800;padding:.2rem .7rem;border-radius:20px;letter-spacing:.5px;}
+.pending-empty{text-align:center;font-size:.85rem;color:var(--text-light);padding:1.5rem 0;font-style:italic;}
+.pending-card{background:var(--white);border-radius:12px;padding:1.2rem 1.3rem;border:1.5px solid var(--gold-light);margin-bottom:.85rem;}
+.pending-card:last-child{margin-bottom:0;}
+.pending-card-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.85rem;}
+.pending-card-name{font-size:.95rem;font-weight:700;color:var(--text-dark);}
+.pending-card-date{font-size:.82rem;color:var(--blue-dark);font-weight:600;}
+.pending-card-amount{font-size:1.1rem;font-weight:800;color:#1B8A4A;background:#D4F5E2;padding:.2rem .75rem;border-radius:20px;}
+.pending-card-details{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem;margin-bottom:1rem;}
+.pending-card-detail{font-size:.8rem;color:var(--text-mid);}
+.pending-card-detail strong{color:var(--text-dark);}
+.pending-card-actions{display:flex;gap:.65rem;flex-wrap:wrap;}
+.btn-accept{flex:1;background:#1B8A4A;color:#fff;border:none;border-radius:8px;padding:.65rem 1rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;}
+.btn-accept:hover{opacity:.85;}
+.btn-decline{flex:1;background:#FFE0DF;color:#C0392B;border:1.5px solid #F5B8B6;border-radius:8px;padding:.65rem 1rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;}
+.btn-decline:hover{opacity:.75;}
+.conflict-tag{font-size:.72rem;font-weight:700;color:#E24B4A;background:#FFE0DF;padding:.2rem .65rem;border-radius:20px;display:inline-block;margin-bottom:.5rem;}
+
+/* ===== COST ESTIMATOR ===== */
+.cost-estimate-box{grid-column:1/-1;background:linear-gradient(135deg,#0F2A1A,#1B4A2A);border-radius:12px;padding:1.1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;border:1.5px solid rgba(201,168,76,0.4);}
+.cost-estimate-box.hidden{display:none;}
+.cost-est-left .cost-label{font-size:.72rem;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:.2rem;}
+.cost-est-left .cost-breakdown{font-size:.82rem;color:rgba(255,255,255,0.8);line-height:1.6;}
+.cost-est-right .cost-amount{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#C9A84C;display:block;text-align:right;}
+.cost-est-right .cost-per{font-size:.72rem;color:rgba(201,168,76,0.7);display:block;text-align:right;}
+.cost-est-right .cost-hourly{font-size:.72rem;color:rgba(255,255,255,0.5);display:block;text-align:right;margin-top:2px;}
+
+/* ===== EMAIL PICKER ===== */
+.email-modal-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(26,26,46,0.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;}
+.email-modal-overlay.open{display:flex;}
+.email-modal{background:var(--white);border-radius:18px;padding:2rem 1.75rem;max-width:360px;width:90%;box-shadow:0 12px 48px rgba(0,0,0,0.2);text-align:center;position:relative;}
+.email-modal h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text-dark);margin-bottom:.4rem;}
+.email-modal p{font-size:.82rem;color:var(--text-mid);margin-bottom:1.4rem;line-height:1.6;}
+.email-choices{display:flex;flex-direction:column;gap:.75rem;}
+.email-choice-btn{display:flex;align-items:center;gap:.85rem;padding:.85rem 1.1rem;border-radius:12px;border:1.5px solid var(--gold-light);background:var(--cream);cursor:pointer;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;color:var(--text-dark);transition:all .15s;text-align:left;}
+.email-choice-btn:hover{background:var(--gold-light);border-color:var(--gold);}
+.email-choice-btn .ec-icon{font-size:1.5rem;flex-shrink:0;}
+.email-choice-btn .ec-label{font-size:.88rem;font-weight:700;color:var(--text-dark);display:block;}
+.email-choice-btn .ec-sub{font-size:.74rem;color:var(--text-light);display:block;font-weight:400;}
+.email-modal-close{position:absolute;top:.75rem;right:.9rem;background:none;border:none;font-size:1.2rem;color:var(--text-light);cursor:pointer;line-height:1;}
+
+/* ===== CONSENT GATE ===== */
+.consent-gate{position:fixed;inset:0;z-index:99999;background:#0F2A1A;display:flex;align-items:center;justify-content:center;padding:1.5rem;transition:opacity .4s ease;}
+.consent-gate.hiding{opacity:0;pointer-events:none;}
+.consent-box{background:var(--white);border-radius:20px;max-width:620px;width:100%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,0.4);overflow:hidden;}
+.consent-header{padding:1.5rem 2rem 1rem;border-bottom:1px solid var(--gold-light);flex-shrink:0;}
+.consent-header .ch-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.3rem;}
+.consent-header .moon{font-size:1.6rem;}
+.consent-header h2{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text-dark);}
+.consent-header p{font-size:.8rem;color:var(--text-light);margin-top:.2rem;}
+.consent-scroll{flex:1;overflow-y:auto;padding:1.25rem 2rem;}
+.consent-scroll h3{font-size:.9rem;font-weight:700;color:var(--text-dark);margin:1.1rem 0 .4rem;}
+.consent-scroll h3:first-child{margin-top:0;}
+.consent-scroll p{font-size:.83rem;color:var(--text-mid);line-height:1.75;margin-bottom:.5rem;}
+.consent-scroll ul{padding-left:1.1rem;margin-bottom:.5rem;}
+.consent-scroll ul li{font-size:.83rem;color:var(--text-mid);line-height:1.75;margin-bottom:.2rem;}
+.consent-divider{border:none;border-top:1px solid var(--gold-light);margin:.9rem 0;}
+.consent-footer{padding:1.1rem 2rem 1.4rem;border-top:1px solid var(--gold-light);flex-shrink:0;background:var(--white);}
+.consent-check-row{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem;}
+.consent-check-row input[type="checkbox"]{width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:var(--blue-dark);cursor:pointer;}
+.consent-check-row label{font-size:.83rem;color:var(--text-mid);line-height:1.6;cursor:pointer;}
+.consent-check-row label strong{color:var(--text-dark);}
+.consent-agree-btn{width:100%;background:var(--blue-dark);color:#fff;border:none;border-radius:10px;padding:.9rem;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;}
+.consent-agree-btn:hover{opacity:.88;}
+.consent-note{text-align:center;font-size:.73rem;color:var(--text-light);margin-top:.6rem;line-height:1.5;}
+
+/* ===== PRIVACY POLICY ===== */
+.pp-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(26,26,46,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1.5rem;}
+.pp-overlay.open{display:flex;}
+.pp-modal{background:var(--white);border-radius:18px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.25);position:relative;}
+.pp-header{position:sticky;top:0;background:var(--white);padding:1.5rem 2rem 1rem;border-bottom:1px solid var(--gold-light);display:flex;justify-content:space-between;align-items:center;z-index:1;}
+.pp-header h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text-dark);}
+.pp-header p{font-size:.75rem;color:var(--text-light);margin-top:.2rem;}
+.pp-close{background:none;border:none;font-size:1.4rem;color:var(--text-light);cursor:pointer;flex-shrink:0;line-height:1;}
+.pp-body{padding:1.5rem 2rem 2rem;}
+.pp-body h3{font-size:.95rem;font-weight:700;color:var(--text-dark);margin:1.4rem 0 .5rem;}
+.pp-body h3:first-child{margin-top:0;}
+.pp-body p{font-size:.87rem;color:var(--text-mid);line-height:1.8;margin-bottom:.6rem;}
+.pp-body ul{padding-left:1.2rem;margin-bottom:.6rem;}
+.pp-body ul li{font-size:.87rem;color:var(--text-mid);line-height:1.8;margin-bottom:.25rem;}
+.pp-divider{border:none;border-top:1px solid var(--gold-light);margin:1rem 0;}
+.pp-contact-box{background:var(--blue-light);border-radius:10px;padding:1rem 1.2rem;margin-top:1rem;border-left:3px solid var(--blue);font-size:.85rem;color:var(--blue-dark);}
+
+/* ===== PUBLIC AVAILABILITY CALENDAR ===== */
+#availability{background:var(--cream2);}
+.cal-outer{max-width:720px;margin:0 auto;}
+.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.cal-nav-btn{background:var(--blue-dark);color:#fff;border:none;border-radius:8px;padding:.45rem 1.2rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;}
+.cal-nav-btn:hover{opacity:.82;}
+.cal-month-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--text-dark);}
+.cal-legend{display:flex;gap:1.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap;}
+.cal-legend-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--text-mid);font-weight:500;}
+.cal-legend-dot{width:14px;height:14px;border-radius:3px;flex-shrink:0;}
+.cal-day-headers{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;}
+.cal-day-hdr{text-align:center;font-size:.7rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.05em;padding:.3rem 0;}
+.cal-grid-wrap{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-cell{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;border:1.5px solid transparent;position:relative;transition:transform .12s;}
+.cal-cell.empty{background:transparent;border:none;}
+.cal-cell.past{background:#F0F2F7;color:#BABACE;border-color:#E0E4EC;}
+.cal-cell.available{background:#D4F5E2;color:#1B8A4A;border-color:#A8E6C3;}
+.cal-cell.booked{background:#FFE0DF;color:#C0392B;border-color:#F5B8B6;}
+.cal-cell.today{outline:2.5px solid var(--gold);outline-offset:1px;}
+.cal-cell.admin-clickable{cursor:pointer;}
+.cal-cell.admin-clickable:hover{transform:scale(1.08);}
+.cal-cell .cal-day-num{font-size:.82rem;line-height:1;}
+.cal-cell .cal-day-sub{font-size:.58rem;margin-top:2px;opacity:.8;}
+.cal-info-box{margin-top:1.25rem;background:var(--blue-light);border-radius:var(--radius);padding:1rem 1.4rem;border-left:3px solid var(--blue);font-size:.83rem;color:var(--blue-dark);line-height:1.7;display:flex;gap:.75rem;align-items:flex-start;}
+
 /* ===== VIDEO ===== */
 .gallery-video-slot {
   border-radius: var(--radius); overflow: hidden; position: relative;
@@ -551,325 +740,6 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 .gallery-video-slot:hover { transform: translateY(-3px); }
 .gallery-video-slot video { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
 .gallery-video-slot .consent-tag { font-size: .64rem; }
-
-/* ===== EMAIL PICKER MODAL ===== */
-.email-modal-overlay {
-  display: none; position: fixed; inset: 0; z-index: 9999;
-  background: rgba(26,26,46,0.55); backdrop-filter: blur(4px);
-  align-items: center; justify-content: center;
-}
-.email-modal-overlay.open { display: flex; }
-.email-modal {
-  background: var(--white); border-radius: 18px;
-  padding: 2rem 1.75rem; max-width: 360px; width: 90%;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.2);
-  text-align: center; position: relative;
-}
-.email-modal h3 {
-  font-family: 'Playfair Display', serif; font-size: 1.2rem;
-  color: var(--text-dark); margin-bottom: .4rem;
-}
-.email-modal p {
-  font-size: .82rem; color: var(--text-mid); margin-bottom: 1.4rem; line-height: 1.6;
-}
-.email-choices { display: flex; flex-direction: column; gap: .75rem; }
-.email-choice-btn {
-  display: flex; align-items: center; gap: .85rem;
-  padding: .85rem 1.1rem; border-radius: 12px;
-  border: 1.5px solid var(--gold-light); background: var(--cream);
-  cursor: pointer; font-family: 'Inter', sans-serif;
-  font-size: .88rem; font-weight: 600; color: var(--text-dark);
-  transition: all .15s; text-align: left;
-}
-.email-choice-btn:hover { background: var(--gold-light); border-color: var(--gold); }
-.email-choice-btn .ec-icon { font-size: 1.5rem; flex-shrink: 0; }
-.email-choice-btn .ec-label { font-size: .88rem; font-weight: 700; color: var(--text-dark); display: block; }
-.email-choice-btn .ec-sub { font-size: .74rem; color: var(--text-light); display: block; font-weight: 400; }
-.email-modal-close {
-  position: absolute; top: .75rem; right: .9rem;
-  background: none; border: none; font-size: 1.2rem;
-  color: var(--text-light); cursor: pointer; line-height: 1;
-}
-
-/* ===== CONSENT GATE ===== */
-.consent-gate {
-  position: fixed; inset: 0; z-index: 99999;
-  background: #0F2A1A;
-  display: flex; align-items: center; justify-content: center;
-  padding: 1.5rem;
-  transition: opacity .4s ease;
-}
-.consent-gate.hiding { opacity: 0; pointer-events: none; }
-.consent-box {
-  background: var(--white); border-radius: 20px;
-  max-width: 620px; width: 100%;
-  max-height: 90vh; display: flex; flex-direction: column;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.4);
-  overflow: hidden;
-}
-.consent-header {
-  padding: 1.5rem 2rem 1rem;
-  border-bottom: 1px solid var(--gold-light);
-  flex-shrink: 0;
-}
-.consent-header .ch-top {
-  display: flex; align-items: center; gap: .75rem; margin-bottom: .3rem;
-}
-.consent-header .moon { font-size: 1.6rem; }
-.consent-header h2 {
-  font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text-dark);
-}
-.consent-header p { font-size: .8rem; color: var(--text-light); margin-top: .2rem; }
-.consent-scroll {
-  flex: 1; overflow-y: auto; padding: 1.25rem 2rem;
-}
-.consent-scroll h3 {
-  font-size: .9rem; font-weight: 700; color: var(--text-dark);
-  margin: 1.1rem 0 .4rem;
-}
-.consent-scroll h3:first-child { margin-top: 0; }
-.consent-scroll p {
-  font-size: .83rem; color: var(--text-mid); line-height: 1.75; margin-bottom: .5rem;
-}
-.consent-scroll ul {
-  padding-left: 1.1rem; margin-bottom: .5rem;
-}
-.consent-scroll ul li {
-  font-size: .83rem; color: var(--text-mid); line-height: 1.75; margin-bottom: .2rem;
-}
-.consent-divider { border: none; border-top: 1px solid var(--gold-light); margin: .9rem 0; }
-.consent-footer {
-  padding: 1.1rem 2rem 1.4rem;
-  border-top: 1px solid var(--gold-light);
-  flex-shrink: 0; background: var(--white);
-}
-.consent-check-row {
-  display: flex; align-items: flex-start; gap: .75rem;
-  margin-bottom: 1rem;
-}
-.consent-check-row input[type="checkbox"] {
-  width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
-  accent-color: var(--blue-dark); cursor: pointer;
-}
-.consent-check-row label {
-  font-size: .83rem; color: var(--text-mid); line-height: 1.6; cursor: pointer;
-}
-.consent-check-row label strong { color: var(--text-dark); }
-.consent-agree-btn {
-  width: 100%; background: var(--blue-dark); color: #fff;
-  border: none; border-radius: 10px; padding: .9rem;
-  font-size: .95rem; font-weight: 700; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: opacity .2s;
-  opacity: 1; pointer-events: all;
-}
-.consent-agree-btn:hover { opacity: .88; }
-.consent-agree-btn.enabled { opacity: 1; }
-.consent-note {
-  text-align: center; font-size: .73rem; color: var(--text-light);
-  margin-top: .6rem; line-height: 1.5;
-}
-
-/* ===== PRIVACY POLICY MODAL ===== */
-.pp-overlay {
-  display: none; position: fixed; inset: 0; z-index: 9999;
-  background: rgba(26,26,46,0.7); backdrop-filter: blur(6px);
-  align-items: center; justify-content: center; padding: 1.5rem;
-}
-.pp-overlay.open { display: flex; }
-.pp-modal {
-  background: var(--white); border-radius: 18px;
-  max-width: 680px; width: 100%; max-height: 85vh;
-  overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-  position: relative;
-}
-.pp-header {
-  position: sticky; top: 0; background: var(--white);
-  padding: 1.5rem 2rem 1rem; border-bottom: 1px solid var(--gold-light);
-  display: flex; justify-content: space-between; align-items: center;
-  z-index: 1;
-}
-.pp-header h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--text-dark); }
-.pp-header p { font-size: .75rem; color: var(--text-light); margin-top: .2rem; }
-.pp-close {
-  background: none; border: none; font-size: 1.4rem;
-  color: var(--text-light); cursor: pointer; flex-shrink: 0; line-height: 1;
-}
-.pp-body { padding: 1.5rem 2rem 2rem; }
-.pp-body h3 { font-size: .95rem; font-weight: 700; color: var(--text-dark); margin: 1.4rem 0 .5rem; }
-.pp-body h3:first-child { margin-top: 0; }
-.pp-body p { font-size: .87rem; color: var(--text-mid); line-height: 1.8; margin-bottom: .6rem; }
-.pp-body ul { padding-left: 1.2rem; margin-bottom: .6rem; }
-.pp-body ul li { font-size: .87rem; color: var(--text-mid); line-height: 1.8; margin-bottom: .25rem; }
-.pp-divider { border: none; border-top: 1px solid var(--gold-light); margin: 1rem 0; }
-.pp-contact-box {
-  background: var(--blue-light); border-radius: 10px;
-  padding: 1rem 1.2rem; margin-top: 1rem;
-  border-left: 3px solid var(--blue);
-  font-size: .85rem; color: var(--blue-dark);
-}
-
-
-/* ===== AVAILABILITY CALENDAR ===== */
-#availability { background: var(--cream2); }
-.cal-outer { max-width: 720px; margin: 0 auto; }
-.cal-nav {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 1rem;
-}
-.cal-nav-btn {
-  background: var(--blue-dark); color: #fff; border: none;
-  border-radius: 8px; padding: .45rem 1.2rem;
-  font-size: .88rem; font-weight: 700; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: opacity .2s;
-}
-.cal-nav-btn:hover { opacity: .82; }
-.cal-month-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem; font-weight: 600; color: var(--text-dark);
-}
-.cal-legend {
-  display: flex; gap: 1.5rem; justify-content: center;
-  margin-bottom: 1rem; flex-wrap: wrap;
-}
-.cal-legend-item {
-  display: flex; align-items: center; gap: .4rem;
-  font-size: .8rem; color: var(--text-mid); font-weight: 500;
-}
-.cal-legend-dot {
-  width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
-}
-.cal-day-headers {
-  display: grid; grid-template-columns: repeat(7, 1fr);
-  gap: 4px; margin-bottom: 4px;
-}
-.cal-day-hdr {
-  text-align: center; font-size: .7rem; font-weight: 700;
-  color: var(--text-light); text-transform: uppercase; letter-spacing: .05em;
-  padding: .3rem 0;
-}
-.cal-grid-wrap {
-  display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
-}
-.cal-cell {
-  aspect-ratio: 1; border-radius: 8px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 600;
-  border: 1.5px solid transparent; position: relative;
-  transition: transform .12s;
-}
-.cal-cell.empty { background: transparent; border: none; }
-.cal-cell.past { background: #F0F2F7; color: #BABACE; border-color: #E0E4EC; }
-.cal-cell.available { background: #D4F5E2; color: #1B8A4A; border-color: #A8E6C3; }
-.cal-cell.booked { background: #FFE0DF; color: #C0392B; border-color: #F5B8B6; }
-.cal-cell.today { outline: 2.5px solid var(--gold); outline-offset: 1px; }
-.cal-cell.admin-clickable { cursor: pointer; }
-.cal-cell.admin-clickable:hover { transform: scale(1.08); }
-.cal-cell .cal-day-num { font-size: .82rem; line-height: 1; }
-.cal-cell .cal-day-sub { font-size: .58rem; margin-top: 2px; opacity: .8; }
-.cal-info-box {
-  margin-top: 1.25rem; background: var(--blue-light);
-  border-radius: var(--radius); padding: 1rem 1.4rem;
-  border-left: 3px solid var(--blue);
-  font-size: .83rem; color: var(--blue-dark); line-height: 1.7;
-  display: flex; gap: .75rem; align-items: flex-start;
-}
-
-/* ===== PENDING REQUESTS PANEL ===== */
-.pending-panel {
-  background: #FFF8E8; border: 2px solid var(--gold);
-  border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;
-}
-.pending-panel-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;
-}
-.pending-panel-header h4 { font-size: .95rem; font-weight: 700; color: var(--text-dark); }
-.pending-count-badge {
-  background: #E24B4A; color: #fff; font-size: .72rem; font-weight: 800;
-  padding: .2rem .7rem; border-radius: 20px; letter-spacing: .5px;
-}
-.pending-empty {
-  text-align: center; font-size: .85rem; color: var(--text-light);
-  padding: 1.5rem 0; font-style: italic;
-}
-.pending-card {
-  background: var(--white); border-radius: 12px; padding: 1.2rem 1.3rem;
-  border: 1.5px solid var(--gold-light); margin-bottom: .85rem;
-  transition: box-shadow .2s;
-}
-.pending-card:last-child { margin-bottom: 0; }
-.pending-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-.pending-card-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  flex-wrap: wrap; gap: .5rem; margin-bottom: .85rem;
-}
-.pending-card-name { font-size: .95rem; font-weight: 700; color: var(--text-dark); }
-.pending-card-date { font-size: .82rem; color: var(--blue-dark); font-weight: 600; }
-.pending-card-amount {
-  font-size: 1.1rem; font-weight: 800; color: #1B8A4A;
-  background: #D4F5E2; padding: .2rem .75rem; border-radius: 20px;
-}
-.pending-card-details {
-  display: grid; grid-template-columns: 1fr 1fr; gap: .35rem .75rem;
-  margin-bottom: 1rem;
-}
-.pending-card-detail { font-size: .8rem; color: var(--text-mid); }
-.pending-card-detail strong { color: var(--text-dark); }
-.pending-card-actions { display: flex; gap: .65rem; flex-wrap: wrap; }
-.btn-accept {
-  flex: 1; background: #1B8A4A; color: #fff; border: none;
-  border-radius: 8px; padding: .65rem 1rem;
-  font-size: .85rem; font-weight: 700; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: opacity .2s;
-  display: flex; align-items: center; justify-content: center; gap: .4rem;
-}
-.btn-accept:hover { opacity: .85; }
-.btn-decline {
-  flex: 1; background: #FFE0DF; color: #C0392B; border: 1.5px solid #F5B8B6;
-  border-radius: 8px; padding: .65rem 1rem;
-  font-size: .85rem; font-weight: 700; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: opacity .2s;
-  display: flex; align-items: center; justify-content: center; gap: .4rem;
-}
-.btn-decline:hover { opacity: .75; }
-.conflict-tag {
-  font-size: .72rem; font-weight: 700; color: #E24B4A;
-  background: #FFE0DF; padding: .2rem .65rem; border-radius: 20px;
-  display: inline-block; margin-bottom: .5rem;
-}
-
-/* ===== COST ESTIMATOR ===== */
-.cost-estimate-box {
-  grid-column: 1 / -1;
-  background: linear-gradient(135deg, #0F2A1A, #1B4A2A);
-  border-radius: 12px; padding: 1.1rem 1.4rem;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: .75rem;
-  border: 1.5px solid rgba(201,168,76,0.4);
-  transition: all .3s;
-}
-.cost-estimate-box.hidden { display: none; }
-.cost-est-left .cost-label {
-  font-size: .72rem; font-weight: 700; color: rgba(255,255,255,0.6);
-  text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: .2rem;
-}
-.cost-est-left .cost-breakdown {
-  font-size: .82rem; color: rgba(255,255,255,0.8); line-height: 1.6;
-}
-.cost-est-right .cost-amount {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem; font-weight: 700; color: #C9A84C;
-  display: block; text-align: right;
-}
-.cost-est-right .cost-per {
-  font-size: .72rem; color: rgba(201,168,76,0.7);
-  display: block; text-align: right;
-}
-.cost-est-right .cost-hourly {
-  font-size: .72rem; color: rgba(255,255,255,0.5);
-  display: block; text-align: right; margin-top: 2px;
-}
 
 /* ===== SCROLL ANIMATIONS ===== */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
@@ -900,131 +770,90 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 }
 </style>
 
-<!-- Firebase SDK (compat - global scope) -->
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script>
-  var firebaseConfig = {
-    apiKey: "AIzaSyA95BDsy3S3DmryemKekOg4OH7DA2jdAIU",
-    authDomain: "judy-babysitting.firebaseapp.com",
-    databaseURL: "https://judy-babysitting-default-rtdb.firebaseio.com",
-    projectId: "judy-babysitting",
-    storageBucket: "judy-babysitting.firebasestorage.app",
-    messagingSenderId: "1086443263799",
-    appId: "1:1086443263799:web:c96d89f7cf30970fcc2cb2",
-    measurementId: "G-7J7Y0WZFRT"
+var firebaseConfig={apiKey:"AIzaSyA95BDsy3S3DmryemKekOg4OH7DA2jdAIU",authDomain:"judy-babysitting.firebaseapp.com",databaseURL:"https://judy-babysitting-default-rtdb.firebaseio.com",projectId:"judy-babysitting",storageBucket:"judy-babysitting.firebasestorage.app",messagingSenderId:"1086443263799",appId:"1:1086443263799:web:c96d89f7cf30970fcc2cb2",measurementId:"G-7J7Y0WZFRT"};
+if(typeof firebase==="undefined"){
+  window._fb=null;window._firebaseBookings=[];window._calData={};
+}else{
+  firebase.initializeApp(firebaseConfig);
+  var _db=firebase.database(),_bkRef=_db.ref("bookings"),_avRef=_db.ref("availability");
+  window._fb={db:_db,bkRef:_bkRef,avRef:_avRef,
+    push:function(r,d){return r.push(d);},
+    update:function(r,d){return r.update(d);},
+    remove:function(r){return r.remove();},
+    ref:function(p){return _db.ref(p);}
   };
-
-  /* Defensive check — Firebase script may fail to load (slow network, ad-blocker, etc.) */
-  if (typeof firebase === "undefined") {
-    console.warn("Firebase failed to load. Booking sync features will be unavailable.");
-    window._fb = null;
-    window._firebaseBookings = [];
-    window._calData = {};
-  } else {
-    firebase.initializeApp(firebaseConfig);
-    var _db    = firebase.database();
-    var _bkRef = _db.ref("bookings");
-    var _avRef = _db.ref("availability");
-
-    /* Expose helpers globally */
-    window._fb = {
-      db:      _db,
-      bkRef:   _bkRef,
-      avRef:   _avRef,
-      push:    function(r, data) { return r.push(data); },
-      update:  function(r, data) { return r.update(data); },
-      remove:  function(r)       { return r.remove(); },
-      onValue: function(r, cb)   { r.on("value", cb); },
-      ref:     function(path)    { return _db.ref(path); }
-    };
-
-    /* Live bookings listener */
-    _bkRef.on("value", function(snapshot) {
-      var data = snapshot.val() || {};
-      var arr  = Object.keys(data).map(function(key) {
-        var val = data[key];
-        val.firebaseKey = key;
-        return val;
-      });
-      arr.sort(function(a, b) { return new Date(b.rawDate) - new Date(a.rawDate); });
-      window._firebaseBookings = arr;
-      var dash = document.getElementById("admin-dashboard");
-      if (dash && dash.classList.contains("visible")) {
-        if (typeof renderStatCards    === "function") renderStatCards(arr);
-        if (typeof renderPendingPanel === "function") renderPendingPanel(arr);
-        if (typeof renderTable        === "function") renderTable(arr, window._currentFilter || "all");
-        if (typeof renderCharts       === "function") renderCharts(arr);
-      }
-    });
-
-    /* Live availability listener */
-    _avRef.on("value", function(snapshot) {
-      window._calData = snapshot.val() || {};
-      if (typeof calRender === "function") calRender();
-    });
-  }
+  _bkRef.on("value",function(snap){
+    var data=snap.val()||{};
+    var arr=Object.keys(data).map(function(k){var v=data[k];v.firebaseKey=k;return v;});
+    arr.sort(function(a,b){return new Date(b.rawDate)-new Date(a.rawDate);});
+    window._firebaseBookings=arr;
+    var dash=document.getElementById("admin-dashboard");
+    if(dash&&dash.classList.contains("visible")){
+      if(typeof renderStatCards==="function") renderStatCards(arr);
+      if(typeof renderPendingPanel==="function") renderPendingPanel(arr);
+      if(typeof renderTable==="function") renderTable(arr,window._currentFilter||"all");
+      if(typeof renderCharts==="function") renderCharts(arr);
+      if(typeof adminCalRender==="function") adminCalRender();
+    }
+    if(typeof calRender==="function") calRender();
+  });
+  _avRef.on("value",function(snap){
+    window._calData=snap.val()||{};
+    if(typeof calRender==="function") calRender();
+    if(typeof adminCalRender==="function") adminCalRender();
+  });
+}
 </script>
+
 </head>
 <body>
+
+<!-- ADMIN PASSWORD MODAL -->
+<div class="admin-modal-overlay" id="adminModalOverlay">
+  <div class="admin-modal">
+    <div class="lock-icon">🔐</div>
+    <h3>Admin Access</h3>
+    <p>This area is private. Enter your password to continue.</p>
+    <input type="password" id="adminPwInput" placeholder="••••••••"
+      onkeydown="if(event.key==='Enter') checkAdminPw()"
+      autocomplete="current-password">
+    <div class="pw-error" id="pwError"></div>
+    <button class="pw-submit" onclick="checkAdminPw()">Unlock Dashboard</button><br>
+    <button class="pw-cancel" onclick="closeAdminModal()">Cancel</button>
+  </div>
+</div>
 
 <!-- CONSENT GATE -->
 <div class="consent-gate" id="consentGate">
   <div class="consent-box">
     <div class="consent-header">
-      <div class="ch-top">
-        <span class="moon">🌙</span>
-        <h2>Welcome to Judy Ombam Overnight Babysitting</h2>
-      </div>
+      <div class="ch-top"><span class="moon">🌙</span><h2>Welcome to Judy Ombam Overnight Babysitting</h2></div>
       <p>Before entering, please read and agree to our Privacy Policy.</p>
     </div>
-
-    <div class="consent-scroll" id="consentScroll">
-      <h3>1. Who We Are</h3>
-      <p><strong>Judy Ombam</strong> is a professional overnight babysitter based in Nairobi, Kenya. Contact: <strong>atienojudithberil@gmail.com</strong> · <strong>0713 781 789</strong>.</p>
+    <div class="consent-scroll">
+      <h3>1. Who We Are</h3><p><strong>Judy Ombam</strong> — professional overnight babysitter, Nairobi. Contact: <strong>atienojudithberil@gmail.com</strong> · <strong>0713 781 789</strong>.</p>
       <hr class="consent-divider">
-      <h3>2. Information We Collect</h3>
-      <p>When you submit a booking request you may provide:</p>
-      <ul>
-        <li>Your full name and phone number</li>
-        <li>Your location / estate in Nairobi</li>
-        <li>Date of booking and number/ages of children</li>
-        <li>National ID number and photo (required for safety verification)</li>
-        <li>Any special instructions or notes</li>
-      </ul>
-      <p>This website also uses <strong>Google Analytics</strong> to collect anonymised visitor data (pages viewed, time spent, general location). This does not identify you personally.</p>
+      <h3>2. Information We Collect</h3><ul><li>Your full name and phone number</li><li>Your location / estate in Nairobi</li><li>Date of booking and number/ages of children</li><li>National ID number and photo (required for safety)</li><li>Any special instructions or notes</li></ul><p>This website also uses <strong>Google Analytics</strong> to collect anonymised visitor data.</p>
       <hr class="consent-divider">
-      <h3>3. How We Use Your Information</h3>
-      <ul>
-        <li>To confirm and manage your babysitting booking</li>
-        <li>To verify your identity before a session for safety</li>
-        <li>To contact you regarding your booking via WhatsApp or email</li>
-        <li>To improve the website using anonymised analytics only</li>
-      </ul>
-      <p>Your information is <strong>never sold or shared</strong> with third parties for marketing purposes.</p>
+      <h3>3. How We Use Your Information</h3><ul><li>To confirm and manage your babysitting booking</li><li>To verify your identity before a session</li><li>To contact you via WhatsApp or email</li><li>To improve the website using anonymised analytics only</li></ul><p>Your information is <strong>never sold or shared</strong> with third parties for marketing purposes.</p>
       <hr class="consent-divider">
-      <h3>4. National ID Verification</h3>
-      <p>Your National ID is required for every booking — stored securely, used only for identity verification, and deleted upon request.</p>
+      <h3>4. National ID Verification</h3><p>Required for every booking — stored securely, used only for identity verification, deleted upon request.</p>
       <hr class="consent-divider">
-      <h3>5. Photos & Gallery</h3>
-      <p>All photos featuring children were shared with <strong>full written parental consent</strong>. No child is identified by name. Contact Judy to request removal of any image.</p>
+      <h3>5. Photos &amp; Gallery</h3><p>All photos featuring children were shared with <strong>full written parental consent</strong>. No child is identified by name.</p>
       <hr class="consent-divider">
-      <h3>6. Cookies & Analytics</h3>
-      <p>Google Analytics cookies collect anonymised data. You can opt out via the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color:var(--blue-dark);">Google Analytics Opt-out Add-on</a>.</p>
-      <hr class="consent-divider">
-      <h3>7. Your Rights</h3>
-      <p>You may request access, correction, or deletion of your data at any time by contacting Judy directly at <strong>atienojudithberil@gmail.com</strong>.</p>
+      <h3>6. Your Rights</h3><p>Request access, correction, or deletion of your data at any time: <strong>atienojudithberil@gmail.com</strong>.</p>
     </div>
-
     <div class="consent-footer">
       <div class="consent-check-row">
-        <input type="checkbox" id="consentCheck" onchange="toggleConsentBtn()">
-        <label for="consentCheck">I have read and agree to the <strong>Privacy Policy</strong>. I understand how my information will be collected and used by Judy Ombam Overnight Babysitting.</label>
+        <input type="checkbox" id="consentCheck">
+        <label for="consentCheck">I have read and agree to the <strong>Privacy Policy</strong>. I understand how my information will be collected and used.</label>
       </div>
-      <button class="consent-agree-btn" id="consentAgreeBtn" onclick="acceptConsent()">
-        ✅ I Agree — Enter Site
-      </button>
-      <p class="consent-note">You must agree to the privacy policy to use this website. Your consent is saved for 30 days.</p>
+      <button class="consent-agree-btn" onclick="acceptConsent()">✅ I Agree — Enter Site</button>
+      <p class="consent-note">Your consent is saved for 30 days.</p>
     </div>
   </div>
 </div>
@@ -1044,7 +873,8 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       <li><a href="#services">Services</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#areas">Areas</a></li>
-      <li><a href="#availability">Availability</a></li><li><a href="#booking">Book</a></li>
+      <li><a href="#availability">Availability</a></li>
+      <li><a href="#booking">Book</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#" onclick="toggleAdmin(); return false;" style="color:var(--gold); font-weight:700;">⚙ Admin</a></li>
     </ul>
@@ -1078,84 +908,181 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 
     <!-- STAT CARDS -->
     <div class="stat-cards">
-      <div class="stat-card green"><div class="stat-label">Total Bookings</div><div class="stat-value">47</div><div class="stat-sub">Since January 2026</div></div>
-      <div class="stat-card blue"><div class="stat-label">This Month</div><div class="stat-value">9</div><div class="stat-sub">June 2026</div></div>
-      <div class="stat-card gold"><div class="stat-label">Revenue (June)</div><div class="stat-value">KSh 13,500</div><div class="stat-sub">All bookings confirmed</div></div>
-      <div class="stat-card"><div class="stat-label">Avg. Per Night</div><div class="stat-value" style="color:var(--text-dark);">KSh 1,950</div><div class="stat-sub">Across all rates</div></div>
-      <div class="stat-card" id="sc-repeat"><div class="stat-label">Repeat Clients</div><div class="stat-value" style="color:#7B5EA7;" id="sc-repeat-val">—</div><div class="stat-sub" id="sc-repeat-sub">Return rate</div></div>
-      <div class="stat-card red"><div class="stat-label">Cancellations</div><div class="stat-value">3</div><div class="stat-sub">This year (6.4%)</div></div>
+      <div class="stat-card green"><div class="stat-label">Total Bookings</div><div class="stat-value" id="sc-total">—</div><div class="stat-sub" id="sc-total-sub">All time</div></div>
+      <div class="stat-card blue"><div class="stat-label">This Month</div><div class="stat-value" id="sc-month">—</div><div class="stat-sub" id="sc-month-sub">Loading…</div></div>
+      <div class="stat-card gold"><div class="stat-label">Revenue (Month)</div><div class="stat-value" id="sc-rev">—</div><div class="stat-sub">Completed bookings</div></div>
+      <div class="stat-card"><div class="stat-label">Avg. Per Night</div><div class="stat-value" id="sc-avg" style="color:var(--text-dark);">—</div><div class="stat-sub">Non-cancelled</div></div>
+      <div class="stat-card"><div class="stat-label">Repeat Clients</div><div class="stat-value" id="sc-repeat-val" style="color:#7B5EA7;">—</div><div class="stat-sub" id="sc-repeat-sub">Return rate</div></div>
+      <div class="stat-card red"><div class="stat-label">Cancellations</div><div class="stat-value" id="sc-cancel">—</div><div class="stat-sub" id="sc-cancel-sub">This year</div></div>
     </div>
 
+    <!-- ANALYTICS MINI STATS -->
     <div class="admin-section-title">📈 Analytics Overview</div>
     <div class="analytics-row">
-      <div class="mini-stat"><div class="ms-icon">💰</div><div><div class="ms-label">Year-to-Date Revenue</div><div class="ms-value" id="ms-ytd">KSh 0</div><div class="ms-trend" id="ms-ytd-trend">Calculating...</div></div></div>
-      <div class="mini-stat"><div class="ms-icon">⭐</div><div><div class="ms-label">Avg. Rating</div><div class="ms-value" id="ms-rating">—</div><div class="ms-trend" id="ms-rating-sub">No reviews yet</div></div></div>
-      <div class="mini-stat"><div class="ms-icon">📅</div><div><div class="ms-label">Upcoming (Next 7 Days)</div><div class="ms-value" id="ms-upcoming">0 bookings</div><div class="ms-trend" id="ms-upcoming-rev">KSh 0 projected</div></div></div>
+      <div class="mini-stat">
+        <div class="ms-icon">💰</div>
+        <div>
+          <div class="ms-label">Year-to-Date Revenue</div>
+          <div class="ms-value">KSh 128,350</div>
+          <div class="ms-trend" id="ms-ytd-trend">Calculating…</div>
+        </div>
+      </div>
+      <div class="mini-stat">
+        <div class="ms-icon">⭐</div>
+        <div>
+          <div class="ms-label">Avg. Client Rating</div>
+          <div class="ms-value" id="ms-rating">—</div>
+          <div class="ms-trend" id="ms-rating-sub">No ratings yet</div>
+        </div>
+      </div>
+      <div class="mini-stat">
+        <div class="ms-icon">📅</div>
+        <div>
+          <div class="ms-label">Upcoming (Next 7 Days)</div>
+          <div class="ms-value" id="ms-upcoming">—</div>
+          <div class="ms-trend">KSh 11,500 projected</div>
+        </div>
+      </div>
     </div>
 
-    <div class="revenue-chart-card"><h4>💵 Monthly Revenue Trend — 2026</h4><div id="revenueChart"></div></div>
+    <!-- REVENUE TREND -->
+    <div class="revenue-chart-card">
+      <h4>💵 Monthly Revenue Trend — 2026</h4>
+      <div id="revenueChart"><!-- Rendered by JS --></div>
+    </div>
 
+    <!-- CHARTS ROW -->
     <div class="charts-row">
-      <div class="chart-card"><h4>📊 Monthly Bookings — 2026</h4><div class="bar-chart" id="barChart"></div></div>
-      <div class="chart-card"><h4>🍩 Revenue by Service Type</h4><div class="donut-wrap"><svg class="donut-svg" viewBox="0 0 42 42" id="donutSvg"></svg><div class="donut-legend" id="donutLegend"></div></div></div>
+      <div class="chart-card">
+        <h4>📊 Monthly Bookings — 2026</h4>
+        <div class="bar-chart" id="barChart"><!-- Rendered by JS --></div>
+      </div>
+      <div class="chart-card">
+        <h4>🍩 Revenue by Service Type</h4>
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 42 42" id="donutSvg"><!-- Rendered by JS --></svg>
+          <div class="donut-legend" id="donutLegend"><!-- Rendered by JS --></div>
+        </div>
+      </div>
     </div>
 
-    <div class="top-areas-card" style="margin-bottom:1.2rem;"><h4>📍 Bookings by Area</h4><div class="area-bar-row" id="areaBarRow"></div></div>
+    <!-- TOP AREAS + AREA BREAKDOWN -->
+    <div class="top-areas-card" style="margin-bottom:1.2rem;">
+      <h4>📍 Bookings by Area</h4>
+      <div class="area-bar-row" id="areaBarRow"><!-- Rendered by JS --></div>
+    </div>
 
-    <!-- PENDING REQUESTS PANEL -->
+    <!-- BOOKINGS MANAGEMENT -->
+
+    <!-- ADMIN CALENDAR -->
+    <div class="admin-section-title">📅 Availability Calendar</div>
+    <div class="admin-cal-card">
+      <div class="admin-cal-top">
+        <h4>🗓️ Your Schedule — click any day to toggle status</h4>
+        <div class="admin-cal-nav">
+          <button class="admin-cal-nav-btn" onclick="adminCalPrev()">◀</button>
+          <span class="admin-cal-month" id="adminCalMonth"></span>
+          <button class="admin-cal-nav-btn" onclick="adminCalNext()">▶</button>
+        </div>
+      </div>
+      <div class="admin-cal-legend">
+        <div class="admin-cal-leg-item"><div class="admin-cal-leg-dot" style="background:#E8F8EF;border:1px solid #1B8A4A;"></div>Available</div>
+        <div class="admin-cal-leg-item"><div class="admin-cal-leg-dot" style="background:#FFE8E8;border:1px solid #C0392B;"></div>Booked</div>
+        <div class="admin-cal-leg-item"><div class="admin-cal-leg-dot" style="background:#F0F2F7;border:1px solid #CCC;"></div>Blocked&nbsp;/&nbsp;Off</div>
+        <div class="admin-cal-leg-item"><div class="admin-cal-leg-dot" style="background:#fff;border:1.5px solid var(--blue);"></div>Today</div>
+      </div>
+      <div class="admin-cal-grid" id="adminCalGrid"></div>
+      <div class="admin-cal-detail" id="adminCalDetail">
+        <strong id="adminCalDetailDate"></strong>
+        <p id="adminCalDetailInfo"></p>
+      </div>
+      <div class="admin-cal-quick">
+        <label>Quick mark:</label>
+        <input type="date" id="adminCalQDate">
+        <select id="adminCalQStatus">
+          <option value="available">Available</option>
+          <option value="blocked">Blocked / Off</option>
+        </select>
+        <button class="admin-cal-quick-btn" onclick="adminCalQuickMark()">Apply</button>
+      </div>
+    </div>
+
+    <!-- PENDING REQUESTS -->
     <div class="admin-section-title">🔔 Incoming Booking Requests</div>
     <div class="pending-panel" id="pendingPanel">
       <div class="pending-panel-header">
         <h4>⏳ Awaiting Your Decision</h4>
         <span class="pending-count-badge" id="pendingCount">0 pending</span>
       </div>
-      <div id="pendingCards">
-        <div class="pending-empty">No pending requests right now.</div>
-      </div>
+      <div id="pendingCards"><div class="pending-empty">No pending requests right now.</div></div>
     </div>
 
-    <div class="admin-section-title">📋 All Bookings</div>
+    <div class="admin-section-title">📋 Bookings Management</div>
+
+    <!-- ADD NEW BOOKING -->
     <div class="booking-mgmt-card">
       <h4>➕ Add New Booking</h4>
       <div class="booking-form-admin">
-        <div class="af-field"><label>Parent Name</label><input type="text" id="ab-name" placeholder="e.g. Jane W."></div>
-        <div class="af-field"><label>Date</label><input type="date" id="ab-date"></div>
-        <div class="af-field"><label>Location</label><input type="text" id="ab-loc" placeholder="e.g. Kilimani"></div>
-        <div class="af-field"><label>Children</label><input type="text" id="ab-kids" placeholder="e.g. 2 (3yr,7yr)"></div>
-        <div class="af-field"><label>Service</label><select id="ab-service"><option>One Child</option><option>Two Children</option><option>Three Children</option><option>Infant Care</option><option>Infant Care + Emergency</option><option>One Child + Emergency</option></select></div>
+        <div class="af-field">
+          <label>Parent Name</label>
+          <input type="text" id="ab-name" placeholder="e.g. Jane W.">
+        </div>
+        <div class="af-field">
+          <label>Date</label>
+          <input type="date" id="ab-date">
+        </div>
+        <div class="af-field">
+          <label>Location</label>
+          <input type="text" id="ab-loc" placeholder="e.g. Kilimani">
+        </div>
+        <div class="af-field">
+          <label>Service</label>
+          <select id="ab-service">
+            <option>One Child</option>
+            <option>Two Children</option>
+            <option>Three Children</option>
+            <option>Infant Care</option>
+            <option>Infant Care + Emergency</option>
+            <option>One Child + Emergency</option>
+          </select>
+        </div>
         <button class="add-booking-btn" onclick="adminAddBooking()">+ Add</button>
       </div>
     </div>
 
+    <!-- BOOKINGS TABLE WITH FILTER -->
     <div class="bookings-card">
       <h4>📋 All Bookings</h4>
       <div class="filter-row">
-        <button class="filter-btn active" onclick="filterBookings('all',this)">All</button>
-        <button class="filter-btn" onclick="filterBookings('Confirmed',this)">Confirmed</button>
-        <button class="filter-btn" onclick="filterBookings('Completed',this)">Completed</button>
-        <button class="filter-btn" onclick="filterBookings('Pending',this)">Pending</button>
-        <button class="filter-btn" onclick="filterBookings('Cancelled',this)">Cancelled</button>
+        <button class="filter-btn active" onclick="filterBookings('all', this)">All</button>
+        <button class="filter-btn" onclick="filterBookings('Confirmed', this)">Confirmed</button>
+        <button class="filter-btn" onclick="filterBookings('Completed', this)">Completed</button>
+        <button class="filter-btn" onclick="filterBookings('Pending', this)">Pending</button>
+        <button class="filter-btn" onclick="filterBookings('Cancelled', this)">Cancelled</button>
         <input class="search-input" type="text" id="bookingSearch" placeholder="🔍 Search parent or area…" oninput="searchBookings(this.value)">
       </div>
       <div style="overflow-x:auto;">
         <table class="bookings-table">
-          <thead><tr><th>#</th><th>Date</th><th>Parent</th><th>Location</th><th>Children</th><th>Service</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Parent</th>
+              <th>Location</th>
+              <th>Children</th>
+              <th>Service</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
           <tbody id="bookingsTbody">
-            <tr data-status="Confirmed"><td>#047</td><td>14 Jun 2026</td><td>Amara K.</td><td>Kilimani</td><td>2 (4,7 yr)</td><td>Two Children</td><td>KSh 2,500</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Confirmed"><td>#046</td><td>13 Jun 2026</td><td>Njeri M.</td><td>Westlands</td><td>1 (8 mo)</td><td>Infant Care</td><td>KSh 2,000</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Completed"><td>#045</td><td>11 Jun 2026</td><td>Sarah P.</td><td>Karen</td><td>1 (2 yr)</td><td>One Child</td><td>KSh 1,500</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Completed"><td>#044</td><td>09 Jun 2026</td><td>David O.</td><td>Lavington</td><td>3 (6,9,12 yr)</td><td>Three Children</td><td>KSh 3,000</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Completed"><td>#043</td><td>07 Jun 2026</td><td>Fatuma A.</td><td>Kileleshwa</td><td>1 (newborn)</td><td>Infant Care</td><td>KSh 2,000</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Completed"><td>#042</td><td>05 Jun 2026</td><td>Min-Ji C.</td><td>Parklands</td><td>2 (3,5 yr)</td><td>Two Children</td><td>KSh 2,500</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Completed"><td>#041</td><td>03 Jun 2026</td><td>Grace W.</td><td>Kilimani</td><td>1 (15 yr)</td><td>One Child</td><td>KSh 1,500</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Completed"><td>#040</td><td>01 Jun 2026</td><td>Tom B.</td><td>Westlands</td><td>1 (5 mo)</td><td>Infant Care</td><td>KSh 2,000</td><td><span class="status-badge status-completed">Completed</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Pending"><td>#039</td><td>29 May 2026</td><td>Aisha N.</td><td>Karen</td><td>2 (1,3 yr)</td><td>Two Children</td><td>KSh 2,500</td><td><span class="status-badge status-pending">Pending</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
-            <tr data-status="Cancelled"><td>#038</td><td>27 May 2026</td><td>Paul M.</td><td>CBD</td><td>1 (10 yr)</td><td>One Child</td><td>KSh 1,500</td><td><span class="status-badge status-cancelled">Cancelled</span></td><td><button class="action-btn action-edit" onclick="editStatus(this)">Edit</button> <button class="action-btn action-del" onclick="deleteRow(this)">Del</button></td></tr>
+            <tr><td colspan="9" style="text-align:center;color:var(--text-light);padding:2rem;font-size:.83rem;">⏳ Loading bookings from Firebase…</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="revenue-total" id="revTotal">Loading...</div>
-    </div>
+      <div class="revenue-total" id="revTotal">Loading…</div>
+    </div><!-- /bookings-card -->
 
   </div><!-- /admin-inner -->
 </div><!-- /admin-dashboard -->
@@ -1184,17 +1111,17 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
         <div class="hero-photo-grid">
           <!-- Tall photo: First.jpg (group with children) -->
           <div class="hero-photo-slot tall">
-            <img src="First.jpg" alt="Judy with children — overnight babysitting Nairobi">
+            <img src="images/First.jpg" alt="Judy with children — overnight babysitting Nairobi">
             <div class="consent-tag">📸 Parent consent obtained · Identity protected</div>
           </div>
           <!-- Small photo 1: Fourth.jpg (Judy with child outdoors) -->
           <div class="hero-photo-slot">
-            <img src="Fourth.jpg" alt="Judy caring for children — Nairobi babysitter">
+            <img src="images/Fourth.jpg" alt="Judy caring for children — Nairobi babysitter">
             <div class="consent-tag">📸 Consent obtained</div>
           </div>
           <!-- Small photo 2: Third.jpg -->
           <div class="hero-photo-slot">
-            <img src="Third.jpg" alt="Judy babysitting in Nairobi">
+            <img src="images/Third.jpg" alt="Judy babysitting in Nairobi">
             <div class="consent-tag">📸 Consent obtained</div>
           </div>
         </div>
@@ -1214,7 +1141,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
     <div class="about-inner reveal">
       <div class="about-photo-col">
         <div class="about-main-photo">
-          <img src="BERIL PASSPORT.jpg" alt="Judy Ombam — Professional Overnight Babysitter Nairobi">
+          <img src="images/BERIL PASSPORT.jpg" alt="Judy Ombam — Professional Overnight Babysitter Nairobi">
           <div class="consent-tag">📸 Judy Ombam · Professional Overnight Babysitter · Nairobi</div>
         </div>
         <div class="credential-badge">
@@ -1226,7 +1153,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
         <span class="section-eyebrow">Meet your babysitter</span>
         <h2 class="section-title">Hello, I'm Judy Ombam</h2>
         <p>
-          I am a Civil and Construction Engineering student at the University of Nairobi (Class of 2023), where I also serve as <strong> Secretary General</strong> in the Association of Civil Engineering Students (ACES).
+          I am a Civil and Construction Engineering student at the University of Nairobi (Class of 2023), where I also serve as <strong>Assistant Academic Secretary</strong> in the Association of Civil Engineering Students (ACES).
         </p>
         <p>
           Alongside my studies, I am deeply passionate about nurturing children in safe, warm, and positive environments. I have cared for children from <strong>newborns through teenagers</strong>, and across multiple cultural backgrounds — including Kenyan, American, Korean, and other international families — giving me a flexible understanding of different parenting styles.
@@ -1245,7 +1172,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
           <span class="chip">🎓 University of Nairobi</span>
           <span class="chip">⛪ Sunday School Teacher</span>
           <span class="chip">🤝 Umoja Foundation</span>
-          <span class="chip">📋 ACES — Secretary General</span>
+          <span class="chip">📋 ACES — Academic Secretary</span>
           <span class="chip">🌍 Multicultural care</span>
           <span class="chip">🗣️ English · Swahili · Luo</span>
         </div>
@@ -1267,35 +1194,44 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 
     <div class="gallery-grid reveal">
       <div class="gallery-slot">
-        <img src="First.jpg" alt="Judy with children — overnight babysitter Nairobi">
+        <img src="images/First.jpg" alt="Judy with children — overnight babysitter Nairobi">
         <div class="consent-tag">📸 Full parental consent obtained</div>
       </div>
       <div class="gallery-slot">
-        <img src="Second.jpg" alt="Judy babysitting children Nairobi">
+        <img src="images/Second.jpg" alt="Judy babysitting children Nairobi">
         <div class="consent-tag">📸 Full parental consent obtained</div>
       </div>
       <div class="gallery-slot">
-        <img src="Third.jpg" alt="Judy with children outdoors — Nairobi babysitter">
+        <img src="images/Third.jpg" alt="Judy with children outdoors — Nairobi babysitter">
         <div class="consent-tag">📸 Full parental consent obtained</div>
       </div>
       <div class="gallery-slot">
-        <img src="Fourth.jpg" alt="Judy childcare session Nairobi">
+        <img src="images/Fourth.jpg" alt="Judy childcare session Nairobi">
         <div class="consent-tag">📸 Full parental consent obtained</div>
       </div>
       <div class="gallery-slot">
-        <img src="Fifth.jpg" alt="Judy overnight babysitting — Nairobi">
+        <img src="images/Fifth.jpg" alt="Judy overnight babysitting — Nairobi">
         <div class="consent-tag">📸 Full parental consent obtained</div>
       </div>
       <div class="gallery-slot">
-        <img src="Sixth.jpg" alt="Judy with children — trusted Nairobi babysitter">
+        <img src="images/Sixth.jpg" alt="Judy with children — trusted Nairobi babysitter">
         <div class="consent-tag">📸 Full parental consent obtained</div>
       </div>
       <div class="gallery-slot">
-        <img src="SEVEN.jpg" alt="Judy with children — overnight babysitter Nairobi">
+        <img src="images/SEVEN.jpg" alt="Judy with children — overnight babysitter Nairobi">
         <div class="consent-tag">📸 Full parental consent obtained</div>
       </div>
+      <div class="gallery-slot">
+        <img src="images/IMG_20250101_115441_603.jpg" alt="Judy caring for children — Nairobi babysitter">
+        <div class="consent-tag">📸 Full parental consent obtained</div>
+      </div>
+      <div class="gallery-slot">
+        <img src="images/IMG_20250101_115459_344.jpg" alt="Judy babysitting — Nairobi">
+        <div class="consent-tag">📸 Full parental consent obtained</div>
+      </div>
+      <!-- Video -->
       <div class="gallery-video-slot">
-        <video src="Eith.mp4" autoplay muted loop playsinline poster="First.jpg"></video>
+        <video src="images/Eith.mp4" autoplay muted loop playsinline poster="images/First.jpg"></video>
         <div class="consent-tag">🎥 Video · Full parental consent obtained</div>
       </div>
     </div>
@@ -1438,7 +1374,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       <div class="price-card">
         <span class="price-label">Standard</span>
         <p class="price-title">One Child</p>
-        <p class="price-amount">KSh 1,500</p>
+        <p class="price-amount">KSh 2,500</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
         <p class="price-desc">Full 12-hour overnight care. Any age from newborn to teenager.</p>
       </div>
@@ -1446,14 +1382,14 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
         <div class="popular-badge">Most Booked</div>
         <span class="price-label">Popular</span>
         <p class="price-title">Two Children</p>
-        <p class="price-amount">KSh 2,500</p>
+        <p class="price-amount">KSh 3,000</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
         <p class="price-desc">Great value for siblings. Mixed ages welcome.</p>
       </div>
       <div class="price-card">
         <span class="price-label">Specialist</span>
         <p class="price-title">Infant / Newborn Care</p>
-        <p class="price-amount">KSh 2,000</p>
+        <p class="price-amount">From KSh 3,500</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
         <p class="price-desc">Dedicated care for newborns and infants under 12 months.</p>
       </div>
@@ -1466,7 +1402,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       </div>
     </div>
     <div class="pricing-note reveal">
-      ℹ️ Final pricing depends on your location, number of children, and any special requirements. Email or WhatsApp Judy for a personalised quote — response within the hour.
+      ℹ️ Final pricing depends on your location, number of children, and any special requirements. WhatsApp Judy for a personalised quote — response within the hour.
     </div>
   </div>
 </section>
@@ -1516,8 +1452,8 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
   </div>
 </section>
 
-<!-- BOOKING / CONTACT -->
-<!-- AVAILABILITY CALENDAR -->
+
+<!-- PUBLIC AVAILABILITY CALENDAR -->
 <section id="availability">
   <div class="container">
     <div class="section-header reveal">
@@ -1526,40 +1462,27 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       <p class="section-sub" style="margin:0 auto;">Check Judy's availability before booking. Updated in real time.</p>
     </div>
     <div class="cal-outer reveal">
-      <!-- Legend -->
       <div class="cal-legend">
-        <div class="cal-legend-item">
-          <div class="cal-legend-dot" style="background:#D4F5E2;border:1.5px solid #A8E6C3;"></div> Available
-        </div>
-        <div class="cal-legend-item">
-          <div class="cal-legend-dot" style="background:#FFE0DF;border:1.5px solid #F5B8B6;"></div> Booked
-        </div>
-        <div class="cal-legend-item">
-          <div class="cal-legend-dot" style="background:#F0F2F7;border:1.5px solid #E0E4EC;"></div> Past
-        </div>
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#D4F5E2;border:1.5px solid #A8E6C3;"></div>Available</div>
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#FFE0DF;border:1.5px solid #F5B8B6;"></div>Booked</div>
+        <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#F0F2F7;border:1.5px solid #E0E4EC;"></div>Past</div>
       </div>
-      <!-- Nav -->
       <div class="cal-nav">
-        <button class="cal-nav-btn" onclick="calPrev()">‹ Prev</button>
+        <button class="cal-nav-btn" onclick="calPrev()">&#8249; Prev</button>
         <div class="cal-month-title" id="calTitle"></div>
-        <button class="cal-nav-btn" onclick="calNext()">Next ›</button>
+        <button class="cal-nav-btn" onclick="calNext()">Next &#8250;</button>
       </div>
-      <!-- Day headers -->
       <div class="cal-day-headers" id="calDayHeaders"></div>
-      <!-- Grid -->
       <div class="cal-grid-wrap" id="calGrid"></div>
-      <!-- Info -->
       <div class="cal-info-box">
         <span style="font-size:1.2rem;flex-shrink:0;">📅</span>
-        <div>
-          <strong>Want to book a date?</strong> Check availability above then scroll down to fill in the booking form. Judy will confirm your booking via WhatsApp or email within the hour.
-          <br>If a date shows as booked and you need urgent care, contact Judy directly — emergency same-day slots may still be available (+KSh 500).
-        </div>
+        <div><strong>Want to book a date?</strong> Check availability above then scroll down to fill in the booking form. Judy will confirm within the hour.<br>If a date shows as booked and you need urgent care, contact Judy directly — emergency same-day slots may still be available (+KSh 500).</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- BOOKING / CONTACT -->
 <section id="booking">
   <div class="container">
     <div class="booking-inner">
@@ -1573,11 +1496,11 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             WhatsApp — Book Now
           </a>
-          <a href="tel:+254713781789" class="cta-btn cta-call">
+          <a href="tel:+254700000000" class="cta-btn cta-call">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
             Call Judy
           </a>
-          <a href="#" onclick="openEmailPicker(); return false;" class="cta-btn cta-mail">
+          <a href="mailto:Judyombam@gmail.com" class="cta-btn cta-mail">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
             Send Email
           </a>
@@ -1618,15 +1541,8 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
           </div>
           <!-- COST ESTIMATOR -->
           <div class="cost-estimate-box hidden" id="costEstBox">
-            <div class="cost-est-left">
-              <span class="cost-label">💰 Estimated Cost</span>
-              <span class="cost-breakdown" id="costBreakdown">—</span>
-            </div>
-            <div class="cost-est-right">
-              <span class="cost-amount" id="costAmount">KSh 0</span>
-              <span class="cost-per">per overnight (7PM–7AM)</span>
-              <span class="cost-hourly" id="costHourly">or KSh 300/hr for shorter sessions</span>
-            </div>
+            <div class="cost-est-left"><span class="cost-label">💰 Estimated Cost</span><span class="cost-breakdown" id="costBreakdown">—</span></div>
+            <div class="cost-est-right"><span class="cost-amount" id="costAmount">KSh 0</span><span class="cost-per">per overnight (7PM–7AM)</span><span class="cost-hourly" id="costHourly">Same-day: +KSh 500</span></div>
           </div>
           <div class="field full">
             <label>Special Instructions / Notes</label>
@@ -1637,7 +1553,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
               <span class="id-icon">🪪</span>
               <div>
                 <p>Parent / Guardian National ID</p>
-                <span>Required — attach the photo when email/WhatsApp opens</span>
+                <span>Required to confirm your booking</span>
               </div>
               <div class="id-required-badge">REQUIRED</div>
             </div>
@@ -1647,9 +1563,8 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
                 <input type="text" id="f-id-number" placeholder="e.g. 12345678">
               </div>
               <div class="field">
-                <label>Select ID Photo (front) <span class="required">*</span></label>
+                <label>Upload ID Photo (front) <span class="required">*</span></label>
                 <input type="file" id="f-id-photo" accept="image/*,.pdf">
-                <span style="font-size:.72rem;color:var(--text-light);margin-top:2px;display:block;">📎 You will attach this photo manually when Gmail or WhatsApp opens</span>
               </div>
             </div>
             <div class="id-why">
@@ -1657,9 +1572,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
             </div>
           </div>
         </div>
-        <button class="submit-btn" onclick="submitBookingForm()">
-          📤 Send Booking Request
-        </button>
+        <button class="submit-btn" onclick="submitBookingForm()">📤 Send Booking Request</button>
         <p style="font-size:.74rem; color:var(--text-light); text-align:center; margin-top:.75rem; line-height:1.6;">
           By submitting this form you confirm that all information provided is accurate. Judy will follow up via email to confirm your booking and verify your ID before the session.
         </p>
@@ -1686,7 +1599,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFAQ(this)">Do you have experience with newborns? <span class="caret">▼</span></div>
-        <div class="faq-a">Yes. I have cared for newborns from 0–3 months old, including overnight bottle feeding, settling, and infant monitoring. Newborn/infant care is KSh 2,000 per night.</div>
+        <div class="faq-a">Yes. I have cared for newborns from 0–3 months old, including overnight bottle feeding, settling, and infant monitoring. Newborn care is priced from KSh 3,500 per night due to the additional attention required.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFAQ(this)">Can you handle children from different cultural backgrounds? <span class="caret">▼</span></div>
@@ -1698,7 +1611,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFAQ(this)">How does payment work? <span class="caret">▼</span></div>
-        <div class="faq-a">Payment is made on the day of service via M-Pesa only. For regular bookings, we can discuss a convenient arrangement to suit your schedule.</div>
+        <div class="faq-a">Payment is made on the day of service. I accept M-Pesa and cash. For regular bookings, we can discuss a convenient arrangement to suit your schedule.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFAQ(this)">Do you have experience from Sunday School teaching? <span class="caret">▼</span></div>
@@ -1726,7 +1639,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
           <li><a href="#areas">Areas</a></li>
           <li><a href="#booking">Book Now</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#" onclick="document.getElementById('privacyOverlay').classList.add('open'); return false;">Privacy Policy</a></li>
+          <li><a href="#" onclick="document.getElementById('privacyOverlay').classList.add('open');return false;">Privacy Policy</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1755,7 +1668,7 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
     </div>
     <div class="footer-bottom">
       <p>© 2026 Judy Ombam Overnight Babysitting · Nairobi, Kenya</p>
-      <p>Built with care 🌙 · All rights reserved &nbsp;|&nbsp; <a href="#" onclick="document.getElementById('privacyOverlay').classList.add('open'); return false;" style="color:rgba(255,255,255,.45); text-decoration:underline;">Privacy Policy</a></p>
+      <p>Built with care 🌙 · All rights reserved</p>
     </div>
   </div>
 </footer>
@@ -1764,6 +1677,8 @@ footer { background: #1A1A2E; color: rgba(255,255,255,.55); padding: 3.5rem 1.5r
 /* ===== CONFIG ===== */
 var WA_NUMBER = "254713781789";
 var WA_EMAIL  = "atienojudithberil@gmail.com";
+var MONTHS    = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var RATE      = {"One Child":1500,"Two Children":2500,"Three Children":3000,"Infant Care":2000,"Infant Care + Emergency":2500,"One Child + Emergency":2000};
 
 /* ===== WHATSAPP ===== */
 function openWA() {
@@ -1771,253 +1686,211 @@ function openWA() {
   window.open("https://wa.me/" + WA_NUMBER + "?text=" + msg, "_blank");
 }
 
-/* ===== ADMIN — LIVE DATA ENGINE ===== */
-var ADMIN_PIN = "Judy2026";
+/* ════════════════════════════════════════
+   ADMIN — PASSWORD MODAL  (Fix #1)
+════════════════════════════════════════ */
+var ADMIN_PIN     = "Judy2026"; /* ← change this */
 var adminUnlocked = false;
-var RATE = {"One Child":1500,"Two Children":2500,"Three Children":3000,"Infant Care":2000,"Infant Care + Emergency":2500,"One Child + Emergency":2000};
-var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var _currentFilter = "all";
 
-/* ---------- Firebase helpers ---------- */
-function loadBookings() {
-  return window._firebaseBookings || [];
-}
-function saveBookings(arr) {
-  /* No-op — Firebase listener handles updates automatically */
-}
-function nextId() {
-  var arr = loadBookings();
-  if (!arr.length) return 1;
-  return Math.max.apply(null, arr.map(function(b){ return b.id||0; })) + 1;
-}
-function pushToFirebase(booking) {
-  if (!window._fb) { console.warn("Firebase not ready"); return; }
-  var existing = loadBookings().filter(function(b) {
-    return b.rawDate === booking.rawDate &&
-           b.status !== "Cancelled" &&
-           b.firebaseKey !== booking.firebaseKey;
-  });
-  if (existing.length > 0) {
-    var conflict = existing[0];
-    if (!confirm("⚠️ " + booking.rawDate + " already has a booking (" + conflict.name + " · " + conflict.status + ").\n\nAdd anyway?")) return;
-  }
-  window._fb.bkRef.push(booking);
-  if (booking.rawDate) markCalendarBooked(booking.rawDate);
-}
-function updateInFirebase(firebaseKey, updates) {
-  if (!window._fb || !firebaseKey) return;
-  window._fb.ref("bookings/" + firebaseKey).update(updates);
-}
-function deleteFromFirebase(firebaseKey) {
-  if (!window._fb || !firebaseKey) return;
-  window._fb.ref("bookings/" + firebaseKey).remove();
-}
-
-/* ---------- toggle with password ---------- */
 function toggleAdmin() {
   if (adminUnlocked) {
     var dash = document.getElementById("admin-dashboard");
-    dash.classList.toggle("visible");
-    if (dash.classList.contains("visible")) { dash.scrollIntoView({behavior:"smooth",block:"start"}); refreshAdmin(); }
+    if (dash.classList.contains("visible")) {
+      dash.classList.remove("visible");
+    } else {
+      dash.classList.add("visible");
+      dash.scrollIntoView({behavior:"smooth",block:"start"});
+      refreshAdmin();
+      adminCalRender();
+    }
     return;
   }
-  var entered = prompt("🔒 Enter admin password:");
-  if (entered === null) return;
-  if (entered === ADMIN_PIN) {
+  openAdminModal();
+}
+function openAdminModal() {
+  document.getElementById("adminModalOverlay").classList.add("open");
+  document.getElementById("adminPwInput").value = "";
+  document.getElementById("pwError").textContent = "";
+  setTimeout(function(){ document.getElementById("adminPwInput").focus(); }, 100);
+}
+function closeAdminModal() {
+  document.getElementById("adminModalOverlay").classList.remove("open");
+}
+function checkAdminPw() {
+  if (document.getElementById("adminPwInput").value === ADMIN_PIN) {
     adminUnlocked = true;
+    closeAdminModal();
     var dash = document.getElementById("admin-dashboard");
     dash.classList.add("visible");
     dash.scrollIntoView({behavior:"smooth",block:"start"});
+    var now = new Date();
+    var dh = document.getElementById("admin-dash-date");
+    if (dh) dh.textContent = "Judy Ombam Overnight Babysitting · Nairobi · " + MONTHS[now.getMonth()] + " " + now.getFullYear();
     refreshAdmin();
-    calRender(); /* Re-render calendar with admin-clickable cells */
-  } else { alert("❌ Incorrect password."); }
-}
-
-/* ---------- full refresh ---------- */
-function refreshAdmin() {
-  var bookings = loadBookings();
-  renderStatCards(bookings);
-  renderPendingPanel(bookings);
-  renderTable(bookings, window._currentFilter || "all");
-  renderCharts(bookings);
-}
-
-/* ---------- stat cards ---------- */
-function renderStatCards(bookings) {
-  var now        = new Date();
-  var thisMonth  = now.getMonth();
-  var thisYear   = now.getFullYear();
-  var total      = bookings.length;
-
-  /* Month bookings */
-  var monthBookings = bookings.filter(function(b){
-    var d = new Date(b.rawDate);
-    return d.getMonth()===thisMonth && d.getFullYear()===thisYear;
-  });
-
-  /* Revenue — only Confirmed or Completed count */
-  var active = function(b){ return b.status==="Completed"; }; /* Only completed jobs count as earned revenue */
-  var monthRev = monthBookings.filter(active).reduce(function(s,b){ return s+(b.amount||0); },0);
-  var ytdRev   = bookings.filter(function(b){ return active(b) && new Date(b.rawDate).getFullYear()===thisYear; })
-                         .reduce(function(s,b){ return s+(b.amount||0); },0);
-
-  /* Cancelled */
-  var cancelled = bookings.filter(function(b){ return b.status==="Cancelled"; }).length;
-  var cancelPct = total ? ((cancelled/total)*100).toFixed(1) : 0;
-
-  /* Avg per night — across all non-cancelled */
-  var paid = bookings.filter(function(b){ return b.status!=="Cancelled"; });
-  var avgPerNight = paid.length ? Math.round(paid.reduce(function(s,b){ return s+(b.amount||0); },0)/paid.length) : 0;
-
-  /* Repeat clients — names that appear more than once */
-  var nameCounts = {};
-  bookings.forEach(function(b){ nameCounts[b.name] = (nameCounts[b.name]||0)+1; });
-  var repeatCount  = Object.values(nameCounts).filter(function(n){ return n>1; }).length;
-  var uniqueClients = Object.keys(nameCounts).length;
-  var repeatPct = uniqueClients ? Math.round((repeatCount/uniqueClients)*100) : 0;
-
-  /* Upcoming 7 days */
-  var today = new Date(); today.setHours(0,0,0,0);
-  var in7   = new Date(today.getTime()+7*24*60*60*1000);
-  var upcoming = bookings.filter(function(b){
-    var d = new Date(b.rawDate); d.setHours(0,0,0,0);
-    return d>=today && d<=in7;
-  });
-  var upcomingRev = upcoming.reduce(function(s,b){ return s+(b.amount||0); },0);
-
-  /* YTD last year estimate — same period last year bookings */
-  var lastYear = bookings.filter(function(b){
-    return active(b) && new Date(b.rawDate).getFullYear()===(thisYear-1);
-  }).reduce(function(s,b){ return s+(b.amount||0); },0);
-  var growthPct = lastYear ? (((ytdRev-lastYear)/lastYear)*100).toFixed(0) : null;
-  var growthTxt = growthPct !== null
-    ? (growthPct >= 0 ? "▲ " : "▼ ") + Math.abs(growthPct) + "% vs same period last year"
-    : "No prior year data yet";
-
-  /* ── Update DOM ── */
-  document.querySelector(".stat-card.green .stat-value").textContent = total;
-  document.querySelector(".stat-card.blue .stat-value").textContent  = monthBookings.length;
-  document.querySelector(".stat-card.gold .stat-value").textContent  = "KSh " + monthRev.toLocaleString();
-  document.querySelectorAll(".stat-card")[3].querySelector(".stat-value").textContent = avgPerNight ? "KSh " + avgPerNight.toLocaleString() : "—";
-  document.querySelector(".stat-card.red .stat-value").textContent   = cancelled;
-  document.querySelector(".stat-card.red .stat-sub").textContent     = "This year (" + cancelPct + "%)";
-
-  /* Repeat clients */
-  var repeatEl = document.getElementById("sc-repeat-val");
-  var repeatSubEl = document.getElementById("sc-repeat-sub");
-  if (repeatEl) repeatEl.textContent = uniqueClients ? repeatPct + "%" : "—";
-  if (repeatSubEl) repeatSubEl.textContent = repeatCount + " of " + uniqueClients + " clients returned";
-
-  /* Mini stats */
-  var msYtd = document.getElementById("ms-ytd");
-  var msYtdT = document.getElementById("ms-ytd-trend");
-  var msUp  = document.getElementById("ms-upcoming");
-  var msUpR = document.getElementById("ms-upcoming-rev");
-  if (msYtd)  msYtd.textContent  = "KSh " + ytdRev.toLocaleString();
-  if (msYtdT) msYtdT.textContent = growthTxt;
-  if (msUp)   msUp.textContent   = upcoming.length + " booking" + (upcoming.length!==1?"s":"");
-  if (msUpR)  msUpR.textContent  = "KSh " + upcomingRev.toLocaleString() + " projected";
-
-  /* Rating — stays as — until you add a rating field */
-  var msRating = document.getElementById("ms-rating");
-  var msRatingSub = document.getElementById("ms-rating-sub");
-  var rated = bookings.filter(function(b){ return b.rating; });
-  if (rated.length && msRating) {
-    var avg = (rated.reduce(function(s,b){ return s+b.rating; },0)/rated.length).toFixed(2);
-    msRating.textContent = avg + " / 5.0";
-    if (msRatingSub) msRatingSub.textContent = "Based on " + rated.length + " review" + (rated.length!==1?"s":"");
+    adminCalRender();
+    calRender();
   } else {
-    if (msRating) msRating.textContent = "—";
-    if (msRatingSub) msRatingSub.textContent = "No ratings yet";
+    document.getElementById("pwError").textContent = "Incorrect password — try again.";
+    document.getElementById("adminPwInput").value = "";
+    document.getElementById("adminPwInput").focus();
   }
+}
+document.addEventListener("click", function(e) {
+  var ov = document.getElementById("adminModalOverlay");
+  if (ov && ov.classList.contains("open") && e.target === ov) closeAdminModal();
+});
 
-  /* Revenue footer */
-  var rt = document.getElementById("revTotal");
-  if (rt) rt.innerHTML = MONTHS[thisMonth]+" "+thisYear+": <strong>KSh "+monthRev.toLocaleString()+"</strong> &nbsp;|&nbsp; Year-to-date: <strong>KSh "+ytdRev.toLocaleString()+"</strong>";
+/* ════════════════════════════════════════
+   FIREBASE HELPERS
+════════════════════════════════════════ */
+function loadBookings() { return window._firebaseBookings || []; }
+
+function nextId() {
+  var arr = loadBookings();
+  return arr.length ? Math.max.apply(null, arr.map(function(b){ return b.id||0; })) + 1 : 1;
+}
+function pushToFirebase(booking) {
+  if (!window._fb) { alert("Firebase not connected. Check your internet connection."); return; }
+  var existing = loadBookings().filter(function(b) {
+    return b.rawDate === booking.rawDate && b.status !== "Cancelled" && b.firebaseKey !== booking.firebaseKey;
+  });
+  if (existing.length > 0 && !confirm("⚠️ " + booking.rawDate + " already has a booking (" + existing[0].name + " · " + existing[0].status + ").\n\nAdd anyway?")) return;
+  window._fb.bkRef.push(booking);
+  if (booking.rawDate) markCalendarBooked(booking.rawDate);
+}
+function updateInFirebase(fk, updates) {
+  if (!window._fb || !fk) return;
+  window._fb.ref("bookings/" + fk).update(updates);
+}
+function deleteFromFirebase(fk) {
+  if (!window._fb || !fk) return;
+  window._fb.ref("bookings/" + fk).remove();
 }
 
-/* ---------- bookings table ---------- */
+/* ════════════════════════════════════════
+   ADMIN REFRESH
+════════════════════════════════════════ */
+function refreshAdmin() {
+  var b = loadBookings();
+  renderStatCards(b);
+  renderPendingPanel(b);
+  renderTable(b, _currentFilter);
+  renderCharts(b);
+}
+
+/* ════════════════════════════════════════
+   STAT CARDS  (Fix #5 — no hardcoded values)
+════════════════════════════════════════ */
+function renderStatCards(bookings) {
+  var now = new Date(); var ym = now.getMonth(); var yy = now.getFullYear();
+  var monthB   = bookings.filter(function(b){ var d=new Date(b.rawDate); return d.getMonth()===ym&&d.getFullYear()===yy; });
+  var monthRev = monthB.filter(function(b){ return b.status==="Completed"; }).reduce(function(s,b){ return s+(b.amount||0); },0);
+  var ytdRev   = bookings.filter(function(b){ return b.status==="Completed"&&new Date(b.rawDate).getFullYear()===yy; }).reduce(function(s,b){ return s+(b.amount||0); },0);
+  var cancelled = bookings.filter(function(b){ return b.status==="Cancelled"; }).length;
+  var cancelPct = bookings.length ? ((cancelled/bookings.length)*100).toFixed(1) : 0;
+  var paid     = bookings.filter(function(b){ return b.status!=="Cancelled"; });
+  var avgN     = paid.length ? Math.round(paid.reduce(function(s,b){ return s+(b.amount||0); },0)/paid.length) : 0;
+  var nc       = {}; bookings.forEach(function(b){ nc[b.name]=(nc[b.name]||0)+1; });
+  var unique   = Object.keys(nc).length;
+  var repeat   = Object.values(nc).filter(function(n){ return n>1; }).length;
+  var repeatPct = unique ? Math.round((repeat/unique)*100) : 0;
+  var today2   = new Date(); today2.setHours(0,0,0,0);
+  var in7      = new Date(today2.getTime()+7*864e5);
+  var upcoming = bookings.filter(function(b){ var d=new Date(b.rawDate); d.setHours(0,0,0,0); return d>=today2&&d<=in7; });
+  var lastYr   = bookings.filter(function(b){ return b.status==="Completed"&&new Date(b.rawDate).getFullYear()===(yy-1); }).reduce(function(s,b){ return s+(b.amount||0); },0);
+  var growthTxt = lastYr ? ((ytdRev>=lastYr?"▲ ":"▼ ")+Math.abs(((ytdRev-lastYr)/lastYr)*100).toFixed(0)+"% vs same period last year") : "No prior year data";
+
+  var sc = function(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; };
+  sc("sc-total",       bookings.length);
+  sc("sc-total-sub",   "Since " + (bookings.length ? new Date(bookings[bookings.length-1].rawDate).getFullYear() : "—"));
+  sc("sc-month",       monthB.length);
+  sc("sc-month-sub",   MONTHS[ym] + " " + yy);
+  sc("sc-rev",         "KSh " + monthRev.toLocaleString());
+  sc("sc-avg",         avgN ? "KSh " + avgN.toLocaleString() : "—");
+  sc("sc-repeat-val",  unique ? repeatPct + "%" : "—");
+  sc("sc-repeat-sub",  repeat + " of " + unique + " clients returned");
+  sc("sc-cancel",      cancelled);
+  sc("sc-cancel-sub",  "This year (" + cancelPct + "%)");
+  sc("ms-ytd",         "KSh " + ytdRev.toLocaleString());
+  sc("ms-ytd-trend",   growthTxt);
+  sc("ms-upcoming",    upcoming.length + " booking" + (upcoming.length!==1?"s":""));
+  sc("ms-upcoming-rev","KSh " + upcoming.reduce(function(s,b){ return s+(b.amount||0); },0).toLocaleString() + " projected");
+
+  var rated = bookings.filter(function(b){ return b.rating; });
+  if (rated.length) {
+    sc("ms-rating",    (rated.reduce(function(s,b){ return s+b.rating; },0)/rated.length).toFixed(2) + " / 5.0");
+    sc("ms-rating-sub","Based on " + rated.length + " review" + (rated.length!==1?"s":""));
+  }
+  var rt = document.getElementById("revTotal");
+  if (rt) rt.innerHTML = MONTHS[ym]+" "+yy+": <strong>KSh "+monthRev.toLocaleString()+"</strong>&nbsp;|&nbsp;Year-to-date: <strong>KSh "+ytdRev.toLocaleString()+"</strong>";
+}
+
+/* ════════════════════════════════════════
+   TABLE  (Fix #3+#4 — Firebase keys, no hardcoded rows)
+════════════════════════════════════════ */
 function renderTable(bookings, filter) {
   var tbody = document.getElementById("bookingsTbody");
   tbody.innerHTML = "";
+  var cm = {Confirmed:"status-confirmed",Completed:"status-completed",Pending:"status-pending",Cancelled:"status-cancelled"};
   var sorted = bookings.slice().sort(function(a,b){ return new Date(b.rawDate)-new Date(a.rawDate); });
+  var shown = 0;
   sorted.forEach(function(b) {
-    if (filter !== "all" && b.status !== filter) return;
-    var row = document.createElement("tr");
-    row.setAttribute("data-id", b.id);
-    row.setAttribute("data-status", b.status);
-    var classMap = {Confirmed:"status-confirmed",Completed:"status-completed",Pending:"status-pending",Cancelled:"status-cancelled"};
-    row.innerHTML =
-      "<td>#"+b.id+"</td><td>"+b.dateStr+"</td><td>"+b.name+"</td><td>"+b.location+"</td>" +
-      "<td>"+b.kids+"</td><td>"+b.service+"</td><td>KSh "+(b.amount||0).toLocaleString()+"</td>" +
-      "<td><span class='status-badge "+(classMap[b.status]||"status-pending")+"'>"+b.status+"</span></td>" +
-      "<td><button class='action-btn action-edit' onclick='cycleStatus("+b.id+")'>Edit</button> " +
-      "<button class='action-btn action-del' onclick='removeBooking("+b.id+")'>Del</button></td>";
-    tbody.appendChild(row);
+    if (filter!=="all" && b.status!==filter) return;
+    shown++;
+    var tr = document.createElement("tr");
+    tr.setAttribute("data-id", b.id);
+    tr.setAttribute("data-status", b.status);
+    tr.innerHTML =
+      "<td>#"+b.id+"</td><td>"+b.dateStr+"</td><td>"+b.name+"</td><td>"+b.location+"</td>"+
+      "<td>"+(b.kids||"—")+"</td><td>"+b.service+"</td><td>KSh "+(b.amount||0).toLocaleString()+"</td>"+
+      "<td><span class='status-badge "+(cm[b.status]||"status-pending")+"'>"+b.status+"</span></td>"+
+      "<td><button class='action-btn action-edit' onclick='cycleStatus(\""+b.firebaseKey+"\")'>Edit</button> "+
+      "<button class='action-btn action-del' onclick='removeBooking(\""+b.firebaseKey+"\")'>Del</button></td>";
+    tbody.appendChild(tr);
   });
-  if (!sorted.filter(function(b){ return filter==="all"||b.status===filter; }).length) {
-    tbody.innerHTML = "<tr><td colspan='9' style='text-align:center;color:var(--text-light);padding:2rem'>No bookings yet. Add your first one above.</td></tr>";
+  if (!shown) {
+    tbody.innerHTML = "<tr><td colspan='9' style='text-align:center;color:var(--text-light);padding:2rem;font-size:.82rem'>" +
+      (bookings.length===0 ? "⏳ Waiting for Firebase data…" : "No bookings match this filter.") + "</td></tr>";
   }
 }
 
-/* ---------- add booking ---------- */
+/* ════════════════════════════════════════
+   ADD / EDIT / DELETE
+════════════════════════════════════════ */
 function adminAddBooking() {
-  var name    = document.getElementById("ab-name").value.trim();
-  var date    = document.getElementById("ab-date").value;
-  var loc     = document.getElementById("ab-loc").value.trim();
-  var kids    = document.getElementById("ab-kids").value.trim();
-  var service = document.getElementById("ab-service").value;
-  if (!name||!date||!loc) { alert("Please fill Name, Date and Location."); return; }
-  var d = new Date(date);
-  var booking = {
-    id:       nextId(),
-    name:     name,
-    rawDate:  date,
-    dateStr:  d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear(),
-    location: loc,
-    kids:     kids||"—",
-    service:  service,
-    amount:   RATE[service]||1500,
-    status:   "Confirmed",
-    source:   "Admin"
-  };
-  pushToFirebase(booking);
-  document.getElementById("ab-name").value="";
-  document.getElementById("ab-date").value="";
-  document.getElementById("ab-loc").value="";
-  document.getElementById("ab-kids").value="";
+  var name=document.getElementById("ab-name").value.trim();
+  var date=document.getElementById("ab-date").value;
+  var loc=document.getElementById("ab-loc").value.trim();
+  var kids=(document.getElementById("ab-kids")||{}).value||"—";
+  var service=document.getElementById("ab-service").value;
+  if(!name||!date||!loc){alert("Please fill in Name, Date and Location.");return;}
+  var d=new Date(date);
+  pushToFirebase({id:nextId(),name:name,rawDate:date,dateStr:d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear(),location:loc,kids:kids||"—",service:service,amount:RATE[service]||1500,status:"Confirmed",source:"Admin"});
+  ["ab-name","ab-date","ab-loc","ab-kids"].forEach(function(id){var el=document.getElementById(id);if(el)el.value="";});
 }
 
-/* ---------- edit status ---------- */
-function cycleStatus(id) {
-  var arr  = loadBookings();
-  var item = arr.find(function(b){ return b.id===id; });
+function cycleStatus(fk) {
+  var item = loadBookings().find(function(b){ return b.firebaseKey===fk; });
   if (!item) return;
-  var opts   = ["Confirmed","Completed","Pending","Cancelled"];
-  var next   = opts[(opts.indexOf(item.status)+1)%opts.length];
-  if (item.firebaseKey) {
-    updateInFirebase(item.firebaseKey, { status: next });
-  }
+  var opts = ["Confirmed","Completed","Pending","Cancelled"];
+  updateInFirebase(fk, {status:opts[(opts.indexOf(item.status)+1)%opts.length]});
 }
-
-/* ---------- delete ---------- */
-function removeBooking(id) {
+function removeBooking(fk) {
   if (!confirm("Delete this booking?")) return;
-  var booking = loadBookings().find(function(b){ return b.id===id; });
-  if (booking && booking.firebaseKey) {
-    deleteFromFirebase(booking.firebaseKey);
-  }
+  deleteFromFirebase(fk);
 }
 
-/* ---------- filter ---------- */
+/* ════════════════════════════════════════
+   FILTER + SEARCH
+════════════════════════════════════════ */
 function filterBookings(status, btn) {
-  window._currentFilter = status;
-  document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active");});
+  _currentFilter = status;
+  document.querySelectorAll(".filter-btn").forEach(function(b){ b.classList.remove("active"); });
   btn.classList.add("active");
-  document.getElementById("bookingSearch").value="";
+  document.getElementById("bookingSearch").value = "";
   renderTable(loadBookings(), status);
 }
-
-/* ---------- search ---------- */
 function searchBookings(q) {
   q = q.toLowerCase();
   document.querySelectorAll("#bookingsTbody tr").forEach(function(row){
@@ -2025,749 +1898,380 @@ function searchBookings(q) {
   });
 }
 
-/* ---------- charts (live from data) ---------- */
+/* ════════════════════════════════════════
+   CHARTS
+════════════════════════════════════════ */
 function renderCharts(bookings) {
-  var now = new Date();
-  var yr  = now.getFullYear();
+  var now=new Date(); var yy=now.getFullYear(); var ym=now.getMonth();
+  var mc=new Array(6).fill(0);
+  bookings.forEach(function(b){var m=new Date(b.rawDate).getMonth();if(new Date(b.rawDate).getFullYear()===yy&&m<6)mc[m]++;});
+  var maxB=Math.max.apply(null,mc)||1;
+  var bc=document.getElementById("barChart"); bc.innerHTML="";
+  MONTHS.slice(0,6).forEach(function(m,i){var h=(mc[i]/maxB*100).toFixed(0);var w=document.createElement("div");w.className="bar-wrap";w.innerHTML='<div class="bar-val">'+mc[i]+'</div><div class="bar'+(i===ym?' gold-bar':'')+'" style="height:'+h+'%"></div><div class="bar-lbl">'+m+'</div>';bc.appendChild(w);});
 
-  /* bar chart — bookings per month this year */
-  var monthCounts = new Array(6).fill(0);
-  bookings.forEach(function(b){
-    var d = new Date(b.rawDate);
-    if (d.getFullYear()===yr && d.getMonth()<6) monthCounts[d.getMonth()]++;
-  });
-  var maxB = Math.max.apply(null,monthCounts)||1;
-  var barChart = document.getElementById("barChart"); barChart.innerHTML="";
-  MONTHS.slice(0,6).forEach(function(m,i){
-    var h=(monthCounts[i]/maxB*100).toFixed(0);
-    var wrap=document.createElement("div"); wrap.className="bar-wrap";
-    wrap.innerHTML='<div class="bar-val">'+monthCounts[i]+'</div><div class="bar'+(i===5?' gold-bar':'')+'" style="height:'+h+'%"></div><div class="bar-lbl">'+m+'</div>';
-    barChart.appendChild(wrap);
-  });
+  var sm={"One Child":0,"Two Children":0,"Infant Care":0,"Other":0};
+  bookings.forEach(function(b){if(b.service==="One Child"||b.service==="One Child + Emergency")sm["One Child"]++;else if(b.service==="Two Children")sm["Two Children"]++;else if(b.service==="Infant Care"||b.service==="Infant Care + Emergency")sm["Infant Care"]++;else sm["Other"]++;});
+  var svcs=[{label:"One Child",value:sm["One Child"]||1,color:"#4A90C4"},{label:"Two Children",value:sm["Two Children"]||1,color:"#C9A84C"},{label:"Infant Care",value:sm["Infant Care"]||1,color:"#1B8A4A"},{label:"Other",value:sm["Other"]||1,color:"#C0392B"}];
+  var tot=svcs.reduce(function(s,x){return s+x.value;},0);
+  var svg=document.getElementById("donutSvg"); svg.innerHTML=""; var off=0;
+  svcs.forEach(function(s){var pct=s.value/tot*100;var dash=pct+" "+(100-pct);var c=document.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("cx",21);c.setAttribute("cy",21);c.setAttribute("r",15.915);c.setAttribute("fill","none");c.setAttribute("stroke",s.color);c.setAttribute("stroke-width",8);c.setAttribute("stroke-dasharray",dash);c.setAttribute("stroke-dashoffset",(100-off).toString());svg.appendChild(c);off+=pct;});
+  var t=document.createElementNS("http://www.w3.org/2000/svg","text");t.setAttribute("x",21);t.setAttribute("y",22);t.setAttribute("text-anchor","middle");t.setAttribute("font-size","5");t.setAttribute("fill","#1A1A2E");t.setAttribute("font-weight","700");t.textContent=bookings.length;svg.appendChild(t);
+  var t2=document.createElementNS("http://www.w3.org/2000/svg","text");t2.setAttribute("x",21);t2.setAttribute("y",26.5);t2.setAttribute("text-anchor","middle");t2.setAttribute("font-size","2.8");t2.setAttribute("fill","#7A7A9A");t2.textContent="bookings";svg.appendChild(t2);
+  var leg=document.getElementById("donutLegend");leg.innerHTML="";
+  svcs.forEach(function(s){var pct=(s.value/tot*100).toFixed(0);leg.innerHTML+='<div class="legend-item"><span class="legend-dot" style="background:'+s.color+'"></span>'+s.label+' <span style="margin-left:auto;font-weight:600;color:var(--text-dark)">'+pct+'%</span></div>';});
 
-  /* donut — by service */
-  var svcMap={"One Child":0,"Two Children":0,"Infant Care":0,"Emergency":0};
-  bookings.forEach(function(b){
-    if (b.service==="One Child"||b.service==="One Child + Emergency") svcMap["One Child"]++;
-    else if (b.service==="Two Children") svcMap["Two Children"]++;
-    else if (b.service==="Infant Care"||b.service==="Infant Care + Emergency") svcMap["Infant Care"]++;
-    else svcMap["Emergency"]++;
-  });
-  var services=[
-    {label:"One Child",   value:svcMap["One Child"]||1,  color:"#4A90C4"},
-    {label:"Two Children",value:svcMap["Two Children"]||1,color:"#C9A84C"},
-    {label:"Infant Care", value:svcMap["Infant Care"]||1, color:"#1B8A4A"},
-    {label:"Other",       value:svcMap["Emergency"]||1,   color:"#C0392B"}
-  ];
-  var total=services.reduce(function(s,x){return s+x.value;},0);
-  var svg=document.getElementById("donutSvg"); svg.innerHTML="";
-  var offset=0;
-  services.forEach(function(s){
-    var pct=s.value/total*100; var dash=pct+" "+(100-pct);
-    var circle=document.createElementNS("http://www.w3.org/2000/svg","circle");
-    circle.setAttribute("cx",21);circle.setAttribute("cy",21);circle.setAttribute("r",15.915);
-    circle.setAttribute("fill","none");circle.setAttribute("stroke",s.color);circle.setAttribute("stroke-width",8);
-    circle.setAttribute("stroke-dasharray",dash);circle.setAttribute("stroke-dashoffset",(100-offset).toString());
-    svg.appendChild(circle); offset+=pct;
-  });
-  var t=document.createElementNS("http://www.w3.org/2000/svg","text");
-  t.setAttribute("x",21);t.setAttribute("y",22);t.setAttribute("text-anchor","middle");t.setAttribute("font-size","5");t.setAttribute("fill","#1A1A2E");t.setAttribute("font-weight","700");t.textContent=bookings.length; svg.appendChild(t);
-  var s2=document.createElementNS("http://www.w3.org/2000/svg","text");
-  s2.setAttribute("x",21);s2.setAttribute("y",26);s2.setAttribute("text-anchor","middle");s2.setAttribute("font-size","2.8");s2.setAttribute("fill","#7A7A9A");s2.textContent="bookings"; svg.appendChild(s2);
-  var legend=document.getElementById("donutLegend"); legend.innerHTML="";
-  services.forEach(function(s){var pct=(s.value/total*100).toFixed(0);legend.innerHTML+='<div class="legend-item"><span class="legend-dot" style="background:'+s.color+'"></span>'+s.label+' <span style="margin-left:auto;font-weight:600;color:var(--text-dark)">'+pct+'%</span></div>';});
+  var rv=new Array(6).fill(0);
+  bookings.forEach(function(b){var d=new Date(b.rawDate);if(d.getFullYear()===yy&&d.getMonth()<6&&b.status==="Completed")rv[d.getMonth()]+=(b.amount||0);});
+  var maxR=Math.max.apply(null,rv)||1;
+  var re=document.getElementById("revenueChart");re.innerHTML="";
+  MONTHS.slice(0,6).forEach(function(m,i){var h=(rv[i]/maxR*100).toFixed(0);var col=document.createElement("div");col.className="rev-col";col.innerHTML='<div class="rev-val">KSh '+(rv[i]/1000).toFixed(1)+'k</div><div class="rev-bar" style="height:'+h+'%"></div><div class="rev-lbl">'+m+'</div>';re.appendChild(col);});
 
-  /* revenue trend */
-  var revByMonth=new Array(6).fill(0);
-  bookings.forEach(function(b){
-    var d=new Date(b.rawDate);
-    if(d.getFullYear()===yr&&d.getMonth()<6&&b.status==="Completed")
-      revByMonth[d.getMonth()]+=(b.amount||0);
-  });
-  var maxR=Math.max.apply(null,revByMonth)||1;
-  var revEl=document.getElementById("revenueChart"); revEl.innerHTML="";
-  MONTHS.slice(0,6).forEach(function(m,i){
-    var h=(revByMonth[i]/maxR*100).toFixed(0);
-    var col=document.createElement("div"); col.className="rev-col";
-    col.innerHTML='<div class="rev-val">KSh '+(revByMonth[i]/1000).toFixed(1)+'k</div><div class="rev-bar" style="height:'+h+'%"></div><div class="rev-lbl">'+m+'</div>';
-    revEl.appendChild(col);
-  });
-
-  /* area breakdown */
-  var areaMap={};
-  bookings.forEach(function(b){ areaMap[b.location]=(areaMap[b.location]||0)+1; });
-  var areas=Object.keys(areaMap).map(function(k){return{name:k,count:areaMap[k]};}).sort(function(a,b){return b.count-a.count;}).slice(0,6);
+  var am={};bookings.forEach(function(b){am[b.location]=(am[b.location]||0)+1;});
+  var areas=Object.keys(am).map(function(k){return{name:k,count:am[k]};}).sort(function(a,b){return b.count-a.count;}).slice(0,6);
   var maxA=(areas[0]&&areas[0].count)||1;
-  var areaEl=document.getElementById("areaBarRow"); areaEl.innerHTML="";
-  if(!areas.length){ areaEl.innerHTML='<p style="font-size:.8rem;color:var(--text-light)">No bookings yet.</p>'; return; }
-  areas.forEach(function(a){
-    var pct=(a.count/maxA*100).toFixed(0);
-    areaEl.innerHTML+='<div class="area-bar-item"><span class="aname">'+a.name+'</span><div class="atrack"><div class="afill" style="width:'+pct+'%"></div></div><span class="acount">'+a.count+'</span></div>';
+  var ae=document.getElementById("areaBarRow");ae.innerHTML="";
+  if(!areas.length){ae.innerHTML='<p style="font-size:.8rem;color:var(--text-light)">No data yet.</p>';return;}
+  areas.forEach(function(a){var p=(a.count/maxA*100).toFixed(0);ae.innerHTML+='<div class="area-bar-item"><span class="aname">'+a.name+'</span><div class="atrack"><div class="afill" style="width:'+p+'%"></div></div><span class="acount">'+a.count+'</span></div>';});
+}
+
+/* ════════════════════════════════════════
+   PENDING PANEL
+════════════════════════════════════════ */
+function renderPendingPanel(bookings) {
+  var pending=bookings.filter(function(b){return b.status==="Pending";});
+  var ce=document.getElementById("pendingCount"); var cc=document.getElementById("pendingCards");
+  if(!ce||!cc) return;
+  ce.textContent=pending.length+" pending";
+  ce.style.background=pending.length>0?"#E24B4A":"#1B8A4A";
+  if(!pending.length){cc.innerHTML='<div class="pending-empty">✅ No pending requests right now.</div>';return;}
+  pending.sort(function(a,b){return new Date(a.rawDate)-new Date(b.rawDate);});
+  cc.innerHTML="";
+  pending.forEach(function(b){
+    var conflict=bookings.find(function(x){return x.rawDate===b.rawDate&&x.status==="Confirmed"&&x.firebaseKey!==b.firebaseKey;});
+    var card=document.createElement("div"); card.className="pending-card";
+    var ctag=conflict?'<div class="conflict-tag">⚠️ Conflict: '+conflict.name+' already confirmed this date</div>':"";
+    card.innerHTML=ctag+
+      '<div class="pending-card-top"><div><div class="pending-card-name">👤 '+b.name+'</div><div class="pending-card-date">📅 '+b.dateStr+'</div></div><div class="pending-card-amount">KSh '+(b.amount||0).toLocaleString()+'</div></div>'+
+      '<div class="pending-card-details"><div class="pending-card-detail">📍 <strong>Location:</strong> '+(b.location||"—")+'</div><div class="pending-card-detail">👶 <strong>Children:</strong> '+(b.kids||"—")+'</div><div class="pending-card-detail">🎂 <strong>Ages:</strong> '+(b.ages||"—")+'</div><div class="pending-card-detail">📞 <strong>Phone:</strong> '+(b.phone||"—")+'</div><div class="pending-card-detail">🪪 <strong>ID No:</strong> '+(b.idNum||"—")+'</div><div class="pending-card-detail">📝 <strong>Notes:</strong> '+(b.notes||"None")+'</div></div>'+
+      '<div class="pending-card-actions"><button class="btn-accept">✅ Accept & Confirm</button><button class="btn-decline">❌ Decline</button></div>';
+    cc.appendChild(card);
+    card.querySelector(".btn-accept").addEventListener("click",function(){ acceptBooking(b.firebaseKey,b.phone||"",b.name,b.dateStr,b.rawDate); });
+    card.querySelector(".btn-decline").addEventListener("click",function(){ declineBooking(b.firebaseKey,b.phone||"",b.name); });
   });
 }
 
-/* ===== BOOKING FORM ===== */
-function submitBookingForm() {
-  var name     = document.getElementById("f-name").value.trim();
-  var phone    = document.getElementById("f-phone").value.trim();
-  var location = document.getElementById("f-location").value.trim();
-  var date     = document.getElementById("f-date").value;
-  var kids     = document.getElementById("f-kids").value;
-  var ages     = document.getElementById("f-ages").value.trim();
-  var notes    = document.getElementById("f-notes").value.trim();
-  var idNum    = document.getElementById("f-id-number").value.trim();
-  var idFile   = document.getElementById("f-id-photo").files.length > 0;
-
-  if (!name)    { alert("Please enter your name."); return; }
-  if (!phone)   { alert("Please enter your phone number."); return; }
-  if (!location){ alert("Please enter your location / estate."); return; }
-  if (!date)    { alert("Please select the date you need childcare."); return; }
-  var selectedDate = new Date(date); selectedDate.setHours(0,0,0,0);
-  var todayDate = new Date(); todayDate.setHours(0,0,0,0);
-  if (selectedDate < todayDate) { alert("Please select a future date — past dates cannot be booked."); return; }
-  if (!ages)    { alert("Please enter the ages of your children."); return; }
-  if (!idNum)   { alert("National ID number is required to confirm your booking."); return; }
-  if (!idFile)  { alert("Please upload a photo of your National ID. This is required for your safety and Judy's."); return; }
-
-  /* ── SAVE TO FIREBASE AS PENDING ── */
-  var d2   = new Date(date);
-  var MOS  = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var arr2 = loadBookings();
-  var newId = arr2.length ? Math.max.apply(null, arr2.map(function(b){ return b.id||0; })) + 1 : 1;
-  var newBooking = {
-    id:       newId,
-    name:     name,
-    rawDate:  date,
-    dateStr:  d2.getDate() + " " + MOS[d2.getMonth()] + " " + d2.getFullYear(),
-    location: location,
-    kids:     kids,
-    ages:     ages || "—",
-    phone:    phone,
-    idNum:    idNum,
-    notes:    notes || "None",
-    service:  kids,
-    amount:   window._estimatedRate || 1500,
-    status:   "Pending",
-    source:   "Website Form"
-  };
-  /* Push directly — no calendar mark yet, Judy decides */
-  if (window._fb) {
-    window._fb.push(window._fb.bkRef, newBooking);
-  }
-
-  /* ── BUILD MESSAGE (shared for email & WA) ── */
-  var msg =
-    "Hello Judy,\n\nI would like to make an overnight babysitting booking. Details below:\n\n" +
-    "Name:            " + name + "\n" +
-    "Phone:           " + phone + "\n" +
-    "Location:        " + location + "\n" +
-    "Date Needed:     " + date + "\n" +
-    "No. of Children: " + kids + "\n" +
-    "Ages:            " + ages + "\n" +
-    "National ID No.: " + idNum + "\n" +
-    "Notes:           " + (notes || "None") + "\n\n" +
-    "Kindly confirm availability and next steps.\n\nThank you.";
-
-  var subject = "Babysitting Booking Request — " + name + " (" + date + ")";
-
-  /* Store for picker */
-  window._pendingEmailSubject = subject;
-  window._pendingEmailBody    = msg;
-  window._pendingWAMsg        = msg;
-
-  /* ── SHOW SEND METHOD PICKER ── */
-  openSendPicker();
+function acceptBooking(fk,phone,name,dateStr,rawDate) {
+  updateInFirebase(fk,{status:"Confirmed"});
+  if(rawDate) markCalendarBooked(rawDate);
+  var cp=phone.replace(/[^0-9]/g,"");
+  if(cp.startsWith("0")) cp="254"+cp.slice(1);
+  if(!cp.startsWith("254")) cp="254"+cp;
+  var msg="Hello "+name+"! 🌙\n\nYour babysitting booking request for *"+dateStr+"* has been *CONFIRMED* by Judy Ombam.\n\n✅ *Booking confirmed*\n📅 *Date:* "+dateStr+"\n🕖 *Hours:* 7 PM – 7 AM\n💳 *Payment:* M-Pesa on the day\n\nFeel free to reach out if you have any questions before the session.\n\nThank you for choosing Judy Ombam Overnight Babysitting! 🌙";
+  window.open("https://wa.me/"+cp+"?text="+encodeURIComponent(msg),"_blank");
+}
+function declineBooking(fk,phone,name) {
+  var reason=prompt("Optional: Add a reason for declining (or leave blank):");
+  if(reason===null) return;
+  updateInFirebase(fk,{status:"Cancelled"});
+  var cp=phone.replace(/[^0-9]/g,"");
+  if(cp.startsWith("0")) cp="254"+cp.slice(1);
+  if(!cp.startsWith("254")) cp="254"+cp;
+  var msg="Hello "+name+",\n\nThank you for reaching out to Judy Ombam Overnight Babysitting.\n\nUnfortunately, I am unable to confirm your booking request for this date."+(reason?" Reason: "+reason:"")+"\n\nPlease check my availability calendar and submit a new request for another date.\n\nApologies for the inconvenience. — Judy 🌙";
+  window.open("https://wa.me/"+cp+"?text="+encodeURIComponent(msg),"_blank");
 }
 
-/* ===== FAQ ===== */
-function toggleFAQ(el) {
-  var item = el.parentElement;
-  var wasOpen = item.classList.contains("open");
-  document.querySelectorAll(".faq-item").forEach(function(i) {
-    i.classList.remove("open");
-    var caret = i.querySelector(".caret");
-    if (caret) caret.textContent = "▼";
-  });
-  if (!wasOpen) {
-    item.classList.add("open");
-    var caret = el.querySelector(".caret");
-    if (caret) caret.textContent = "▲";
-  }
-}
+/* ════════════════════════════════════════
+   ADMIN CALENDAR  (Fix #2)
+════════════════════════════════════════ */
+var adminCalYear  = new Date().getFullYear();
+var adminCalMonth = new Date().getMonth();
+var ACAL_MN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+var ACAL_DN = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-/* ===== MOBILE MENU ===== */
-function toggleMenu() { document.getElementById("mobileMenu").classList.toggle("open"); }
-function closeMobileMenu() { document.getElementById("mobileMenu").classList.remove("open"); }
-document.addEventListener("click", function(e) {
-  var menu = document.getElementById("mobileMenu");
-  var ham  = document.querySelector(".hamburger");
-  if (menu.classList.contains("open") && !menu.contains(e.target) && e.target !== ham) {
-    menu.classList.remove("open");
-  }
-});
-
-/* ===== SCROLL REVEAL ===== */
-var revealObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      revealObserver.unobserve(entry.target);
+function adminCalRender() {
+  var data = window._calData ? Object.assign({},window._calData) : {};
+  loadBookings().forEach(function(b){ if((b.status==="Confirmed"||b.status==="Completed")&&b.rawDate&&!data[b.rawDate]) data[b.rawDate]="booked"; });
+  var lbl=document.getElementById("adminCalMonth"); if(lbl) lbl.textContent=ACAL_MN[adminCalMonth]+" "+adminCalYear;
+  var grid=document.getElementById("adminCalGrid"); if(!grid) return;
+  grid.innerHTML="";
+  ACAL_DN.forEach(function(d){var el=document.createElement("div");el.className="admin-cal-dname";el.textContent=d;grid.appendChild(el);});
+  var today=new Date();today.setHours(0,0,0,0);
+  var first=new Date(adminCalYear,adminCalMonth,1).getDay();
+  var dim=new Date(adminCalYear,adminCalMonth+1,0).getDate();
+  for(var e=0;e<first;e++){var emp=document.createElement("div");emp.className="admin-cal-day acd-empty";grid.appendChild(emp);}
+  for(var day=1;day<=dim;day++){
+    var ds=adminCalYear+"-"+String(adminCalMonth+1).padStart(2,"0")+"-"+String(day).padStart(2,"0");
+    var cd=new Date(adminCalYear,adminCalMonth,day);
+    var isPast=cd<today; var isToday=cd.getTime()===today.getTime();
+    var status=data[ds]||"available";
+    var tagMap={available:"",booked:"Booked",blocked:"Off"};
+    var cell=document.createElement("div");
+    cell.className="admin-cal-day acd-"+status+(isPast?" acd-past":"")+(isToday?" acd-today":"");
+    cell.innerHTML='<span class="acd-num">'+day+'</span>'+(tagMap[status]?'<span class="acd-tag">'+tagMap[status]+'</span>':"");
+    if(!isPast){
+      (function(dateStr,c){
+        c.addEventListener("click",function(){ adminCalDayClick(dateStr); });
+      })(ds,cell);
     }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
-
-/* Ensure calendar renders after DOM is fully ready */
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", function() { calInit(); });
-} else {
-  calInit();
-}
-
-
-
-
-/* ===== SEND METHOD PICKER ===== */
-var _emailSubject = "";
-var _emailBody    = "";
-var _waMsg        = "";
-
-function openSendPicker() {
-  _emailSubject = window._pendingEmailSubject || "Babysitting Enquiry — Judy Ombam";
-  _emailBody    = window._pendingEmailBody    || "Hello Judy,\n\nI would like to enquire about overnight babysitting.\n\nThank you.";
-  _waMsg        = window._pendingWAMsg        || _emailBody;
-  document.getElementById("sendPickerOverlay").classList.add("open");
-}
-
-/* also callable from the contact Send Email button */
-function openEmailPicker() {
-  _emailSubject = "Babysitting Enquiry — Judy Ombam";
-  _emailBody    = "Hello Judy,\n\nI would like to enquire about your overnight babysitting services.\n\nName:\nPhone:\nLocation:\nDate Needed:\nNumber of Children:\nAges:\n\nThank you.";
-  _waMsg        = _emailBody;
-  document.getElementById("sendPickerOverlay").classList.add("open");
-}
-
-function closeSendPicker(e) {
-  if (e.target === document.getElementById("sendPickerOverlay")) {
-    document.getElementById("sendPickerOverlay").classList.remove("open");
+    grid.appendChild(cell);
   }
+  var qi=document.getElementById("adminCalQDate");
+  if(qi&&!qi.value){var t=new Date();qi.value=t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");}
 }
 
-function sendViaWhatsApp() {
-  document.getElementById("sendPickerOverlay").classList.remove("open");
-  alert("📎 WhatsApp is about to open.\n\nPlease also SEND your National ID photo as a separate image in the chat.");
-  window.open("https://wa.me/254713781789?text=" + encodeURIComponent(_waMsg), "_blank");
+function adminCalDayClick(dateStr) {
+  var data=window._calData||{};
+  var cur=data[dateStr]||"available";
+  var cycle={available:"booked",booked:"blocked",blocked:"available"};
+  var next=cycle[cur]||"available";
+  if(window._fb){var up={};up[dateStr]=next;window._fb.avRef.update(up);}
+  else{window._calData=window._calData||{};window._calData[dateStr]=next;adminCalRender();}
+  var d=new Date(dateStr+"T00:00:00");
+  var lbl=d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear();
+  var info={available:"✅ Available — no booking on this night.",booked:"🔴 Booked — confirmed booking this night.",blocked:"⛔ Blocked / Off — marked as unavailable."};
+  document.getElementById("adminCalDetailDate").textContent=lbl;
+  document.getElementById("adminCalDetailInfo").textContent=info[next]||"Status updated.";
+  document.getElementById("adminCalDetail").classList.add("show");
+}
+function adminCalPrev(){adminCalMonth--;if(adminCalMonth<0){adminCalMonth=11;adminCalYear--;}document.getElementById("adminCalDetail").classList.remove("show");adminCalRender();}
+function adminCalNext(){adminCalMonth++;if(adminCalMonth>11){adminCalMonth=0;adminCalYear++;}document.getElementById("adminCalDetail").classList.remove("show");adminCalRender();}
+function adminCalQuickMark(){
+  var dv=document.getElementById("adminCalQDate").value;
+  var sv=document.getElementById("adminCalQStatus").value;
+  if(!dv){alert("Please select a date.");return;}
+  if(window._fb){var up={};up[dv]=sv;window._fb.avRef.update(up);}
+  else{window._calData=window._calData||{};window._calData[dv]=sv;}
+  var p=dv.split("-");adminCalYear=parseInt(p[0]);adminCalMonth=parseInt(p[1])-1;
+  adminCalRender();
+  var d=new Date(dv+"T00:00:00");
+  document.getElementById("adminCalDetailDate").textContent=d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear();
+  document.getElementById("adminCalDetailInfo").textContent=(sv==="available")?"✅ Marked as Available.":"⛔ Marked as Blocked / Off.";
+  document.getElementById("adminCalDetail").classList.add("show");
 }
 
-function sendViaGmail() {
-  document.getElementById("sendPickerOverlay").classList.remove("open");
-  alert("📎 Gmail is about to open.\n\nPlease ATTACH your National ID photo to the email before clicking Send.");
-  var url = "https://mail.google.com/mail/?view=cm&fs=1&to=atienojudithberil@gmail.com&su=" +
-    encodeURIComponent(_emailSubject) + "&body=" + encodeURIComponent(_emailBody);
-  window.open(url, "_blank");
-}
-
-function sendViaOutlook() {
-  document.getElementById("sendPickerOverlay").classList.remove("open");
-  alert("📎 Your mail app is about to open.\n\nPlease ATTACH your National ID photo to the email before clicking Send.");
-  window.location.href = "mailto:atienojudithberil@gmail.com" +
-    "?subject=" + encodeURIComponent(_emailSubject) +
-    "&body="    + encodeURIComponent(_emailBody);
-}
-
-/* ===== PRIVACY POLICY ===== */
-function closePP(e) {
-  if (e.target === document.getElementById("privacyOverlay")) {
-    document.getElementById("privacyOverlay").classList.remove("open");
-  }
-}
-
-/* ===== CONSENT GATE ===== */
-function initConsentGate() {
-  var consent = localStorage.getItem("judy_consent_v1");
-  var expiry  = localStorage.getItem("judy_consent_expiry");
-  var now     = new Date().getTime();
-  if (consent === "agreed" && expiry && now < parseInt(expiry)) {
-    /* Already agreed and not expired — hide gate immediately */
-    document.getElementById("consentGate").style.display = "none";
-  }
-  /* else gate stays visible */
-}
-
-function toggleConsentBtn() {
-  /* Button always enabled — user can agree after reading */
-}
-
-function acceptConsent() {
-  var cb = document.getElementById("consentCheck");
-  if (!cb.checked) {
-    alert("Please tick the checkbox to confirm you have read and agree to the Privacy Policy.");
-    return;
-  }
-  var expiry = new Date().getTime() + (30 * 24 * 60 * 60 * 1000); /* 30 days */
-  localStorage.setItem("judy_consent_v1", "agreed");
-  localStorage.setItem("judy_consent_expiry", expiry.toString());
-  var gate = document.getElementById("consentGate");
-  gate.classList.add("hiding");
-  setTimeout(function() { gate.style.display = "none"; }, 420);
-}
-
-/* Run on load */
-initConsentGate();
-
-
-/* ===== AVAILABILITY CALENDAR (Firebase-backed) ===== */
-var CAL_KEY   = "judy_availability";
+/* ════════════════════════════════════════
+   PUBLIC AVAILABILITY CALENDAR
+════════════════════════════════════════ */
+var CAL_MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var CAL_DAYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 var calYear, calMonth;
-var CAL_MONTHS = ["January","February","March","April","May","June",
-                  "July","August","September","October","November","December"];
-var CAL_DAYS   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-/* Firebase availability ref */
-function getAvailRef() {
-  if (!window._fb) return null;
-  return window._fb.avRef;
-}
-
-/* Load from Firebase into local cache, then render */
-function calInit() {
-  var now  = new Date();
-  calYear  = now.getFullYear();
-  calMonth = now.getMonth();
-
-  /* Availability data is already being streamed via the global listener */
-  window._calData = window._calData || {};
+function calInit(){
+  var now=new Date(); calYear=now.getFullYear(); calMonth=now.getMonth();
+  window._calData=window._calData||{};
   calRender();
 }
-
-function calGetData() { return window._calData || {}; }
-
-function calSetDate(dateStr, status) {
-  if (!window._fb) return;
-  var updates = {};
-  updates[dateStr] = status;
-  window._fb.avRef.update(updates);
+function getCalData(){
+  var data=window._calData?Object.assign({},window._calData):{};
+  loadBookings().forEach(function(b){if((b.status==="Confirmed"||b.status==="Completed")&&b.rawDate&&!data[b.rawDate])data[b.rawDate]="booked";});
+  return data;
 }
-
-function calPrev() {
-  calMonth--;
-  if (calMonth < 0) { calMonth = 11; calYear--; }
-  calRender();
-}
-function calNext() {
-  calMonth++;
-  if (calMonth > 11) { calMonth = 0; calYear++; }
-  calRender();
-}
-
-function calRender() {
-  var data      = calGetData();
-  var now       = new Date();
-  var today     = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  var titleEl   = document.getElementById("calTitle");
-  var headersEl = document.getElementById("calDayHeaders");
-  var gridEl    = document.getElementById("calGrid");
-  if (!titleEl || !gridEl) return;
-
-  titleEl.textContent = CAL_MONTHS[calMonth] + " " + calYear;
-
-  /* Day headers */
-  headersEl.innerHTML = "";
-  CAL_DAYS.forEach(function(d) {
-    var el = document.createElement("div");
-    el.className = "cal-day-hdr";
-    el.textContent = d;
-    headersEl.appendChild(el);
-  });
-
-  /* Grid */
-  gridEl.innerHTML = "";
-  var firstDay    = new Date(calYear, calMonth, 1).getDay();
-  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
-
-  /* Empty cells */
-  for (var i = 0; i < firstDay; i++) {
-    var emp = document.createElement("div");
-    emp.className = "cal-cell empty";
-    gridEl.appendChild(emp);
-  }
-
-  for (var d = 1; d <= daysInMonth; d++) {
-    var dateStr = calYear + "-" +
-      String(calMonth + 1).padStart(2, "0") + "-" +
-      String(d).padStart(2, "0");
-    var thisDay = new Date(calYear, calMonth, d);
-    var cell    = document.createElement("div");
-    var status  = data[dateStr] || "available";
-
-    if (thisDay < today) {
-      cell.className = "cal-cell past";
-    } else {
-      cell.className = "cal-cell " + status;
-      if (thisDay.getTime() === today.getTime()) cell.classList.add("today");
-
-      /* Admin can click to toggle */
-      if (adminUnlocked) {
+function calRender(){
+  var data=getCalData();
+  var now=new Date(); var today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var titleEl=document.getElementById("calTitle");
+  var hdrsEl=document.getElementById("calDayHeaders");
+  var gridEl=document.getElementById("calGrid");
+  if(!titleEl||!gridEl) return;
+  titleEl.textContent=CAL_MONTHS[calMonth]+" "+calYear;
+  hdrsEl.innerHTML="";
+  CAL_DAYS.forEach(function(d){var el=document.createElement("div");el.className="cal-day-hdr";el.textContent=d;hdrsEl.appendChild(el);});
+  gridEl.innerHTML="";
+  var first=new Date(calYear,calMonth,1).getDay();
+  var dim=new Date(calYear,calMonth+1,0).getDate();
+  for(var i=0;i<first;i++){var e=document.createElement("div");e.className="cal-cell empty";gridEl.appendChild(e);}
+  for(var d=1;d<=dim;d++){
+    var ds=calYear+"-"+String(calMonth+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+    var td=new Date(calYear,calMonth,d);
+    var cell=document.createElement("div");
+    var status=data[ds]||"available";
+    if(td<today){cell.className="cal-cell past";}
+    else{
+      cell.className="cal-cell "+status;
+      if(td.getTime()===today.getTime()) cell.classList.add("today");
+      if(adminUnlocked){
         cell.classList.add("admin-clickable");
-        cell.title = "Click to toggle booked/available";
-        (function(ds, el) {
-          el.addEventListener("click", function() {
-            var d2  = calGetData();
-            var cur = d2[ds] || "available";
-            calSetDate(ds, cur === "booked" ? "available" : "booked");
-          });
-        })(dateStr, cell);
+        cell.title="Click to toggle";
+        (function(dstr,c){c.addEventListener("click",function(){
+          var cur=getCalData()[dstr]||"available";
+          var nxt=cur==="booked"?"available":"booked";
+          if(window._fb){var up={};up[dstr]=nxt;window._fb.avRef.update(up);}
+          else{window._calData=window._calData||{};window._calData[dstr]=nxt;calRender();}
+        });})(ds,cell);
       }
     }
-
-    var numSpan = document.createElement("span");
-    numSpan.className = "cal-day-num";
-    numSpan.textContent = d;
-    cell.appendChild(numSpan);
-
-    if (thisDay.getTime() === today.getTime()) {
-      var sub = document.createElement("span");
-      sub.className = "cal-day-sub";
-      sub.textContent = "Today";
-      cell.appendChild(sub);
-    }
-    if (status === "booked" && thisDay >= today) {
-      var sub2 = document.createElement("span");
-      sub2.className = "cal-day-sub";
-      sub2.textContent = "Booked";
-      cell.appendChild(sub2);
-    }
-
+    var ns=document.createElement("span");ns.className="cal-day-num";ns.textContent=d;cell.appendChild(ns);
+    if(td.getTime()===today.getTime()){var sub=document.createElement("span");sub.className="cal-day-sub";sub.textContent="Today";cell.appendChild(sub);}
+    if(status==="booked"&&td>=today){var sub2=document.createElement("span");sub2.className="cal-day-sub";sub2.textContent="Booked";cell.appendChild(sub2);}
     gridEl.appendChild(cell);
   }
 }
+function calPrev(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}calRender();}
+function calNext(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}calRender();}
 
-/* Auto-mark calendar when a booking is pushed */
-function markCalendarBooked(rawDate) {
-  if (!rawDate) return;
-  /* Update local cache immediately for instant visual feedback */
-  window._calData = window._calData || {};
-  window._calData[rawDate] = "booked";
-  calRender();
-  /* Then sync to Firebase so all users see it */
-  if (window._fb) {
-    var updates = {};
-    updates[rawDate] = "booked";
-    window._fb.avRef.update(updates);
-  }
+function markCalendarBooked(rawDate){
+  if(!rawDate) return;
+  window._calData=window._calData||{};
+  window._calData[rawDate]="booked";
+  calRender(); adminCalRender();
+  if(window._fb){var up={};up[rawDate]="booked";window._fb.avRef.update(up);}
 }
 
-/* ===== COST ESTIMATOR ===== */
-function updateCostEstimate() {
-  var kidsVal = document.getElementById("f-kids").value;
-  var agesVal = document.getElementById("f-ages").value.toLowerCase().trim();
-  var box     = document.getElementById("costEstBox");
-  var amountEl  = document.getElementById("costAmount");
-  var breakEl   = document.getElementById("costBreakdown");
-  var hourlyEl  = document.getElementById("costHourly");
+/* ════════════════════════════════════════
+   BOOKING FORM
+════════════════════════════════════════ */
+function submitBookingForm(){
+  var name=document.getElementById("f-name").value.trim();
+  var phone=document.getElementById("f-phone").value.trim();
+  var location=document.getElementById("f-location").value.trim();
+  var date=document.getElementById("f-date").value;
+  var kids=document.getElementById("f-kids").value;
+  var ages=document.getElementById("f-ages").value.trim();
+  var notes=document.getElementById("f-notes").value.trim();
+  var idNum=document.getElementById("f-id-number").value.trim();
+  var idFile=document.getElementById("f-id-photo").files.length>0;
+  if(!name){alert("Please enter your name.");return;}
+  if(!phone){alert("Please enter your phone number.");return;}
+  if(!location){alert("Please enter your location / estate.");return;}
+  if(!date){alert("Please select the date you need childcare.");return;}
+  var sel=new Date(date);sel.setHours(0,0,0,0);var tod=new Date();tod.setHours(0,0,0,0);
+  if(sel<tod){alert("Please select a future date.");return;}
+  if(!ages){alert("Please enter the ages of your children.");return;}
+  if(!idNum){alert("National ID number is required to confirm your booking.");return;}
+  if(!idFile){alert("Please upload a photo of your National ID.");return;}
+  var d2=new Date(date);
+  var newB={id:nextId(),name:name,rawDate:date,dateStr:d2.getDate()+" "+MONTHS[d2.getMonth()]+" "+d2.getFullYear(),location:location,kids:kids,ages:ages||"—",phone:phone,idNum:idNum,notes:notes||"None",service:kids,amount:window._estimatedRate||1500,status:"Pending",source:"Website Form"};
+  if(window._fb) window._fb.push(window._fb.bkRef,newB);
+  var subject="Babysitting Booking Request — "+name+" ("+date+")";
+  var body="Hello Judy,\n\nI would like to make an overnight babysitting booking. Details below:\n\nName:            "+name+"\nPhone:           "+phone+"\nLocation:        "+location+"\nDate Needed:     "+date+"\nNo. of Children: "+kids+"\nAges:            "+ages+"\nNational ID No.: "+idNum+"\nNotes:           "+(notes||"None")+"\n\nKindly confirm availability and next steps.\n\nThank you.";
+  window._pendingEmailSubject=subject; window._pendingEmailBody=body; window._pendingWAMsg=body;
+  openSendPicker();
+}
 
-  if (!agesVal && kidsVal === "1 child") { box.classList.add("hidden"); return; }
-
-  /* Detect infant — any age under 12 months */
-  var hasInfant = /\b([0-9]|10|11)\s*(month|mo|mth|months)/i.test(agesVal) ||
-                  /\bnewborn\b/i.test(agesVal) ||
-                  /\binfant\b/i.test(agesVal) ||
-                  /\b0\s*year/i.test(agesVal);
-
-  /* Count children from kids select */
-  var numKids = 1;
-  if (kidsVal === "2 children") numKids = 2;
-  else if (kidsVal === "3 children") numKids = 3;
-  else if (kidsVal === "4+ children") numKids = 4;
-
-  var baseRate, breakdown, label;
-
-  if (numKids === 1 && hasInfant) {
-    baseRate  = 2000;
-    label     = "Infant / Newborn Care";
-    breakdown = "1 infant (0–12 months) · Overnight care";
-  } else if (numKids === 1) {
-    baseRate  = 1500;
-    label     = "One Child";
-    breakdown = "1 child · Overnight care";
-  } else if (numKids === 2 && hasInfant) {
-    baseRate  = 2500;
-    label     = "Two Children (incl. infant)";
-    breakdown = "2 children including infant · Overnight care";
-  } else if (numKids === 2) {
-    baseRate  = 2500;
-    label     = "Two Children";
-    breakdown = "2 children · Overnight care";
-  } else if (numKids === 3) {
-    baseRate  = 3000;
-    label     = "Three Children";
-    breakdown = "3 children · Overnight care";
-  } else {
-    baseRate  = 3500;
-    label     = "Four+ Children";
-    breakdown = "4+ children · Overnight care";
-  }
-
-  /* Show the box */
+/* ════════════════════════════════════════
+   COST ESTIMATOR
+════════════════════════════════════════ */
+function updateCostEstimate(){
+  var kv=document.getElementById("f-kids").value;
+  var av=document.getElementById("f-ages").value.toLowerCase().trim();
+  var box=document.getElementById("costEstBox");
+  if(!av&&kv==="1 child"){box.classList.add("hidden");return;}
+  var hasInfant=/\b([0-9]|10|11)\s*(month|mo|mth|months)/i.test(av)||/\bnewborn\b/i.test(av)||/\binfant\b/i.test(av)||/\b0\s*year/i.test(av);
+  var nk=kv==="2 children"?2:kv==="3 children"?3:kv==="4+ children"?4:1;
+  var rate,breakdown;
+  if(nk===1&&hasInfant){rate=2000;breakdown="1 infant (0–12 months) · Overnight care";}
+  else if(nk===1){rate=1500;breakdown="1 child · Overnight care";}
+  else if(nk===2){rate=2500;breakdown="2 children · Overnight care";}
+  else if(nk===3){rate=3000;breakdown="3 children · Overnight care";}
+  else{rate=3500;breakdown="4+ children · Overnight care";}
   box.classList.remove("hidden");
-  amountEl.textContent  = "KSh " + baseRate.toLocaleString();
-  breakEl.textContent   = breakdown;
-  hourlyEl.textContent  = "Shorter session? KSh 300/hr · Same-day: +" + "KSh 500";
-
-  /* Store for form submission */
-  window._estimatedRate = baseRate;
-  window._estimatedLabel = label;
+  document.getElementById("costAmount").textContent="KSh "+rate.toLocaleString();
+  document.getElementById("costBreakdown").textContent=breakdown;
+  document.getElementById("costHourly").textContent="Same-day booking: +KSh 500 surcharge";
+  window._estimatedRate=rate;
 }
 
+/* ════════════════════════════════════════
+   SEND PICKER
+════════════════════════════════════════ */
+var _es="",_eb="",_wm="";
+function openSendPicker(){_es=window._pendingEmailSubject||"Babysitting Enquiry — Judy Ombam";_eb=window._pendingEmailBody||"Hello Judy,\n\nI would like to enquire about your overnight babysitting services.\n\nThank you.";_wm=window._pendingWAMsg||_eb;document.getElementById("sendPickerOverlay").classList.add("open");}
+function openEmailPicker(){_es="Babysitting Enquiry — Judy Ombam";_eb="Hello Judy,\n\nI would like to enquire about your overnight babysitting services.\n\nName:\nPhone:\nLocation:\nDate Needed:\nNumber of Children:\nAges:\n\nThank you.";_wm=_eb;document.getElementById("sendPickerOverlay").classList.add("open");}
+function closeSendPicker(e){if(e.target===document.getElementById("sendPickerOverlay"))document.getElementById("sendPickerOverlay").classList.remove("open");}
+function sendViaWhatsApp(){document.getElementById("sendPickerOverlay").classList.remove("open");alert("📎 WhatsApp is about to open.\n\nPlease also SEND your National ID photo as a separate image in the chat.");window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(_wm),"_blank");}
+function sendViaGmail(){document.getElementById("sendPickerOverlay").classList.remove("open");alert("📎 Gmail is about to open.\n\nPlease ATTACH your National ID photo to the email before clicking Send.");window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+WA_EMAIL+"&su="+encodeURIComponent(_es)+"&body="+encodeURIComponent(_eb),"_blank");}
+function sendViaOutlook(){document.getElementById("sendPickerOverlay").classList.remove("open");alert("📎 Your mail app is about to open.\n\nPlease ATTACH your National ID photo before clicking Send.");window.location.href="mailto:"+WA_EMAIL+"?subject="+encodeURIComponent(_es)+"&body="+encodeURIComponent(_eb);}
 
+/* ════════════════════════════════════════
+   CONSENT GATE
+════════════════════════════════════════ */
+function initConsentGate(){
+  var c=localStorage.getItem("judy_consent_v1"); var ex=localStorage.getItem("judy_consent_expiry");
+  if(c==="agreed"&&ex&&new Date().getTime()<parseInt(ex)) document.getElementById("consentGate").style.display="none";
+}
+function toggleConsentBtn(){}
+function acceptConsent(){
+  if(!document.getElementById("consentCheck").checked){alert("Please tick the checkbox to confirm you agree to the Privacy Policy.");return;}
+  localStorage.setItem("judy_consent_v1","agreed");
+  localStorage.setItem("judy_consent_expiry",(new Date().getTime()+(30*24*60*60*1000)).toString());
+  var gate=document.getElementById("consentGate");
+  gate.classList.add("hiding");
+  setTimeout(function(){gate.style.display="none";},420);
+}
+initConsentGate();
 
-/* ===== PENDING REQUESTS PANEL ===== */
-function renderPendingPanel(bookings) {
-  var pending = bookings.filter(function(b) { return b.status === "Pending"; });
-  var countEl = document.getElementById("pendingCount");
-  var cardsEl = document.getElementById("pendingCards");
-  if (!countEl || !cardsEl) return;
+/* ════════════════════════════════════════
+   PRIVACY POLICY
+════════════════════════════════════════ */
+function closePP(e){if(e.target===document.getElementById("privacyOverlay"))document.getElementById("privacyOverlay").classList.remove("open");}
 
-  countEl.textContent = pending.length + " pending";
-  countEl.style.background = pending.length > 0 ? "#E24B4A" : "#1B8A4A";
-
-  if (!pending.length) {
-    cardsEl.innerHTML = '<div class="pending-empty">✅ No pending requests right now.</div>';
-    return;
-  }
-
-  /* Sort by date */
-  pending.sort(function(a, b) { return new Date(a.rawDate) - new Date(b.rawDate); });
-
-  cardsEl.innerHTML = "";
-  pending.forEach(function(b) {
-    /* Check if date conflicts with existing confirmed booking */
-    var conflict = bookings.find(function(x) {
-      return x.rawDate === b.rawDate && x.status === "Confirmed" && x.firebaseKey !== b.firebaseKey;
-    });
-
-    var card = document.createElement("div");
-    card.className = "pending-card";
-
-    var conflictTag = conflict
-      ? '<div class="conflict-tag">⚠️ Conflict: ' + conflict.name + ' already confirmed this date</div>'
-      : "";
-
-    card.innerHTML =
-      conflictTag +
-      '<div class="pending-card-top">' +
-        '<div>' +
-          '<div class="pending-card-name">👤 ' + b.name + '</div>' +
-          '<div class="pending-card-date">📅 ' + b.dateStr + '</div>' +
-        '</div>' +
-        '<div class="pending-card-amount">KSh ' + (b.amount||0).toLocaleString() + '</div>' +
-      '</div>' +
-      '<div class="pending-card-details">' +
-        '<div class="pending-card-detail">📍 <strong>Location:</strong> ' + (b.location||"—") + '</div>' +
-        '<div class="pending-card-detail">👶 <strong>Children:</strong> ' + (b.kids||"—") + '</div>' +
-        '<div class="pending-card-detail">🎂 <strong>Ages:</strong> ' + (b.ages||"—") + '</div>' +
-        '<div class="pending-card-detail">📞 <strong>Phone:</strong> ' + (b.phone||"—") + '</div>' +
-        '<div class="pending-card-detail">🪪 <strong>ID No:</strong> ' + (b.idNum||"—") + '</div>' +
-        '<div class="pending-card-detail">📝 <strong>Notes:</strong> ' + (b.notes||"None") + '</div>' +
-      '</div>' +
-      '<div class="pending-card-actions">' +
-        '<button class="btn-accept" data-key="' + b.firebaseKey + '" data-phone="' + (b.phone||"") + '" data-name="' + b.name + '" data-date="' + b.dateStr + '">✅ Accept & Confirm</button>' +
-        '<button class="btn-decline" data-key="' + b.firebaseKey + '" data-phone="' + (b.phone||"") + '" data-name="' + b.name + '">❌ Decline</button>' +
-      '</div>';
-
-    cardsEl.appendChild(card);
-
-    /* Attach listeners safely (no string-escaping issues) */
-    var acceptBtn = card.querySelector(".btn-accept");
-    var declineBtn = card.querySelector(".btn-decline");
-    if (acceptBtn) {
-      acceptBtn.addEventListener("click", function() {
-        acceptBooking(this.dataset.key, this.dataset.phone, this.dataset.name, this.dataset.date);
-      });
-    }
-    if (declineBtn) {
-      declineBtn.addEventListener("click", function() {
-        declineBooking(this.dataset.key, this.dataset.phone, this.dataset.name);
-      });
-    }
-  });
+/* ════════════════════════════════════════
+   FAQ
+════════════════════════════════════════ */
+function toggleFAQ(el){
+  var item=el.parentElement; var wasOpen=item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){i.classList.remove("open");var c=i.querySelector(".caret");if(c)c.textContent="▼";});
+  if(!wasOpen){item.classList.add("open");var c=el.querySelector(".caret");if(c)c.textContent="▲";}
 }
 
-function acceptBooking(firebaseKey, phone, name, dateStr) {
-  /* 1. Update status in Firebase */
-  updateInFirebase(firebaseKey, { status: "Confirmed" });
+/* ════════════════════════════════════════
+   MOBILE MENU
+════════════════════════════════════════ */
+function toggleMenu(){document.getElementById("mobileMenu").classList.toggle("open");}
+function closeMobileMenu(){document.getElementById("mobileMenu").classList.remove("open");}
+document.addEventListener("click",function(e){
+  var menu=document.getElementById("mobileMenu"); var ham=document.querySelector(".hamburger");
+  if(menu&&menu.classList.contains("open")&&!menu.contains(e.target)&&e.target!==ham) menu.classList.remove("open");
+});
 
-  /* 2. Mark calendar as booked using rawDate from booking data */
-  var booking = loadBookings().find(function(b) { return b.firebaseKey === firebaseKey; });
-  if (booking && booking.rawDate) {
-    markCalendarBooked(booking.rawDate);
-  }
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+var revealObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add("visible");revealObserver.unobserve(entry.target);}});},{threshold:0.1});
+document.querySelectorAll(".reveal").forEach(function(el){revealObserver.observe(el);});
 
-  /* 3. Open WhatsApp with acceptance message */
-  var cleanPhone = phone.replace(/[^0-9]/g, "");
-  if (cleanPhone.startsWith("0")) cleanPhone = "254" + cleanPhone.slice(1);
-  if (!cleanPhone.startsWith("254")) cleanPhone = "254" + cleanPhone;
-
-  var msg = "Hello " + name + "! \ud83c\udf19\n\n" +
-    "Your babysitting booking request for *" + dateStr + "* has been *CONFIRMED* by Judy Ombam.\n\n" +
-    "\u2705 *Booking confirmed*\n" +
-    "\ud83d\udcc5 *Date:* " + dateStr + "\n" +
-    "\ud83d\udd5b *Hours:* 7 PM \u2013 7 AM\n" +
-    "\ud83d\udcb3 *Payment:* M-Pesa on the day\n\n" +
-    "Please feel free to reach out if you have any questions or special instructions before the session.\n\n" +
-    "Thank you for choosing Judy Ombam Overnight Babysitting! \ud83c\udf19";
-
-  window.open("https://wa.me/" + cleanPhone + "?text=" + encodeURIComponent(msg), "_blank");
-}
-
-function declineBooking(firebaseKey, phone, name) {
-  var reason = prompt("Optional: Add a reason for declining (or leave blank):");
-  if (reason === null) return; /* cancelled prompt */
-
-  /* Update status */
-  updateInFirebase(firebaseKey, { status: "Cancelled" });
-
-  /* Open WhatsApp with decline message */
-  var cleanPhone = phone.replace(/[^0-9]/g, "");
-  if (cleanPhone.startsWith("0")) cleanPhone = "254" + cleanPhone.slice(1);
-  if (!cleanPhone.startsWith("254")) cleanPhone = "254" + cleanPhone;
-
-  var msg = "Hello " + name + ",\n\n" +
-    "Thank you for reaching out to Judy Ombam Overnight Babysitting.\n\n" +
-    "Unfortunately, I am unable to confirm your booking request for this date." +
-    (reason ? " Reason: " + reason : "") + "\n\n" +
-    "Please feel free to check my availability calendar and submit a new request for another date.\n\n" +
-    "\ud83c\udf10 babysitting-mi8t.vercel.app\n\n" +
-    "Apologies for the inconvenience. \u2014 Judy \ud83c\udf19";
-
-  window.open("https://wa.me/" + cleanPhone + "?text=" + encodeURIComponent(msg), "_blank");
-}
-
-
-/* ===== MIN DATE ===== */
-var today = new Date().toISOString().split("T")[0];
-document.getElementById("f-date").setAttribute("min", today);
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+var today=new Date().toISOString().split("T")[0];
+document.getElementById("f-date").setAttribute("min",today);
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",calInit);}else{calInit();}
 </script>
 
-<!-- SEND METHOD PICKER MODAL -->
+
+<!-- SEND METHOD PICKER -->
 <div class="email-modal-overlay" id="sendPickerOverlay" onclick="closeSendPicker(event)">
   <div class="email-modal">
     <button class="email-modal-close" onclick="document.getElementById('sendPickerOverlay').classList.remove('open')">✕</button>
     <h3>📤 How would you like to send?</h3>
-    <p>Your booking details are ready. Choose how to send them to Judy — all details are pre-filled.</p>
+    <p>Your booking details are ready. All details are pre-filled.</p>
     <div class="email-choices">
-      <button class="email-choice-btn" onclick="sendViaWhatsApp()">
-        <span class="ec-icon">💬</span>
-        <span>
-          <span class="ec-label">WhatsApp</span>
-          <span class="ec-sub">Fastest reply · Opens WhatsApp with details</span>
-        </span>
-      </button>
-      <button class="email-choice-btn" onclick="sendViaGmail()">
-        <span class="ec-icon">📨</span>
-        <span>
-          <span class="ec-label">Gmail</span>
-          <span class="ec-sub">Opens Gmail in your browser</span>
-        </span>
-      </button>
-      <button class="email-choice-btn" onclick="sendViaOutlook()">
-        <span class="ec-icon">📩</span>
-        <span>
-          <span class="ec-label">Outlook / Default Mail App</span>
-          <span class="ec-sub">Opens your device's default mail app</span>
-        </span>
-      </button>
+      <button class="email-choice-btn" onclick="sendViaWhatsApp()"><span class="ec-icon">💬</span><span><span class="ec-label">WhatsApp</span><span class="ec-sub">Fastest reply · Details pre-filled</span></span></button>
+      <button class="email-choice-btn" onclick="sendViaGmail()"><span class="ec-icon">📨</span><span><span class="ec-label">Gmail</span><span class="ec-sub">Opens Gmail in your browser</span></span></button>
+      <button class="email-choice-btn" onclick="sendViaOutlook()"><span class="ec-icon">📩</span><span><span class="ec-label">Outlook / Default Mail App</span><span class="ec-sub">Opens your device's default mail app</span></span></button>
     </div>
   </div>
 </div>
 
-
 <!-- PRIVACY POLICY MODAL -->
 <div class="pp-overlay" id="privacyOverlay" onclick="closePP(event)">
   <div class="pp-modal">
-    <div class="pp-header">
-      <div>
-        <h2>🔒 Privacy Policy</h2>
-        <p>Last updated: June 2026 · Judy Ombam Overnight Babysitting, Nairobi</p>
-      </div>
-      <button class="pp-close" onclick="document.getElementById('privacyOverlay').classList.remove('open')">✕</button>
-    </div>
+    <div class="pp-header"><div><h2>🔒 Privacy Policy</h2><p>Last updated: June 2026 · Judy Ombam Overnight Babysitting, Nairobi</p></div><button class="pp-close" onclick="document.getElementById('privacyOverlay').classList.remove('open')">✕</button></div>
     <div class="pp-body">
-
-      <h3>1. Who We Are</h3>
-      <p>This website is operated by <strong>Judy Ombam</strong>, a professional overnight babysitter based in Nairobi, Kenya. Contact: <strong>atienojudithberil@gmail.com</strong> · <strong>0713 781 789</strong>.</p>
-
+      <h3>1. Who We Are</h3><p>This website is operated by <strong>Judy Ombam</strong>, professional overnight babysitter, Nairobi, Kenya. Contact: <strong>atienojudithberil@gmail.com</strong> · <strong>0713 781 789</strong>.</p>
       <hr class="pp-divider">
-
-      <h3>2. Information We Collect</h3>
-      <p>When you submit a booking request through this website, you may provide:</p>
-      <ul>
-        <li>Your full name and phone number</li>
-        <li>Your location / estate in Nairobi</li>
-        <li>Date of booking and number/ages of children</li>
-        <li>National ID number and photo (required for safety verification)</li>
-        <li>Any special instructions or notes</li>
-      </ul>
-      <p>This website also uses <strong>Google Analytics</strong> to collect anonymised information about how visitors use the site (pages viewed, time spent, general location). This data does not identify you personally.</p>
-
+      <h3>2. Information We Collect</h3><p>When you submit a booking request you may provide your full name, phone number, location, date, number/ages of children, National ID number and photo, and any special instructions. This website uses <strong>Google Analytics</strong> to collect anonymised visitor data.</p>
       <hr class="pp-divider">
-
-      <h3>3. How We Use Your Information</h3>
-      <ul>
-        <li>To confirm and manage your babysitting booking</li>
-        <li>To verify your identity before a session for the safety of your children and Judy</li>
-        <li>To contact you regarding your booking via WhatsApp or email</li>
-        <li>To improve the website and services (via anonymised analytics only)</li>
-      </ul>
-      <p>Your information is <strong>never sold, rented, or shared</strong> with any third party for marketing purposes.</p>
-
+      <h3>3. How We Use Your Information</h3><ul><li>To confirm and manage your babysitting booking</li><li>To verify your identity before a session</li><li>To contact you via WhatsApp or email</li><li>To improve the website using anonymised analytics only</li></ul><p>Your information is <strong>never sold or shared</strong> with third parties for marketing.</p>
       <hr class="pp-divider">
-
-      <h3>4. National ID Verification</h3>
-      <p>Providing your National ID number and photo is <strong>required</strong> to confirm any booking. This is a safety measure to protect your children and Judy as the caregiver. Your ID information is:</p>
-      <ul>
-        <li>Stored securely and confidentially</li>
-        <li>Used only for identity verification purposes</li>
-        <li>Never shared with third parties</li>
-        <li>Retained only for the duration necessary and deleted upon request</li>
-      </ul>
-
+      <h3>4. National ID Verification</h3><p>Required for every booking. Stored securely, used only for identity verification, never shared, deleted upon request.</p>
       <hr class="pp-divider">
-
-      <h3>5. Photos & Gallery</h3>
-      <p>All photographs featuring children on this website have been shared with the <strong>full knowledge, written consent, and approval</strong> of their parents or legal guardians. No child is identified by name. If you wish to have a photo removed, please contact Judy directly.</p>
-
+      <h3>5. Photos &amp; Gallery</h3><p>All photos featuring children were shared with <strong>full written parental consent</strong>. No child is identified by name. Contact Judy to request removal of any image.</p>
       <hr class="pp-divider">
-
-      <h3>6. Cookies & Analytics</h3>
-      <p>This website uses Google Analytics to understand visitor behaviour. Google Analytics sets cookies to collect anonymised data including pages visited, time on site, and general geographic location (country/city level). No personal details are collected via cookies.</p>
-      <p>You can opt out of Google Analytics tracking by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color:var(--blue-dark);">Google Analytics Opt-out Browser Add-on</a>.</p>
-
+      <h3>6. Data Storage</h3><p>Booking information is stored in Firebase Realtime Database, password-protected and accessible only by Judy.</p>
       <hr class="pp-divider">
-
-      <h3>7. Data Storage</h3>
-      <p>Booking information submitted via the website form is sent directly to Judy via WhatsApp or email and is not stored on any central server. The admin dashboard stores booking records locally on Judy's device only (browser localStorage) and is password-protected.</p>
-
-      <hr class="pp-divider">
-
-      <h3>8. Your Rights</h3>
-      <p>You have the right to:</p>
-      <ul>
-        <li>Request access to the personal data Judy holds about you</li>
-        <li>Request correction or deletion of your data</li>
-        <li>Withdraw consent for your data to be used at any time</li>
-      </ul>
-      <p>To exercise any of these rights, contact Judy directly.</p>
-
-      <hr class="pp-divider">
-
-      <h3>9. Changes to This Policy</h3>
-      <p>This privacy policy may be updated from time to time. The date at the top of this page shows when it was last updated. Continued use of the website after changes constitutes acceptance of the updated policy.</p>
-
-      <div class="pp-contact-box">
-        📬 <strong>Questions about this policy?</strong> Contact Judy at <strong>atienojudithberil@gmail.com</strong> or WhatsApp <strong>0713 781 789</strong>.
-      </div>
-
+      <h3>7. Your Rights</h3><p>You may request access, correction, or deletion of your data at any time by contacting Judy at <strong>atienojudithberil@gmail.com</strong>.</p>
+      <div class="pp-contact-box">📬 <strong>Questions?</strong> Contact Judy at <strong>atienojudithberil@gmail.com</strong> or WhatsApp <strong>0713 781 789</strong>.</div>
     </div>
   </div>
 </div>
