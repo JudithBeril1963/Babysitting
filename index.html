@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Judy Ombam | Overnight Babysitting Nairobi</title>
 <meta name="description" content="Professional overnight babysitting in Nairobi by Judy Ombam. Serving Westlands, Kilimani, Kileleshwa, Lavington, Karen. Book via WhatsApp.">
-<meta name="keywords" content="babysitter Nairobi, overnight babysitter Nairobi, night nanny Nairobi, babysitter Westlands, babysitter Kilimani, babysitter Karen, infant care Nairobi">
+<meta name="keywords" content="babysitter Nairobi, overnight babysitter Nairobi, night nanny Nairobi, babysitter Westlands, babysitter Kilimani, babysitter Karen, toddler care Nairobi">
 <meta property="og:title" content="Judy Ombam | Professional Overnight Babysitting Nairobi">
 <meta property="og:description" content="Safe, reliable overnight childcare from 7 PM to 7 AM. Serving Nairobi's top neighbourhoods.">
 <meta property="og:type" content="website">
@@ -118,11 +118,11 @@ nav {
 
 /* ===== HERO ===== */
 #hero {
-  background: var(--cream); padding:2rem 0;
+  background: var(--cream); padding: 0;
   display: flex; align-items: center;
 }
 .hero-inner {
-  max-width: 1100px; margin: 0 auto; padding: 0.5rem 1.5rem 3rem;
+  max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem;
   display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: center;
 }
 .hero-badge {
@@ -905,11 +905,11 @@ if(typeof firebase==="undefined"){
     <div class="consent-scroll">
       <h3>1. Who We Are</h3><p><strong>Judy Ombam</strong> — professional overnight babysitter, Nairobi. Contact: <strong>atienojudithberil@gmail.com</strong> · <strong>0713 781 789</strong>.</p>
       <hr class="consent-divider">
-      <h3>2. Information We Collect</h3><ul><li>Your full name and phone number</li><li>Your location / estate in Nairobi</li><li>Date of booking and number/ages of children</li><li>National ID number and photo (required for safety)</li><li>Any special instructions or notes</li></ul><p>This website also uses <strong>Google Analytics</strong> to collect anonymised visitor data.</p>
+      <h3>2. Information We Collect</h3><ul><li>Your full name and phone number</li><li>Your location / estate in Nairobi</li><li>Date of booking and number/ages of children</li><li>WhatsApp number and neighbourhood</li><li>Any special instructions or notes</li></ul><p>This website also uses <strong>Google Analytics</strong> to collect anonymised visitor data.</p>
       <hr class="consent-divider">
       <h3>3. How We Use Your Information</h3><ul><li>To confirm and manage your babysitting booking</li><li>To verify your identity before a session</li><li>To contact you via WhatsApp or email</li><li>To improve the website using anonymised analytics only</li></ul><p>Your information is <strong>never sold or shared</strong> with third parties for marketing purposes.</p>
       <hr class="consent-divider">
-      <h3>4. National ID Verification</h3><p>Required for every booking — stored securely, used only for identity verification, deleted upon request.</p>
+      <h3>4. Identity Verification</h3><p>Basic identity verification is arranged directly on WhatsApp before confirming any session. This protects both families and Judy.</p>
       <hr class="consent-divider">
       <h3>5. Photos &amp; Gallery</h3><p>All photos featuring children were shared with <strong>full written parental consent</strong>. No child is identified by name.</p>
       <hr class="consent-divider">
@@ -1109,8 +1109,8 @@ if(typeof firebase==="undefined"){
             <option>One Child</option>
             <option>Two Children</option>
             <option>Three Children</option>
-            <option>Infant Care</option>
-            <option>Infant Care + Emergency</option>
+            <option>toddler care</option>
+            <option>toddler care + Emergency</option>
             <option>One Child + Emergency</option>
           </select>
         </div>
@@ -1159,13 +1159,18 @@ if(typeof firebase==="undefined"){
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge">⭐ Nairobi's Trusted Night Nanny</div>
+      <div class="hero-badge">🌙 Overnight Babysitting · Nairobi</div>
       <h1 class="hero-title">
-        Professional Overnight Babysitting in <em>Nairobi</em>
+        Your night, <em>taken care of.</em>
       </h1>
       <p class="hero-sub">
-        Dependable overnight care from 7 PM to 7 AM — for working professionals, doctors, airline staff, expats, and busy parents across Nairobi. Rest easy knowing your child is safe, settled, and in caring hands throughout the night.
+        Dependable overnight babysitting for Nairobi families who need to work late, travel, or simply get some rest. Children aged 1 year and above. 7 PM – 7 AM.
       </p>
+      <p style="font-size:1.15rem;font-weight:700;color:var(--gold);margin-bottom:.35rem;">From KSh 1,500 per night</p>
+      <p style="font-size:.82rem;color:var(--text-mid);margin-bottom:1.4rem;">Final price depends on number of children · Same-day: +KSh 500</p>
+      
+      <p style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:1.25rem;">From KSh 1,500 per night</p>
+      <p style="font-size:.82rem;color:var(--text-mid);margin-top:-.85rem;margin-bottom:1.5rem;">Final price depends on number of children</p>
       <div class="hero-btns">
         <button class="btn-wa" onclick="openWA()">
           <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1195,8 +1200,8 @@ if(typeof firebase==="undefined"){
         </div>
         <div class="trust-strip">
           <div class="trust-item"><strong>7PM–7AM</strong><span>Service Hours</span></div>
-          <div class="trust-item"><strong>0–17 yrs</strong><span>Age Range</span></div>
-          <div class="trust-item"><strong>100%</strong><span>Reliable</span></div>
+          <div class="trust-item"><strong>1–17 yrs</strong><span>Age Range</span></div>
+          <div class="trust-item"><strong>Nairobi</strong><span>All Areas</span></div>
         </div>
       </div>
     </div>
@@ -1221,16 +1226,16 @@ if(typeof firebase==="undefined"){
         <span class="section-eyebrow">Meet your babysitter</span>
         <h2 class="section-title">Hello, I'm Judy Ombam</h2>
         <p>
-          I am a Civil and Construction Engineering student at the University of Nairobi (Class of 2028), where I also serve as <strong>Assistant Academic Secretary</strong> in the Association of Civil Engineering Students (ACES).
+          I am a Civil and Construction Engineering student at the University of Nairobi (Class of 2023), where I also serve as <strong>Assistant Academic Secretary</strong> in the Association of Civil Engineering Students (ACES).
         </p>
         <p>
-          Alongside my studies, I am deeply passionate about nurturing children in safe, warm, and positive environments. I have cared for children from <strong>newborns through teenagers</strong>, and across multiple cultural backgrounds — including Kenyan, American, Korean, and other international families — giving me a flexible understanding of different parenting styles.
+          Alongside my studies, I am deeply passionate about nurturing children in safe, warm, and positive environments. I have cared for children from <strong>1-year-olds through teenagers</strong>, and across multiple cultural backgrounds — including Kenyan, American, Korean, and other international families — giving me a flexible understanding of different parenting styles.
         </p>
         <p>
           I am also an active <strong>Sunday School teacher at church</strong>, which has significantly deepened my experience with children of all ages, temperaments, and learning styles. Through youth mentorship with the <strong>Umoja Foundation</strong>, I have further strengthened my ability to guide, support, and communicate with young people.
         </p>
         <ul class="highlight-list">
-          <li><span class="dot">✦</span> Newborns through teenagers — full age range experience</li>
+          <li><span class="dot">✦</span> 1 year and above through teenagers — full age range experience</li>
           <li><span class="dot">✦</span> Multicultural childcare across Kenyan, American, Korean & expat families</li>
           <li><span class="dot">✦</span> Sunday School teacher — deep experience with diverse child personalities</li>
           <li><span class="dot">✦</span> Umoja Foundation youth mentor</li>
@@ -1338,8 +1343,8 @@ if(typeof firebase==="undefined"){
       </div>
       <div class="why-card">
         <div class="why-icon">👶</div>
-        <h3>Full age range — newborn to teen</h3>
-        <p>From newborns (0–3 months) through to teenagers (up to 17 years). Every stage, every need, handled with care.</p>
+        <h3>Age range — 1 year to teenager</h3>
+        <p>From toddlers (1 year) through to teenagers (17 years). Every stage, every need, handled with care.</p>
       </div>
       <div class="why-card">
         <div class="why-icon">🤝</div>
@@ -1380,9 +1385,9 @@ if(typeof firebase==="undefined"){
       <div class="service-block">
         <h3>👧 Experience with</h3>
         <ul>
-          <li>Newborns (0–3 months)</li>
-          <li>Infants (3–12 months)</li>
-          <li>Toddlers (1–3 years)</li>
+          
+          
+          <li>Toddlers (1–2 years)</li>
           <li>Pre-schoolers (3–5 years)</li>
           <li>School-age children (6–12 years)</li>
           <li>Pre-teens and teenagers (13–17 years)</li>
@@ -1396,12 +1401,12 @@ if(typeof firebase==="undefined"){
     <div class="ages-banner reveal">
       <div class="ages-banner-text">
         <p>Full age range covered</p>
-        <strong>Newborns (0 months) through Teenagers (17 years)</strong>
+        <strong>1 Year and Above through Teenagers (17 years)</strong>
       </div>
       <div class="age-chips">
-        <span class="age-chip">👶 0–3 months</span>
-        <span class="age-chip">🍼 3–12 months</span>
-        <span class="age-chip">🚶 1–3 years</span>
+        
+        
+        <span class="age-chip">🚶 1–2 years</span>
         <span class="age-chip">🎨 3–5 years</span>
         <span class="age-chip">📚 6–12 years</span>
         <span class="age-chip">🧑 13–17 years</span>
@@ -1442,24 +1447,24 @@ if(typeof firebase==="undefined"){
       <div class="price-card">
         <span class="price-label">Standard</span>
         <p class="price-title">One Child</p>
-        <p class="price-amount">KSh 1,500</p>
+        <p class="price-amount">KSh 2,000</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
-        <p class="price-desc">Full 12-hour overnight care. Any age from newborn to teenager.</p>
+        <p class="price-desc">Full 12-hour overnight care. Any age from 1 year to teenager.</p>
       </div>
       <div class="price-card featured">
         <div class="popular-badge">Most Booked</div>
         <span class="price-label">Popular</span>
         <p class="price-title">Two Children</p>
-        <p class="price-amount">KSh 2,000</p>
+        <p class="price-amount">KSh 3,000</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
-        <p class="price-desc">Great value for siblings. Mixed ages welcome.</p>
+        <p class="price-desc">Great value for two siblings aged 1 year and above.</p>
       </div>
       <div class="price-card">
         <span class="price-label">Specialist</span>
-        <p class="price-title">Infant / Newborn Care</p>
+        <p class="price-title">Three Children</p>
         <p class="price-amount">From KSh 2,000</p>
         <span class="price-per">per night · 7 PM – 7 AM</span>
-        <p class="price-desc">Dedicated care for newborns and infants under 12 months.</p>
+        <p class="price-desc">Dedicated care for children aged 1 year and above.</p>
       </div>
       <div class="price-card">
         <span class="price-label">Emergency</span>
@@ -1476,31 +1481,7 @@ if(typeof firebase==="undefined"){
 </section>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Parent reviews</span>
-      <h2 class="section-title">What Parents Say</h2>
-    </div>
-    <div class="testi-grid reveal">
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <blockquote>Judy was professional, punctual, and absolutely wonderful with our children. We finally enjoyed a night away knowing they were completely safe and settled.</blockquote>
-        <div class="testi-author"><div class="avatar">AK</div><div><p>Amara K.</p><span>Kilimani, Nairobi</span></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <blockquote>As airline crew, I work irregular shifts including overnight. Judy's calm approach with my infant has been an absolute lifesaver. Reliable every single time.</blockquote>
-        <div class="testi-author"><div class="avatar">NM</div><div><p>Njeri M.</p><span>Westlands, Nairobi</span></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <blockquote>We're an expat family and finding trustworthy childcare in Nairobi was our biggest worry. Judy exceeded every expectation — warm, organised, and genuinely great with our toddler.</blockquote>
-        <div class="testi-author"><div class="avatar">SP</div><div><p>Sarah P.</p><span>Karen, Nairobi</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="testimonials" style="display:none;"><!-- Testimonials hidden until real client reviews collected --></section>
 
 <!-- SAFETY -->
 <section id="safety">
@@ -1510,7 +1491,7 @@ if(typeof firebase==="undefined"){
       <h2 class="section-title">Safety First</h2>
     </div>
     <div class="safety-grid reveal">
-      <div class="safety-item"><div class="safety-icon">🪪</div><div><h4>Verified identity</h4><p>National ID and University of Nairobi student ID available on request before every booking.</p></div></div>
+      <div class="safety-item"><div class="safety-icon">🪪</div><div><h4>Verified identity</h4><p>Judy shares her University of Nairobi student ID and National ID with every family before a session. Basic identity verification of parents is arranged on WhatsApp.</p></div></div>
       <div class="safety-item"><div class="safety-icon">📋</div><div><h4>References available</h4><p>References from families and the Umoja Foundation mentorship programme provided on request.</p></div></div>
       <div class="safety-item"><div class="safety-icon">🚨</div><div><h4>Emergency procedures</h4><p>A clear emergency contact plan is established before every overnight engagement.</p></div></div>
       <div class="safety-item"><div class="safety-icon">📝</div><div><h4>Instructions followed carefully</h4><p>All parent instructions — routines, allergies, special needs — are followed precisely throughout the night.</p></div></div>
@@ -1557,7 +1538,7 @@ if(typeof firebase==="undefined"){
       <div class="booking-info reveal">
         <span class="section-eyebrow">Get in touch</span>
         <h3>Book Your Night Off</h3>
-        <p>Fill in the booking form and your details will be sent directly to Judy's email. She aims to respond to all enquiries within one hour.</p>
+        <p>Fill in the short form below and your enquiry goes straight to Judy on WhatsApp. She responds within the hour. No obligation — just a quick enquiry.</p>
         <p>Alternatively, reach Judy directly:</p>
         <div class="contact-btns">
           <a href="#" class="cta-btn cta-wa" onclick="openWA(); return false;">
@@ -1587,8 +1568,8 @@ if(typeof firebase==="undefined"){
             <input type="tel" id="f-phone" placeholder="+254 700 000 000">
           </div>
           <div class="field">
-            <label>Location / Estate <span class="required">*</span></label>
-            <input type="text" id="f-location" placeholder="e.g. Kilimani, Westlands">
+            <label>Neighbourhood <span class="required">*</span></label>
+            <input type="text" id="f-location" placeholder="e.g. Kilimani, Kileleshwa, Westlands">
           </div>
           <div class="field">
             <label>Date Needed <span class="required">*</span></label>
@@ -1616,33 +1597,11 @@ if(typeof firebase==="undefined"){
             <label>Special Instructions / Notes</label>
             <textarea id="f-notes" placeholder="Allergies, routines, special needs, cultural preferences, medical notes..."></textarea>
           </div>
-          <div class="id-section">
-            <div class="id-section-header">
-              <span class="id-icon">🪪</span>
-              <div>
-                <p>Parent / Guardian National ID</p>
-                <span>Required to confirm your booking</span>
-              </div>
-              <div class="id-required-badge">REQUIRED</div>
-            </div>
-            <div class="id-fields">
-              <div class="field">
-                <label>National ID Number <span class="required">*</span></label>
-                <input type="text" id="f-id-number" placeholder="e.g. 12345678">
-              </div>
-              <div class="field">
-                <label>Upload ID Photo (front) <span class="required">*</span></label>
-                <input type="file" id="f-id-photo" accept="image/*,.pdf">
-              </div>
-            </div>
-            <div class="id-why">
-              🔒 <strong>Why is this required?</strong> For the safety of your children and my own personal security, I require a verified National ID before confirming any overnight booking. Your information is kept strictly confidential and is never shared with third parties.
-            </div>
-          </div>
+          
         </div>
-        <button class="submit-btn" onclick="submitBookingForm()">📤 Send Booking Request</button>
+        <button class="submit-btn" onclick="submitBookingForm()">📲 Send Enquiry via WhatsApp</button>
         <p style="font-size:.74rem; color:var(--text-light); text-align:center; margin-top:.75rem; line-height:1.6;">
-          By submitting this form you confirm that all information provided is accurate. Judy will follow up via email to confirm your booking and verify your ID before the session.
+          Your enquiry is sent directly to Judy on WhatsApp. She will confirm availability and next steps within the hour.
         </p>
       </div>
     </div>
@@ -1666,8 +1625,8 @@ if(typeof firebase==="undefined"){
         <div class="faq-a">Yes — this is a firm requirement for all bookings without exception. It protects both your children and me as the caregiver. Your National ID number and photo will be stored securely and never shared with any third parties. This is standard professional childcare practice.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFAQ(this)">Do you have experience with newborns? <span class="caret">▼</span></div>
-        <div class="faq-a">Yes. I have cared for newborns from 0–3 months old, including overnight bottle feeding, settling, and infant monitoring. Newborn care is priced from KSh 3,500 per night due to the additional attention required.</div>
+        <div class="faq-q" onclick="toggleFAQ(this)">What is the minimum age you care for? <span class="caret">▼</span></div>
+        <div class="faq-a">I care for children aged 1 year and above through to teenagers (17 years). This covers toddlers, pre-schoolers, school-age children, and pre-teens. If you have a child under 1 year, please contact me directly on WhatsApp to discuss.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFAQ(this)">Can you handle children from different cultural backgrounds? <span class="caret">▼</span></div>
@@ -1730,7 +1689,7 @@ if(typeof firebase==="undefined"){
           <li><span>Night nanny Nairobi</span></li>
           <li><span>Babysitter Westlands</span></li>
           <li><span>Babysitter Kilimani</span></li>
-          <li><span>Infant care Nairobi</span></li>
+          <li><span>toddler care Nairobi</span></li>
         </ul>
       </div>
     </div>
@@ -1746,7 +1705,7 @@ if(typeof firebase==="undefined"){
 var WA_NUMBER = "254713781789";
 var WA_EMAIL  = "atienojudithberil@gmail.com";
 var MONTHS    = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-var RATE      = {"One Child":1500,"Two Children":2500,"Three Children":3000,"Infant Care":2000,"Infant Care + Emergency":2500,"One Child + Emergency":2000};
+var RATE      = {"One Child":1500,"Two Children":2000,"Three Children":3000,"toddler care":2000,"toddler care + Emergency":2500,"One Child + Emergency":2000};
 
 /* ===== WHATSAPP ===== */
 function openWA() {
@@ -1978,9 +1937,9 @@ function renderCharts(bookings) {
   var bc=document.getElementById("barChart"); bc.innerHTML="";
   MONTHS.slice(0,6).forEach(function(m,i){var h=(mc[i]/maxB*100).toFixed(0);var w=document.createElement("div");w.className="bar-wrap";w.innerHTML='<div class="bar-val">'+mc[i]+'</div><div class="bar'+(i===ym?' gold-bar':'')+'" style="height:'+h+'%"></div><div class="bar-lbl">'+m+'</div>';bc.appendChild(w);});
 
-  var sm={"One Child":0,"Two Children":0,"Infant Care":0,"Other":0};
-  bookings.forEach(function(b){if(b.service==="One Child"||b.service==="One Child + Emergency")sm["One Child"]++;else if(b.service==="Two Children")sm["Two Children"]++;else if(b.service==="Infant Care"||b.service==="Infant Care + Emergency")sm["Infant Care"]++;else sm["Other"]++;});
-  var svcs=[{label:"One Child",value:sm["One Child"]||1,color:"#4A90C4"},{label:"Two Children",value:sm["Two Children"]||1,color:"#C9A84C"},{label:"Infant Care",value:sm["Infant Care"]||1,color:"#1B8A4A"},{label:"Other",value:sm["Other"]||1,color:"#C0392B"}];
+  var sm={"One Child":0,"Two Children":0,"toddler care":0,"Other":0};
+  bookings.forEach(function(b){if(b.service==="One Child"||b.service==="One Child + Emergency")sm["One Child"]++;else if(b.service==="Two Children")sm["Two Children"]++;else if(b.service==="toddler care"||b.service==="toddler care + Emergency")sm["toddler care"]++;else sm["Other"]++;});
+  var svcs=[{label:"One Child",value:sm["One Child"]||1,color:"#4A90C4"},{label:"Two Children",value:sm["Two Children"]||1,color:"#C9A84C"},{label:"toddler care",value:sm["toddler care"]||1,color:"#1B8A4A"},{label:"Other",value:sm["Other"]||1,color:"#C0392B"}];
   var tot=svcs.reduce(function(s,x){return s+x.value;},0);
   var svg=document.getElementById("donutSvg"); svg.innerHTML=""; var off=0;
   svcs.forEach(function(s){var pct=s.value/tot*100;var dash=pct+" "+(100-pct);var c=document.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("cx",21);c.setAttribute("cy",21);c.setAttribute("r",15.915);c.setAttribute("fill","none");c.setAttribute("stroke",s.color);c.setAttribute("stroke-width",8);c.setAttribute("stroke-dasharray",dash);c.setAttribute("stroke-dashoffset",(100-off).toString());svg.appendChild(c);off+=pct;});
@@ -2021,7 +1980,7 @@ function renderPendingPanel(bookings) {
     var ctag=conflict?'<div class="conflict-tag">⚠️ Conflict: '+conflict.name+' already confirmed this date</div>':"";
     card.innerHTML=ctag+
       '<div class="pending-card-top"><div><div class="pending-card-name">👤 '+b.name+'</div><div class="pending-card-date">📅 '+b.dateStr+'</div></div><div class="pending-card-amount">KSh '+(b.amount||0).toLocaleString()+'</div></div>'+
-      '<div class="pending-card-details"><div class="pending-card-detail">📍 <strong>Location:</strong> '+(b.location||"—")+'</div><div class="pending-card-detail">👶 <strong>Children:</strong> '+(b.kids||"—")+'</div><div class="pending-card-detail">🎂 <strong>Ages:</strong> '+(b.ages||"—")+'</div><div class="pending-card-detail">📞 <strong>Phone:</strong> '+(b.phone||"—")+'</div><div class="pending-card-detail">🪪 <strong>ID No:</strong> '+(b.idNum||"—")+'</div><div class="pending-card-detail">📝 <strong>Notes:</strong> '+(b.notes||"None")+'</div></div>'+
+      '<div class="pending-card-details"><div class="pending-card-detail">📍 <strong>Location:</strong> '+(b.location||"—")+'</div><div class="pending-card-detail">👶 <strong>Children:</strong> '+(b.kids||"—")+'</div><div class="pending-card-detail">🎂 <strong>Ages:</strong> '+(b.ages||"—")+'</div><div class="pending-card-detail">📞 <strong>Phone:</strong> '+(b.phone||"—")+'</div><div class="pending-card-detail">📝 <strong>Notes:</strong> '+(b.notes||"None")+'</div></div>'+
       '<div class="pending-card-actions"><button class="btn-accept">✅ Accept & Confirm</button><button class="btn-decline">❌ Decline</button></div>';
     cc.appendChild(card);
     card.querySelector(".btn-accept").addEventListener("click",function(){ acceptBooking(b.firebaseKey,b.phone||"",b.name,b.dateStr,b.rawDate); });
@@ -2221,22 +2180,18 @@ function submitBookingForm(){
   var kids=document.getElementById("f-kids").value;
   var ages=document.getElementById("f-ages").value.trim();
   var notes=document.getElementById("f-notes").value.trim();
-  var idNum=document.getElementById("f-id-number").value.trim();
-  var idFile=document.getElementById("f-id-photo").files.length>0;
   if(!name){alert("Please enter your name.");return;}
   if(!phone){alert("Please enter your phone number.");return;}
-  if(!location){alert("Please enter your location / estate.");return;}
+  if(!location){alert("Please enter your neighbourhood.");return;}
   if(!date){alert("Please select the date you need childcare.");return;}
   var sel=new Date(date);sel.setHours(0,0,0,0);var tod=new Date();tod.setHours(0,0,0,0);
   if(sel<tod){alert("Please select a future date.");return;}
   if(!ages){alert("Please enter the ages of your children.");return;}
-  if(!idNum){alert("National ID number is required to confirm your booking.");return;}
-  if(!idFile){alert("Please upload a photo of your National ID.");return;}
   var d2=new Date(date);
-  var newB={id:nextId(),name:name,rawDate:date,dateStr:d2.getDate()+" "+MONTHS[d2.getMonth()]+" "+d2.getFullYear(),location:location,kids:kids,ages:ages||"—",phone:phone,idNum:idNum,notes:notes||"None",service:kids,amount:window._estimatedRate||1500,status:"Pending",source:"Website Form"};
+  var newB={id:nextId(),name:name,rawDate:date,dateStr:d2.getDate()+" "+MONTHS[d2.getMonth()]+" "+d2.getFullYear(),location:location,kids:kids,ages:ages||"—",phone:phone,notes:notes||"None",service:kids,amount:window._estimatedRate||1500,status:"Pending",source:"Website Form"};
   if(window._fb) window._fb.push(window._fb.bkRef,newB);
   var subject="Babysitting Booking Request — "+name+" ("+date+")";
-  var body="Hello Judy,\n\nI would like to make an overnight babysitting booking. Details below:\n\nName:            "+name+"\nPhone:           "+phone+"\nLocation:        "+location+"\nDate Needed:     "+date+"\nNo. of Children: "+kids+"\nAges:            "+ages+"\nNational ID No.: "+idNum+"\nNotes:           "+(notes||"None")+"\n\nKindly confirm availability and next steps.\n\nThank you.";
+  var body="Hello Judy,\n\nI would like to make an overnight babysitting booking. Details below:\n\nName:            "+name+"\nPhone:           "+phone+"\nLocation:        "+location+"\nDate Needed:     "+date+"\nNo. of Children: "+kids+"\nAges:            "+ages+"\nNotes:           "+(notes||"None")+"\n\nKindly confirm availability and next steps.\n\nThank you.";
   window._pendingEmailSubject=subject; window._pendingEmailBody=body; window._pendingWAMsg=body;
   openSendPicker();
 }
@@ -2249,10 +2204,10 @@ function updateCostEstimate(){
   var av=document.getElementById("f-ages").value.toLowerCase().trim();
   var box=document.getElementById("costEstBox");
   if(!av&&kv==="1 child"){box.classList.add("hidden");return;}
-  var hasInfant=/\b([0-9]|10|11)\s*(month|mo|mth|months)/i.test(av)||/\bnewborn\b/i.test(av)||/\binfant\b/i.test(av)||/\b0\s*year/i.test(av);
+  var hasInfant=false; /* Age range is 1 year and above */
   var nk=kv==="2 children"?2:kv==="3 children"?3:kv==="4+ children"?4:1;
   var rate,breakdown;
-  if(nk===1&&hasInfant){rate=2000;breakdown="1 infant (0–12 months) · Overnight care";}
+  if(nk===1&&hasInfant){rate=2000;breakdown="1 toddler/child (1yr+) · Overnight care";}
   else if(nk===1){rate=1500;breakdown="1 child · Overnight care";}
   else if(nk===2){rate=2500;breakdown="2 children · Overnight care";}
   else if(nk===3){rate=3000;breakdown="3 children · Overnight care";}
@@ -2271,9 +2226,9 @@ var _es="",_eb="",_wm="";
 function openSendPicker(){_es=window._pendingEmailSubject||"Babysitting Enquiry — Judy Ombam";_eb=window._pendingEmailBody||"Hello Judy,\n\nI would like to enquire about your overnight babysitting services.\n\nThank you.";_wm=window._pendingWAMsg||_eb;document.getElementById("sendPickerOverlay").classList.add("open");}
 function openEmailPicker(){_es="Babysitting Enquiry — Judy Ombam";_eb="Hello Judy,\n\nI would like to enquire about your overnight babysitting services.\n\nName:\nPhone:\nLocation:\nDate Needed:\nNumber of Children:\nAges:\n\nThank you.";_wm=_eb;document.getElementById("sendPickerOverlay").classList.add("open");}
 function closeSendPicker(e){if(e.target===document.getElementById("sendPickerOverlay"))document.getElementById("sendPickerOverlay").classList.remove("open");}
-function sendViaWhatsApp(){document.getElementById("sendPickerOverlay").classList.remove("open");alert("📎 WhatsApp is about to open.\n\nPlease also SEND your National ID photo as a separate image in the chat.");window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(_wm),"_blank");}
-function sendViaGmail(){document.getElementById("sendPickerOverlay").classList.remove("open");alert("📎 Gmail is about to open.\n\nPlease ATTACH your National ID photo to the email before clicking Send.");window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+WA_EMAIL+"&su="+encodeURIComponent(_es)+"&body="+encodeURIComponent(_eb),"_blank");}
-function sendViaOutlook(){document.getElementById("sendPickerOverlay").classList.remove("open");alert("📎 Your mail app is about to open.\n\nPlease ATTACH your National ID photo before clicking Send.");window.location.href="mailto:"+WA_EMAIL+"?subject="+encodeURIComponent(_es)+"&body="+encodeURIComponent(_eb);}
+function sendViaWhatsApp(){document.getElementById("sendPickerOverlay").classList.remove("open");window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(_wm),"_blank");}
+function sendViaGmail(){document.getElementById("sendPickerOverlay").classList.remove("open");window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+WA_EMAIL+"&su="+encodeURIComponent(_es)+"&body="+encodeURIComponent(_eb),"_blank");}
+function sendViaOutlook(){document.getElementById("sendPickerOverlay").classList.remove("open");window.location.href="mailto:"+WA_EMAIL+"?subject="+encodeURIComponent(_es)+"&body="+encodeURIComponent(_eb);}
 
 /* ════════════════════════════════════════
    CONSENT GATE
@@ -2357,7 +2312,7 @@ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded"
       <hr class="pp-divider">
       <h3>3. How We Use Your Information</h3><ul><li>To confirm and manage your babysitting booking</li><li>To verify your identity before a session</li><li>To contact you via WhatsApp or email</li><li>To improve the website using anonymised analytics only</li></ul><p>Your information is <strong>never sold or shared</strong> with third parties for marketing.</p>
       <hr class="pp-divider">
-      <h3>4. National ID Verification</h3><p>Required for every booking. Stored securely, used only for identity verification, never shared, deleted upon request.</p>
+      <h3>4. Identity Verification</h3><p>Basic identity verification is handled directly on WhatsApp before confirming any session.</p>
       <hr class="pp-divider">
       <h3>5. Photos &amp; Gallery</h3><p>All photos featuring children were shared with <strong>full written parental consent</strong>. No child is identified by name. Contact Judy to request removal of any image.</p>
       <hr class="pp-divider">
